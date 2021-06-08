@@ -1,0 +1,20 @@
+﻿<Properties StartupItem="RhythmosEngine.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="RhythmosDatabase.cs">
+    <Files>
+      <File FileName="Note.cs" Line="1" Column="1" />
+      <File FileName="NoteLayout.cs" Line="1" Column="1" />
+      <File FileName="Rhythm.cs" Line="1" Column="1" />
+      <File FileName="RhythmosPlayer.cs" Line="1" Column="1" />
+      <File FileName="RhythmosUtility.cs" Line="1" Column="1" />
+      <File FileName="Utility.cs" Line="1" Column="1" />
+      <File FileName="AssemblyInfo.cs" Line="1" Column="1" />
+      <File FileName="RhythmosPlayerSync.cs" Line="1" Column="1" />
+      <File FileName="RhythmosDatabase.cs" Line="110" Column="28" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
