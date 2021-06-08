@@ -3,7 +3,7 @@
 _A simple rhythm tool for Unity_
 
 
-| **[Get RhythmosEngine for free](https://assetstore.unity.com/packages/tools/audio/rhythmos-engine-39835)** |
+| :musical_note: **[Get RhythmosEngine for free](https://assetstore.unity.com/packages/tools/audio/rhythmos-engine-39835)** |
 | ---------------------- |
 
 See our [projects page](https://github.com/tobiasbu/rhythmos-engine/projects) for more information about next features.
