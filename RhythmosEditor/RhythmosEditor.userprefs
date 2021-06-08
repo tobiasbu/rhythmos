@@ -1,0 +1,26 @@
+﻿<Properties StartupItem="RhythmosEditor\RhythmosEditor.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="RhythmosEditor\RhythmosEditorNoteListTab.cs">
+    <Files>
+      <File FileName="..\teste\Assets\Editor\RhythmosEditorConfig.txt" Line="1" Column="1" />
+      <File FileName="c:\Users\tobi\Documents\RhythmosEditor\RhythmosEditor\RhythmosEditor.cs" Line="196" Column="54" />
+      <File FileName="RhythmosEditor\RhythmosEditorRhythmListTab.cs" Line="1" Column="1" />
+      <File FileName="RhythmosEditor\UndoRhythmManager.cs" Line="1" Column="1" />
+      <File FileName="RhythmosEditor\Rhythm.cs" Line="1" Column="1" />
+      <File FileName="RhythmosEditor\RhythmosEditorNoteListTab.cs" Line="74" Column="31" />
+      <File FileName="RhythmosEditor\Note.cs" Line="1" Column="1" />
+      <File FileName="RhythmosEditor\NoteLayout.cs" Line="1" Column="1" />
+      <File FileName="RhythmosEditor\RhythmosEditorTimeline.cs" Line="1" Column="1" />
+      <File FileName="RhythmosEditor\XMLUtiliy.cs" Line="1" Column="1" />
+      <File FileName="RhythmosEditor\TextureUtility.cs" Line="1" Column="1" />
+      <File FileName="RhythmosEditor\Useful.cs" Line="1" Column="1" />
+      <File FileName="RhythmosEditor\AssemblyInfo.cs" Line="1" Column="1" />
+      <File FileName="RhythmosEditor\AudioUtility.cs" Line="1" Column="1" />
+      <File FileName="RhythmosEditor\ColorUtility.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
