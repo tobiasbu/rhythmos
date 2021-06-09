@@ -39,7 +39,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Exceptions.cs" />
+    <Compile Include="IAssetLoader.cs" />
     <Compile Include="Note.cs" />
+    <Compile Include="ResourceAssetLoader.cs" />
     <Compile Include="Rhythm.cs" />
     <Compile Include="NoteLayout.cs" />
     <Compile Include="RhythmosUtility.cs" />
