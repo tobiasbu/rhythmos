@@ -56,7 +56,7 @@ namespace RhythmosEngine
         /// Initializes a new instance of the <see cref="RhythmosEngine.RhythmosDatabase"/> class.
         /// </summary>
         /// <param name="textAsset">Text asset.</param>
-        [Obsolete("This constructor is deprecated and is unsafe. Please use 'Load' method instead.", true)]
+        [Obsolete("This constructor is deprecated and is unsafe. Please use 'Load' static method instead.", true)]
         public RhythmosDatabase(TextAsset textAsset)
         {
             m_rhythmDatabase = new List<Rhythm>();
@@ -112,7 +112,7 @@ namespace RhythmosEngine
         /// </summary>
         /// <returns><c>true</c>, if rhythmos database was loaded, <c>false</c> otherwise.</returns>
         /// <param name="resourcePath">Resource path.</param>
-        [Obsolete("'LoadRhythmosDatabase' is deprecated and will removed in next version. Please use 'Load' method instead.", true)]
+        [Obsolete("'LoadRhythmosDatabase' is deprecated and will removed in next version. Please use 'Load' static method instead.", true)]
         public bool LoadRhythmosDatabase(string resourcePath)
         {
             TextAsset textAsset = (TextAsset)Resources.Load(resourcePath, typeof(TextAsset));
@@ -134,7 +134,7 @@ namespace RhythmosEngine
         /// </summary>
         /// <returns><c>true</c>, if rhythmos database was loaded, <c>false</c> otherwise.</returns>
         /// <param name="textAsset">Text asset.</param>
-        [Obsolete("'LoadRhythmosDatabase' is deprecated and will removed in next version. Please use 'Load' method instead.", true)]
+        [Obsolete("'LoadRhythmosDatabase' is deprecated and will removed in next version. Please use 'Load' static method instead.", true)]
         public bool LoadRhythmosDatabase(TextAsset textAsset)
         {
             if (textAsset != null)
@@ -172,7 +172,7 @@ namespace RhythmosEngine
                                 if (entry.Key == "name")
                                     nt.Name = entry.Value;
                                 else if (entry.Key == "color")
-                                    nt.Color = Utility.ParseColor(entry.Value);
+                                    nt.Color = Parse.Color(entry.Value);
                                 else if (entry.Key == "audioclip")
                                 {
                                     if (entry.Value == "0")
@@ -234,7 +234,7 @@ namespace RhythmosEngine
                                     foreach (KeyValuePair<string, string> entry in dictionarySequence)
                                     {
                                         if (entry.Key == "duration")
-                                            nt.duration = float.Parse(entry.Value);
+                                            nt.duration = Parse.Float(entry.Value);
                                         else if (entry.Key == "rest")
                                             nt.isRest = bool.Parse(entry.Value);
                                         else if (entry.Key == "layoutIndex")
@@ -249,7 +249,7 @@ namespace RhythmosEngine
                                     if (entry.Key == "name")
                                         rtm.Name = entry.Value;
                                     else if (entry.Key == "bpm")
-                                        rtm.BPM = float.Parse(entry.Value);
+                                        rtm.BPM = Parse.Float(entry.Value);
                                 }
 
                                 AddRhythm(rtm);
@@ -279,7 +279,7 @@ namespace RhythmosEngine
         /// </summary>
         /// <param name="resourcePath">Resource path</param>
         /// <returns>Loaded RhythmosDatabse</returns>
-        /// <exception cref="DatabaseLoadException">Throws if could not load RhythmosDatabase file correctly</exception
+        /// <exception cref="DatabaseLoadException">Throws if could not load RhythmosDatabase file correctly</exception>
         public static RhythmosDatabase Load(string resourcePath)
         {
             TextAsset textAsset = (TextAsset)Resources.Load(resourcePath, typeof(TextAsset));
@@ -296,6 +296,7 @@ namespace RhythmosEngine
         {
             return Load(textAsset, new ResourceAssetLoader());
         }
+        
         /// <summary>
         /// Load RhythmosDatabase from a TextAsset (XML file).
         /// 
@@ -306,7 +307,7 @@ namespace RhythmosEngine
         /// </para>
         /// 
         /// <para>
-        /// In the future we'll provide a better way to load the RhtythmosDatabase using <see cref="ScriptableObject" />.
+        /// In the future we'll provide a better way to manage the RhtythmosDatabase using <see cref="ScriptableObject" />.
         /// </para>
         /// 
         /// </summary>
@@ -353,15 +354,14 @@ namespace RhythmosEngine
                                 if (entry.Key == "name")
                                     nt.Name = entry.Value;
                                 else if (entry.Key == "color")
-                                    nt.Color = Utility.ParseColor(entry.Value);
+                                    nt.Color = Parse.Color(entry.Value);
                                 else if (entry.Key == "audioclip")
                                 {
                                     if (entry.Value == "0")
                                         nt.Clip = null;
                                     else
                                     {
-                                        string path = entry.Value;
-                                        nt.Clip = loader.LoadClip(path);
+                                        nt.Clip = loader.LoadClip(entry.Value);
                                     }
                                 }
                             }
@@ -402,7 +402,7 @@ namespace RhythmosEngine
                                     foreach (KeyValuePair<string, string> entry in dictionarySequence)
                                     {
                                         if (entry.Key == "duration")
-                                            nt.duration = float.Parse(entry.Value);
+                                            nt.duration = Parse.Float(entry.Value);
                                         else if (entry.Key == "rest")
                                             nt.isRest = bool.Parse(entry.Value);
                                         else if (entry.Key == "layoutIndex")
@@ -416,7 +416,7 @@ namespace RhythmosEngine
                                     if (entry.Key == "name")
                                         rtm.Name = entry.Value;
                                     else if (entry.Key == "bpm")
-                                        rtm.BPM = float.Parse(entry.Value);
+                                        rtm.BPM = Parse.Float(entry.Value);
                                 }
 
                                 database.AddRhythm(rtm);
@@ -426,7 +426,7 @@ namespace RhythmosEngine
                 }
                 catch (Exception ex)
                 {
-                    throw new DatabaseLoadException(" Error loading the TextAsset: " + textAsset.name, ex);   
+                    throw new DatabaseLoadException("Error loading the TextAsset: " + textAsset.name, ex);   
                 }
             }
             else
