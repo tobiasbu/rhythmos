@@ -1,129 +1,78 @@
-﻿using System;
+﻿using System.IO;
 using UnityEngine;
 
+
 namespace RhythmosEditor
-
 {
-	public struct HSV {
-
-		public float h;
-		public float s;
-		public float v;
-		public HSV(float h, float s, float v)
-		{
-			this.h = h;
-			this.s = s;
-			this.v = v;
-		}
-
-		public override string ToString ()
-		{
-			return string.Format ("[HSV]" + h + ", " + s + ", " + v );
-		}
-
-	};
-
-	internal static class Useful
+    internal static class Useful
 	{
-		public static HSV RGBToHSV(Color rgb)
-		{
-			float delta, min;
-			float h = 0, s, v;
+        private static string FileExistsRecursion(string path, string filename, string extension, int index)
+        {
+            string newFileName = string.Concat(filename, " ", index.ToString(), extension);
+            string fullNewPath = Path.Combine(path, newFileName);
 
-			min = Mathf.Min(Mathf.Min(rgb.r, rgb.g), rgb.b);
-			v = Mathf.Max(Mathf.Max(rgb.r, rgb.g), rgb.b);
-			delta = v - min;
+            if (File.Exists(fullNewPath))
+            {
+                return FileExistsRecursion(path, filename, extension, index + 1);
+            }
+            
+            return fullNewPath;
+        }
+      
+        public static string RecursiveFileExists(string fullpath)
+        {
+            if (File.Exists(fullpath))
+            {
+                string filename = Path.GetFileNameWithoutExtension(fullpath);
+                string ext = Path.GetExtension(fullpath);
+                string path = Path.GetDirectoryName(fullpath);
 
-			if (v == 0.0f)
-				s = 0;
-			else
-				s = delta / v;
+                return FileExistsRecursion(path, filename, ext, 1);
+            }
+            else
+            {
+                return fullpath;
+            }
+        }
 
-			if (s == 0)
-				h = 0.0f;
+        public static string ToStrippedString(this string[] value)
+        {
+            string str = "(";
+            int len = value.Length;
+            for (int i = 0; i < len; i += 1)
+            {
+                str += value[i];
 
-			else
-			{
-				if (rgb.r == v)
-					h = (rgb.g - rgb.b) / delta;
-				else if (rgb.g == v)
-					h = 2 + (rgb.b - rgb.r) / delta;
-				else if (rgb.b == v)
-					h = 4 + (rgb.b - rgb.g) / delta;
+                if (i >= len - 1)
+                {
+                    str += ")";
+                } else
+                {
+                    str += ", ";
+                }
+            }
+            return str;
+        }
 
-				h *= 60f;
+        public static bool IsAssetsPath(string path)
+        {
+            string[] assetsPath = Application.dataPath.Split(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+            string[] pathToCheck = path.Split(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
 
-				if (h < 0.0f)
-					h = h + 360f;
-			}
+            if (assetsPath.Length > pathToCheck.Length)
+            {
+                return false;
+            }
 
-			return new HSV(h / 360.0f, s, v ); // (v / 255.0f)
-		}
-
-		public static Color HSVToRGB(HSV hsv)
-		{
-			float      hh, p, q, t, ff;
-			int i;
-			Color o = Color.white;
-
-			if(hsv.s <= 0.0) {       // < is bogus, just shuts up warnings
-				o.r = hsv.v;
-				o.g = hsv.v;
-				o.b = hsv.v;
-				return o;
-			}
-
-			hh = hsv.h * 360.0f;
-
-			if(hh >= 360.0f) 
-				hh = 0.0f;
-			hh /= 60.0f;
-
-			i = (int)hsv.h;
-			ff = hh - i;
-			p = hsv.v * (1.0f - hsv.s);
-			q = hsv.v * (1.0f - (hsv.s * ff));
-			t = hsv.v * (1.0f - (hsv.s * (1.0f - ff)));
-
-			switch(i) {
-			case 0:
-				o.r = hsv.v;
-				o.g = t;
-				o.b = p;
-				break;
-			case 1:
-				o.r = q;
-				o.g = hsv.v;
-				o.b = p;
-				break;
-			case 2:
-				o.r = p;
-				o.g = hsv.v;
-				o.b = t;
-				break;
-
-			case 3:
-				o.r = p;
-				o.g = q;
-				o.b = hsv.v;
-				break;
-			case 4:
-				o.r = t;
-				o.g = p;
-				o.b = hsv.v;
-				break;
-			case 5:
-			default:
-				o.r = hsv.v;
-				o.g = p;
-				o.b = q;
-				break;
-			}
-
-			o.a = 1.0f;
-
-			return o; 
-		}
+            for (int i = 0; i < assetsPath.Length; i += 1)
+            {
+                if (assetsPath[i] != pathToCheck[i])
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
 
 	}
 }
