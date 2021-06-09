@@ -23,4 +23,4 @@ This project was created for "Games Project:  Games Engines" class in 2015 at [U
 
 ## License
 
-Created by [Tobias Ulrich](https://github.com/tobiasbu) and license based in [MIT](https://github.com/tobiasbu/xavier/blob/master/LICENSE).
+Created by [Tobias Ulrich](https://github.com/tobiasbu) and license based in [MIT](https://github.com/tobiasbu/rhythmos-engine/blob/main/LICENSE).
