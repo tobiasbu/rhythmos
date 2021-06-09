@@ -23,12 +23,25 @@ namespace RhythmosEngine
     [Serializable]
     public class RhythmosDatabase
     {
+        [SerializeField]
+        private TextAsset textAsset;
 
         [SerializeField]
         private List<Rhythm> m_rhythmDatabase;
 
         [SerializeField]
         private List<NoteLayout> m_noteLayoutList;
+
+        /// <summary>
+        /// Get TextAsset reference of this RhythmosDatabase
+        /// </summary>
+        public TextAsset TextAsset
+        {
+            get
+            {
+                return textAsset;
+            }
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RhythmosEngine.RhythmosDatabase"/>.
@@ -243,6 +256,9 @@ namespace RhythmosEngine
                             }
                         }
                     }
+
+                    this.textAsset = textAsset;
+
                     return true;
                 }
                 catch (Exception ex)
@@ -312,6 +328,7 @@ namespace RhythmosEngine
                 {
                     xmlDoc.Load(reader);
                     database = new RhythmosDatabase();
+                    database.textAsset = textAsset;
 
                     XmlNodeList noteList = xmlDoc.GetElementsByTagName("NoteEntry");
                     foreach (XmlNode node in noteList)
