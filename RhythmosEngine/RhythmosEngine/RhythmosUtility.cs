@@ -24,8 +24,7 @@ namespace RhythmosEngine
 		/// <param name="elementsToCompare">Elements to compare.</param>
 		static public bool CheckRhythmsMatch(Rhythm rhythmA, Rhythm rhythmB) { 
 			
-			bool match = false;
-			
+			bool match = false;	
 			if (rhythmA != null) {
 				if (rhythmB != null) {
 			
@@ -153,16 +152,10 @@ namespace RhythmosEngine
 								if (timeUsr > timeRtm-pdrc && timeUsr < timeRtm+pdrc) {
 									float por = rhythmSource.NoteList()[i-1].duration/noteByBPM;//Mathf.Lerp(0.1f,1f,rhythmSource.NoteList()[i-1].m_duration/noteByBPM);
 									rightness += por;
-								}
-								
-								
+								}	
 							} else {
-			
-			
 								timeRtm += noteByBPM;
 								timeUsr += (bpsec*rhythmCompare.NoteList()[i].duration);
-			
-			
 								// se esta dentro da ponderacao
 								if (rhythmSource.NoteList()[i].duration > noteByBPM-pdrc && rhythmSource.NoteList()[i].duration < noteByBPM+pdrc) {
 									float por = rhythmSource.NoteList()[i].duration/noteByBPM;//Mathf.Lerp(0.1f,1f,rhythmSource.NoteList()[i].m_duration/noteByBPM);
@@ -174,11 +167,14 @@ namespace RhythmosEngine
 
 					result = rightness;
 					result = result/(float)rhythmCompare.NoteList().Count;
-					
 					if (result > 1f)
+					{
 						result = 1f;
+					}
 					else if (result < 0f)
+					{
 						result = 0f;
+					}
 						
 			
 				} else {

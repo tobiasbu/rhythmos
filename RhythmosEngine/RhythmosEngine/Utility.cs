@@ -21,11 +21,9 @@ namespace RhythmosEngine
             {
                 col = col.Remove(0, 5);
                 col = col.Remove(col.Length - 1, 1);
-
             }
 
             string[] strs = col.Split(","[0]);
-
             for (int i = 0; i < 4; i++)
             {
                 output[i] = System.Single.Parse(strs[i]);
