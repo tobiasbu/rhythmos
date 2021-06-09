@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,26 +17,54 @@ namespace RhythmosEngine
     /// <summary>
     /// Rhythm Class provides a data storage for rhythm: rhythm name, note list, bpm.
     /// </summary>
+    [Serializable]
     public class Rhythm
     {
-
         [SerializeField]
         private List<Note> m_noteList;
 
-        [SerializeField]
-        private float m_bpm = 80;
+        /// <summary>
+        /// Rhythm name.
+        /// </summary>
+        public string Name = "none";
 
-        [SerializeField]
-        private string m_name = "none";
+        /// <summary>
+        /// Beats per minute.
+        /// </summary>
+        public float BPM = 80;
+
+        /// <summary>
+        /// Gets the note count.
+        /// </summary>
+        /// <value>The note count.</value>
+        [Obsolete("Please use 'Count' method instead. Just to simplify things.", true)]
+        public int NoteCount
+        {
+            get
+            {
+                return m_noteList.Count;
+            }
+        }
+
+        /// <summary>
+        /// Gets the note count.
+        /// </summary>
+        public int Count
+        {
+            get
+            {
+                return m_noteList.Count;
+            }
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RhythmosEngine.Rhythm"/> class.
         /// </summary>
         public Rhythm()
         {
+            Name = "none";
+            BPM = 80;
             m_noteList = new List<Note>();
-            m_name = "none";
-            m_bpm = 80;
         }
 
         /// <summary>
@@ -45,8 +74,8 @@ namespace RhythmosEngine
         /// <param name="bpm">BPM.</param>
         public Rhythm(string name, float bpm)
         {
-            m_name = name;
-            m_bpm = bpm;
+            Name = name;
+            BPM = bpm;
             m_noteList = new List<Note>();
         }
 
@@ -56,59 +85,13 @@ namespace RhythmosEngine
         /// <param name="rhythm">Rhythm.</param>
         public Rhythm(Rhythm rhythm)
         {
-            m_name = rhythm.m_name;
-            m_bpm = rhythm.m_bpm;
+            Name = rhythm.Name;
+            BPM = rhythm.BPM;
             m_noteList = new List<Note>();
 
             foreach (Note nt in rhythm.NoteList())
             {
                 m_noteList.Add(new Note(nt));
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the BPM.
-        /// </summary>
-        /// <value>The BPM.</value>
-        public float BPM
-        {
-            get
-            {
-                return m_bpm;
-            }
-
-            set
-            {
-                m_bpm = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the rhythm name.
-        /// </summary>
-        /// <value>The name.</value>
-        public string Name
-        {
-            get
-            {
-                return m_name;
-            }
-
-            set
-            {
-                m_name = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets the note count.
-        /// </summary>
-        /// <value>The note count.</value>
-        public int NoteCount
-        {
-            get
-            {
-                return m_noteList.Count;
             }
         }
 
@@ -199,14 +182,13 @@ namespace RhythmosEngine
         public float Duration()
         {
             float totalTime = 0f;
-            if (m_bpm > 0)
+            if (BPM > 0)
             {
                 foreach (Note nt in m_noteList)
                 {
                     totalTime += nt.duration;
                 }
-
-                totalTime *= (60f / m_bpm);
+                totalTime *= (60f / BPM);
             }
 
             return totalTime;
