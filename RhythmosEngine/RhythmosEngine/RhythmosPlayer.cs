@@ -17,7 +17,6 @@ namespace RhythmosEngine
 
     public class RhythmosPlayer : MonoBehaviour
     {
-
         [SerializeField]
         private Rhythm m_rhythm;
 
@@ -33,25 +32,14 @@ namespace RhythmosEngine
         [SerializeField]
         private bool m_destroyOnEnd = false;
 
-        [SerializeField]
         protected bool m_playing = false;
-
-
-
-
         protected float m_rhythmDuration = 0;
         protected int m_noteIndex = -1;
         protected float m_noteTime = 0;
         protected float m_playedAmount = 0;
         protected bool m_noteWasPlayed = false;
-
-        [SerializeField]
         protected bool m_paused = false;
-
-
-        [SerializeField]
         protected AudioSource m_lastAudioSource = null;
-
         protected List<AudioSource> m_audioSourcesList = new List<AudioSource>();
 
         /// <summary>
@@ -202,8 +190,6 @@ namespace RhythmosEngine
                 }
             }
         }
-
-
 
         // Update is called once per frame			
         void Update()
