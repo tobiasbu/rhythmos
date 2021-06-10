@@ -3,13 +3,24 @@ using System;
 namespace RhythmosEngine
 {
 	/// <summary>
-	/// Representation of Note.
+	/// Represent an musical note.
 	/// </summary>
 	[Serializable]
 	public class Note {
 	
+		/// <summary>
+		/// Defines if this note is a rest
+		/// </summary>
 		public bool isRest;
+
+		/// <summary>
+		/// Duration in seconds of this note
+		/// </summary>
 		public float duration;
+
+		/// <summary>
+		/// ID reference of a  <see cref="RhythmosEngine.NoteLayout"/> 
+		/// </summary>
 		public int layoutIndex;
 
 		/// <summary>
