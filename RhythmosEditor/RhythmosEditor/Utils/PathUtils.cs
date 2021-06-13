@@ -1,10 +1,9 @@
-﻿using System.IO;
+using System.IO;
 using UnityEngine;
-
 
 namespace RhythmosEditor
 {
-    internal static class Useful
+    internal static class PathUtils
 	{
         private static string FileExistsRecursion(string path, string filename, string extension, int index)
         {
@@ -18,43 +17,8 @@ namespace RhythmosEditor
             
             return fullNewPath;
         }
-      
-        public static string RecursiveFileExists(string fullpath)
-        {
-            if (File.Exists(fullpath))
-            {
-                string filename = Path.GetFileNameWithoutExtension(fullpath);
-                string ext = Path.GetExtension(fullpath);
-                string path = Path.GetDirectoryName(fullpath);
 
-                return FileExistsRecursion(path, filename, ext, 1);
-            }
-            else
-            {
-                return fullpath;
-            }
-        }
-
-        public static string ToStrippedString(this string[] value)
-        {
-            string str = "(";
-            int len = value.Length;
-            for (int i = 0; i < len; i += 1)
-            {
-                str += value[i];
-
-                if (i >= len - 1)
-                {
-                    str += ")";
-                } else
-                {
-                    str += ", ";
-                }
-            }
-            return str;
-        }
-
-        public static bool IsAssetsPath(string path)
+        public static bool IsAssetsAbsolutePath(string path)
         {
             string[] assetsPath = Application.dataPath.Split(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
             string[] pathToCheck = path.Split(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
@@ -73,7 +37,6 @@ namespace RhythmosEditor
             }
             return true;
         }
-
 	}
 }
 

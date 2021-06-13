@@ -76,7 +76,7 @@ namespace RhythmosEditor
         static public Texture2D CreateSpecialDegrade(int width, int height, Color color)
         {
             Texture2D texture = new Texture2D(width, height);
-            HSV hsvColorA = ColorUtility.ToHSV(color);
+            HSV hsvColorA = HSV.ToHSV(color);
             HSV hsvColorB = hsvColorA;
             if (hsvColorA.s == 0)
             {
@@ -113,14 +113,6 @@ namespace RhythmosEditor
             return tex;
         }
 
-        static public void DrawBox(Rect rect, Color color, Texture2D texture, float size)
-        {
-            GUI.color = color;
-            GUI.DrawTexture(new Rect(rect.x, rect.y, rect.width, size), texture);
-            GUI.DrawTexture(new Rect(rect.x, rect.y + rect.height - (size / 2), rect.width, size), texture);
-            GUI.DrawTexture(new Rect(rect.x, rect.y, size, rect.height), texture);
-            GUI.DrawTexture(new Rect(rect.x + rect.width - (size / 2), rect.y, size, rect.height + 1), texture);
-            GUI.color = Color.white;
-        }
+        
     }
 }
