@@ -105,9 +105,52 @@ namespace RhythmosEditor
             return o;
         }
 
-        internal Color ToRGB()
+        public static HSV ToHSV(Color rgb)
         {
-            return HSV.ToColor(this);
+            float h = 0, s;
+            float cmax = Mathf.Max(rgb.r, rgb.g, rgb.b);
+            float cmin = Mathf.Min(rgb.r, rgb.g, rgb.b);
+            float delta = cmax - cmin;
+
+            if (delta > 0.0f)
+            {
+
+                if (rgb.r == cmax)
+                {
+                    h = ((rgb.g - rgb.b) / delta) % 6.0f;
+                }
+                else if (rgb.g == cmax)
+                {
+                    h = 2.0f + ((rgb.b - rgb.r) / delta);
+                }
+                else if (rgb.b == cmax)
+                {
+                    h = 4.0f + ((rgb.r - rgb.g) / delta);
+                }
+
+                if (cmax > 0)
+                {
+                    s = delta / cmax;
+                }
+                else
+                {
+                    s = 0.0f;
+                }
+
+            }
+            else
+            {
+                h = 0.0f;
+                s = 0.0f;
+            }
+
+            h *= 60f;
+            if (h < 0.0f)
+            {
+                h = h + 360f;
+            }
+
+            return new HSV(h / 360.0f, s, cmax);
         }
     }
 }
