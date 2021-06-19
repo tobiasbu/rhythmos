@@ -3,26 +3,28 @@ using UnityEngine;
 
 namespace RhythmosEngine
 {
+
     /// <summary>
-    /// Representation of a Note Layout.
+    /// Representation of a 'note layout' which stores audio clip and related properties.
     /// </summary>
     [Serializable]
+    [Obsolete("NoteLayout is deprecated. Please use AudioReference", true)]
     public class NoteLayout
     {
         /// <summary>
         /// Note name.
         /// </summary>
-        public string Name = "";
+        public string Name;
 
         /// <summary>
         /// Note audio clip.
         /// </summary>
-        public AudioClip Clip = null;
+        public AudioClip Clip;
 
         /// <summary>
         /// Note color (used in RhythmosEditor)
         /// </summary>
-        public Color Color = new Color(UnityEngine.Random.Range(0.3f, 0.95f), UnityEngine.Random.Range(0.3f, 0.95f), UnityEngine.Random.Range(0.3f, 0.95f));
+        public Color Color;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RhythmosEngine.NoteLayout"/> class.
@@ -31,17 +33,17 @@ namespace RhythmosEngine
         {
             Name = "";
             Clip = null;
-            Color = new Color(UnityEngine.Random.Range(0.3f, 0.95f), UnityEngine.Random.Range(0.3f, 0.95f), UnityEngine.Random.Range(0.3f, 0.95f));
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RhythmosEngine.NoteLayout"/>.
-        /// Audio clip will be null and color is randomized.
+        /// Audio clip will be null
         /// </summary>
         /// <param name="name">Note layout name</param>
         public NoteLayout(string name)
         {
             Name = name;
+            Clip = null;
         }
 
         /// <summary>
