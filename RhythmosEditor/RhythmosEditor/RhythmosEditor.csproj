@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>RhythmosEditor</RootNamespace>
     <AssemblyName>RhythmosEditor</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -33,30 +33,48 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="RhythmosEngine">
+      <HintPath>..\..\RhythmosEngine\RhythmosEngine\bin\Release\RhythmosEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
-      <HintPath>D:\Program Files\Unity\Editor\Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>D:\Program Files\2020.3.3f1\Editor\Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>D:\Program Files %28x86%29\Unity4\Editor\Data\Managed\UnityEditor.dll</HintPath>
+      <HintPath>D:\Program Files\2020.3.3f1\Editor\Data\Managed\UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Config.cs" />
+    <Compile Include="DatabaseLoader.cs" />
+    <Compile Include="EditorAssetLoader.cs" />
+    <Compile Include="Exceptions.cs" />
+    <Compile Include="GUI\Colors.cs" />
+    <Compile Include="GUI\DragDrop.cs" />
+    <Compile Include="GUI\GUIDraw.cs" />
+    <Compile Include="GUI\GUIEvents.cs" />
+    <Compile Include="GUI\ListView.cs" />
+    <Compile Include="GUI\Textures.cs" />
+    <Compile Include="IUndoRedoDelegate.cs" />
+    <Compile Include="Pages\AudioClipsPage.cs" />
+    <Compile Include="Pages\IEditorPage.cs" />
+    <Compile Include="Pages\RhythmsPage.cs" />
+    <Compile Include="Pages\SettingsPage.cs" />
     <Compile Include="RhythmosEditor.cs" />
     <Compile Include="RhythmosEditorNoteListTab.cs" />
     <Compile Include="RhythmosEditorRhythmListTab.cs" />
     <Compile Include="RhythmosEditorTimeline.cs" />
-    <Compile Include="TextureUtility.cs" />
-    <Compile Include="XMLUtiliy.cs" />
-    <Compile Include="ColorUtility.cs" />
-    <Compile Include="AudioUtility.cs" />
+    <Compile Include="Utils\AudioUtility.cs" />
+    <Compile Include="Utils\ColorUtility.cs" />
+    <Compile Include="Utils\HSV.cs" />
+    <Compile Include="Utils\PathUtils.cs" />
+    <Compile Include="Utils\StringUtils.cs" />
+    <Compile Include="Utils\TextureUtility.cs" />
+    <Compile Include="Utils\XMLUtiliy.cs" />
     <Compile Include="UndoRhythmManager.cs" />
     <Compile Include="UndoNoteLayoutManager.cs" />
-    <Compile Include="Rhythm.cs" />
-    <Compile Include="Note.cs" />
-    <Compile Include="NoteLayout.cs" />
-    <Compile Include="Useful.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
