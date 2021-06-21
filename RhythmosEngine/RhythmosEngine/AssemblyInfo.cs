@@ -1,11 +1,10 @@
 using System.Reflection;
-using System.Runtime.CompilerServices;
 
 // Information about this assembly is defined by the following attributes. 
 // Change them to the values specific to your project.
 
 [assembly: AssemblyTitle("RhythmosEngine")]
-[assembly: AssemblyDescription("Rhythmos Engine for Unity3D is an library tool to make your own rhythm.")]
+[assembly: AssemblyDescription("Rhythmos Engine for Unity3D is an simple library to play and make rhythms.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("")]
