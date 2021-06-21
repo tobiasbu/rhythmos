@@ -33,9 +33,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="RhythmosEngine">
-      <HintPath>..\..\RhythmosEngine\RhythmosEngine\bin\Release\RhythmosEngine.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
@@ -75,6 +72,12 @@
     <Compile Include="Utils\XMLUtiliy.cs" />
     <Compile Include="UndoRhythmManager.cs" />
     <Compile Include="UndoNoteLayoutManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RhythmosEngine\RhythmosEngine.csproj">
+      <Project>{2ccadc75-0df6-45f8-9367-bc7721b4391a}</Project>
+      <Name>RhythmosEngine</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
