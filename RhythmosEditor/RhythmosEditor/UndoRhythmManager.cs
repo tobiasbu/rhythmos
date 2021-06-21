@@ -1,3 +1,4 @@
+using RhythmosEngine;
 using System.Collections.Generic;
 
 namespace RhythmosEditor

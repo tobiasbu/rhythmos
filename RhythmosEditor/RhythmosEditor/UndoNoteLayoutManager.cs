@@ -1,19 +1,20 @@
+using RhythmosEngine;
 using System.Collections.Generic;
 
 namespace RhythmosEditor
 {
-    internal struct UndoNoteLayout
+    internal struct UndoAudioReference
     {
         public int index;
         public string undoAction;
-        public NoteLayout note;
+        public AudioReference note;
     }
 
-    internal class UndoNoteLayoutManager
+    internal class UndoAudioReferenceManager : IUndoRedoDelegate
     {
         int maxActions = 50;
-        private static List<UndoNoteLayout> undoList;
-        private static List<UndoNoteLayout> redoList;
+        private static List<UndoAudioReference> undoList;
+        private static List<UndoAudioReference> redoList;
 
         public int UndoCount
         {
@@ -25,33 +26,33 @@ namespace RhythmosEditor
             get { return redoList.Count; }
         }
 
-        public UndoNoteLayoutManager()
+        public UndoAudioReferenceManager()
         {
             if (undoList == null)
-                undoList = new List<UndoNoteLayout>();
+                undoList = new List<UndoAudioReference>();
 
             if (redoList == null)
-                redoList = new List<UndoNoteLayout>();
+                redoList = new List<UndoAudioReference>();
         }
 
         public void Clear()
         {
             if (undoList == null)
-                undoList = new List<UndoNoteLayout>();
+                undoList = new List<UndoAudioReference>();
             else
                 undoList.Clear();
 
             if (redoList == null)
-                redoList = new List<UndoNoteLayout>();
+                redoList = new List<UndoAudioReference>();
             else
                 redoList.Clear();
         }
 
-        public void RecordNote(NoteLayout note, string action, int index, bool newThing)
+        public void RecordNote(AudioReference note, string action, int index, bool newThing)
         {
-            UndoNoteLayout undo = new UndoNoteLayout();
+            UndoAudioReference undo = new UndoAudioReference();
             undo.index = index;
-            undo.note = new NoteLayout(note);
+            undo.note = new AudioReference(note);
             undo.undoAction = action;
 
             if (newThing)
@@ -64,11 +65,11 @@ namespace RhythmosEditor
             }
         }
 
-        public void RecordNoteRedo(NoteLayout note, string action, int index)
+        public void RecordNoteRedo(AudioReference note, string action, int index)
         {
-            UndoNoteLayout redo = new UndoNoteLayout();
+            UndoAudioReference redo = new UndoAudioReference();
             redo.index = index;
-            redo.note = new NoteLayout(note);
+            redo.note = new AudioReference(note);
             redo.undoAction = action;
 
             redoList.Add(redo);
@@ -90,36 +91,46 @@ namespace RhythmosEditor
                 redoList.RemoveAt(redoList.Count - 1);
         }
 
-        public UndoNoteLayout Undo()
+        public UndoAudioReference Undo()
         {
             if (undoList.Count != 0)
             {
-                UndoNoteLayout undo = undoList[undoList.Count - 1];
+                UndoAudioReference undo = undoList[undoList.Count - 1];
                 return undo;
             }
             else
             {
-                UndoNoteLayout undo = new UndoNoteLayout();
+                UndoAudioReference undo = new UndoAudioReference();
                 undo.index = -1;
                 undo.undoAction = "none";
                 return undo;
             }
         }
 
-        public UndoNoteLayout Redo()
+        public UndoAudioReference Redo()
         {
             if (redoList.Count != 0)
             {
-                UndoNoteLayout redo = redoList[redoList.Count - 1];
+                UndoAudioReference redo = redoList[redoList.Count - 1];
                 return redo;
             }
             else
             {
-                UndoNoteLayout redo = new UndoNoteLayout();
+                UndoAudioReference redo = new UndoAudioReference();
                 redo.index = -1;
                 redo.undoAction = "none";
                 return redo;
             }
+        }
+
+        public void OnUndo()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void OnRedo()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
