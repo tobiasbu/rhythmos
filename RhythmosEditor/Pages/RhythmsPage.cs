@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using RhythmosEngine;
+using RhythmosEditor.Commands;
 
 namespace RhythmosEditor.Pages
 {
-    internal class RhythmsPage : IEditorPage
+    internal class RhythmsPage : BaseEditorPage
     {
         // GUI items
         private GUIContent addContentButton;
@@ -15,9 +16,10 @@ namespace RhythmosEditor.Pages
         // Reference to rhythmList
         private List<Rhythm> rhythmList;
 
-        public IUndoRedoDelegate UndoRedoDelegate => null;
+        public RhythmsPage()
+        { }
 
-        public void OnLoad()
+        public override void OnLoad()
         {
             if (rhythmListView == null)
             {
@@ -43,7 +45,7 @@ namespace RhythmosEditor.Pages
             }
         }
 
-        public void OnPageSelect(Config config)
+        public override void OnPageSelect(Config config)
         {
             if (config.loaded)
             {
@@ -53,7 +55,7 @@ namespace RhythmosEditor.Pages
             }
         }
 
-        public void OnDraw(Rect pageRect)
+        public override void OnDraw(Rect pageRect)
         {
             #region List section
 
@@ -70,16 +72,7 @@ namespace RhythmosEditor.Pages
 
             if (GUIDraw.IconButton(addContentButton))
             {
-                int count = rhythmList.Count;
-                rhythmList.Add(new Rhythm {
-                    Name = "New Rhythm " + (count + 1),
-                    BPM = 80
-                });
-                rhythmListView.Select(count);
-
-                //_timeline.SetRhythm(rhythmListView.selectedItem);
-                //_timeline.SetSelectedNoteIndex(-1);
-                //_undoManager.RecordRhythm(rhythmListView.Selected, "Add New Rhythm", rhythmListView.SelectedIndex, _timeline.GetSelectedNoteIndex(), true);
+                UndoRedo.Record(new Commands.Rhythms.Create(rhythmListView));
             }
 
             if (rhythmListView.HasSelection)
@@ -96,17 +89,7 @@ namespace RhythmosEditor.Pages
             {
                 if (rhythmListView.HasSelection)
                 {
-                    Rhythm clone = new Rhythm(rhythmListView.Selected);
-                    clone.Name = string.Concat(clone.Name, " (Copy)");
-                    int insertIndex = rhythmListView.SelectedIndex + 1;
-                    rhythmList.Insert(insertIndex, clone);
-                    rhythmListView.Select(insertIndex);
-
-                    //_timeline.Stop();
-                    //_timeline.SetRhythm(clone);
-                    //_timeline.SetSelectedNoteIndex(-1);
-                    //_undoManager.RecordRhythm(clone, "Duplicate Rhythm", rhythmListView.SelectedIndex, _timeline.GetSelectedNoteIndex(), true);
-
+                    UndoRedo.Record(new Commands.Rhythms.Duplicate(rhythmListView));
                 }
             }
 
@@ -116,31 +99,7 @@ namespace RhythmosEditor.Pages
             {
                 if (rhythmListView.HasSelection)
                 {
-                    int selectedIndex = rhythmListView.SelectedIndex;
-                    //_undoManager.RecordRhythm(rhythmListView.Selected, "Remove Rhythm", value, _timeline.GetSelectedNoteIndex(), true);
-                    rhythmList.RemoveAt(selectedIndex);
-                    //_timeline.Stop();
-
-                    int count = rhythmList.Count;
-                    if (count == 0)
-                    {
-                        rhythmListView.UnSelect();
-                    }
-                    else
-                    {
-                        if (selectedIndex >= count)
-                        {
-                            selectedIndex = count - 1;
-                        }
-
-                        rhythmListView.Select(selectedIndex);
-                    }
-
-                    //if (selection != -1)
-                    //{
-                    //    _timeline.SetRhythm(rhythmListView.Selected);
-                    //    _timeline.SetSelectedNoteIndex(-1);
-                    //}
+                    UndoRedo.Record(new Commands.Rhythms.Delete(rhythmListView));
                 }
             }
 
@@ -148,4 +107,6 @@ namespace RhythmosEditor.Pages
             GUI.enabled = true;
         }
     }
+
+ 
 }
