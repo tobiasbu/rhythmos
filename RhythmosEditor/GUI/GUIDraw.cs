@@ -34,12 +34,12 @@ namespace RhythmosEditor
             return IconButton(iconContent, GUILayout.Width(28), GUILayout.Height(24));
         }
 
-        public static void UndoRedo(IUndoRedoDelegate undoRedoDelegate, bool disableUndo, bool disableRedo)
+        public static void UndoRedoButtons(bool disableUndo, bool disableRedo)
         {
             
             GUILayout.BeginHorizontal(GUILayout.Width(56));
 
-            if (undoRedoDelegate == null || undoRedoDelegate.UndoCount == 0)
+            if (Commands.UndoRedo.UndoCount == 0)
                 GUI.enabled = false;
             else
                 GUI.enabled = true;
@@ -57,10 +57,10 @@ namespace RhythmosEditor
 
             if (GUILayout.Button(undoContent, GUILayout.Width(24), GUILayout.Height(19)))
             {
-                undoRedoDelegate.OnUndo();
+                Commands.UndoRedo.PerformUndo();
             }
 
-            if (undoRedoDelegate == null || undoRedoDelegate.RedoCount == 0)
+            if (Commands.UndoRedo.RedoCount == 0)
                 GUI.enabled = false;
             else
                 GUI.enabled = true;
@@ -72,7 +72,7 @@ namespace RhythmosEditor
 
             if (GUILayout.Button(redoContent, GUILayout.Width(24), GUILayout.Height(19)))
             {
-                undoRedoDelegate.OnRedo();
+                Commands.UndoRedo.PerformRedo();
             }
 
             GUILayout.EndHorizontal();
