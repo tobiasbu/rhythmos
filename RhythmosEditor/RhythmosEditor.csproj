@@ -44,6 +44,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\Rhythms\BaseCommand.cs" />
+    <Compile Include="Commands\Rhythms\Commons.cs" />
+    <Compile Include="Commands\Rhythms\Create.cs" />
+    <Compile Include="Commands\Rhythms\Delete.cs" />
+    <Compile Include="Commands\Rhythms\Duplicate.cs" />
+    <Compile Include="Commands\UndoRedo.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="DatabaseLoader.cs" />
     <Compile Include="EditorAssetLoader.cs" />
@@ -54,9 +61,8 @@
     <Compile Include="GUI\GUIEvents.cs" />
     <Compile Include="GUI\ListView.cs" />
     <Compile Include="GUI\Textures.cs" />
-    <Compile Include="IUndoRedoDelegate.cs" />
     <Compile Include="Pages\AudioClipsPage.cs" />
-    <Compile Include="Pages\IEditorPage.cs" />
+    <Compile Include="Pages\BaseEditorPage.cs" />
     <Compile Include="Pages\RhythmsPage.cs" />
     <Compile Include="Pages\SettingsPage.cs" />
     <Compile Include="RhythmosEditor.cs" />
