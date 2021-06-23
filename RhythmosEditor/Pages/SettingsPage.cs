@@ -4,13 +4,15 @@ using RhythmosEngine;
 
 namespace RhythmosEditor.Pages
 {
-    internal class SettingsPage : IEditorPage
+    internal class SettingsPage : BaseEditorPage
     {
         Config config;
 
-        public IUndoRedoDelegate UndoRedoDelegate => null;
+        public SettingsPage()
+        { }
 
-        public void OnDraw(Rect pageRect)
+
+        public override void OnDraw(Rect pageRect)
         {
             GUILayout.Label("Database Settings:", EditorStyles.boldLabel);
             GUILayout.BeginHorizontal();
@@ -78,19 +80,16 @@ namespace RhythmosEditor.Pages
             GUILayout.EndHorizontal();
         }
 
-        public void OnLoad()
+
+        public override void OnLoad()
         {
            
         }
 
-        public void OnPageSelect(Config config)
+        public override void OnPageSelect(Config config)
         {
             this.config = config;
         }
 
-        public void OnUpdate(Event guiEvent)
-        {
-            
-        }
     }
 }

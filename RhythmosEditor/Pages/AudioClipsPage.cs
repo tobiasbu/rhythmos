@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace RhythmosEditor.Pages
 {
-    internal class AudioClipsPage : IEditorPage
+    internal class AudioClipsPage : BaseEditorPage
     {
 
         // GUI itens
@@ -26,9 +26,10 @@ namespace RhythmosEditor.Pages
         private Tuple<AudioReference, int> removalTuple;
         private GUIStyle centeredLabel;
 
-        public IUndoRedoDelegate UndoRedoDelegate => null;
+        public AudioClipsPage()
+        { }
 
-        public void OnLoad()
+        public override void OnLoad()
         {
             if (addContentButton == null)
             {
@@ -42,7 +43,7 @@ namespace RhythmosEditor.Pages
 
         }
 
-        public void OnPageSelect(Config config)
+        public override void OnPageSelect(Config config)
         {
             if (config.loaded)
             {
@@ -51,7 +52,7 @@ namespace RhythmosEditor.Pages
             }
         }
 
-        public void OnDraw(Rect pageRect)
+        public override void OnDraw(Rect pageRect)
         {
 
             if (centeredLabel == null)
