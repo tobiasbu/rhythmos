@@ -10,11 +10,13 @@ namespace RhythmosEditor
         public AudioReference note;
     }
 
-    internal class UndoAudioReferenceManager : IUndoRedoDelegate
+    internal class UndoAudioReferenceManager
     {
         int maxActions = 50;
         private static List<UndoAudioReference> undoList;
         private static List<UndoAudioReference> redoList;
+
+      
 
         public int UndoCount
         {
