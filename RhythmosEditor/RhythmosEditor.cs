@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEditor;
+using RhythmosEditor.Commands;
+using System;
 
 namespace RhythmosEditor
 {
@@ -9,15 +11,13 @@ namespace RhythmosEditor
         private Config config;
 
         [SerializeField]
-        private int m_toolbarSelection = 0;
+        private int currentToolbarSelection = 0;
+        private Rect currentPageRect;
 
-        private IEditorPage[] pages;
-        private IEditorPage currentPage;
-
+        private BaseEditorPage[] pages;
+        private BaseEditorPage currentPage;
         private readonly string[] toolbar = { "Rhythms", "Audio clips", "Settings" };
 
-        
-        private Rect currentPageRect;
 
         [MenuItem("Tools/Rhythmos Editor")]
         public static void Launch()
@@ -32,7 +32,7 @@ namespace RhythmosEditor
 
             if (isNull)
             {
-                pages = new IEditorPage[3] { new Pages.RhythmsPage(), new Pages.AudioClipsPage(), new Pages.SettingsPage() };
+                pages = new BaseEditorPage[3] { new Pages.RhythmsPage(), new Pages.AudioClipsPage(), new Pages.SettingsPage() };
             }
 
             return isNull;
@@ -55,7 +55,7 @@ namespace RhythmosEditor
             else
             {
                 CreatePages();
-                currentPage = pages[m_toolbarSelection];
+                currentPage = pages[currentToolbarSelection];
             }
 
             if (currentPage != null)
@@ -68,11 +68,18 @@ namespace RhythmosEditor
 
         private void OnEnable()
         {
+            UndoRedo.SetWindow(this);
             Load();
+        }
+
+        private void OnDisable()
+        {
+            UndoRedo.Clear();
         }
 
         private void OnDestroy()
         {
+            UndoRedo.Clear();
             config.Save();
             config.SaveDatabaseXML(null);
         }
@@ -88,27 +95,13 @@ namespace RhythmosEditor
 
             #region Toolbar and Undo&Redo buttons
             GUILayout.BeginHorizontal();
-            GUIDraw.UndoRedo(null, false, false);
+            GUIDraw.UndoRedoButtons(false, false);
 
             EditorGUI.BeginChangeCheck();
-            int toolbarSelection = GUILayout.Toolbar(m_toolbarSelection, toolbar);
+            int toolbarSelection = GUILayout.Toolbar(currentToolbarSelection, toolbar);
             if (EditorGUI.EndChangeCheck())
             {
-                m_toolbarSelection = toolbarSelection;
-
-                currentPage = null;
-                if (m_toolbarSelection < pages.Length)
-                {
-                    currentPage = pages[m_toolbarSelection];
-                    if (currentPage != null)
-                    {
-                        EditorGUIUtility.editingTextField = false;
-                        GUI.FocusControl(null);
-                        currentPage.OnLoad();
-                        currentPage.OnPageSelect(config);
-                    }
-
-                }
+                SetPage(toolbarSelection);
             }
             GUILayout.EndHorizontal();
             #endregion
@@ -131,7 +124,7 @@ namespace RhythmosEditor
             GUILayout.BeginArea(pageRect);
             if (currentPage != null)
             {
-                bool isDisabled = m_toolbarSelection != 2 && !config.loaded;
+                bool isDisabled = currentToolbarSelection != 2 && !config.loaded;
                 using (new EditorGUI.DisabledScope(isDisabled))
                 {
                     currentPage.OnDraw(pageRect);
@@ -144,7 +137,7 @@ namespace RhythmosEditor
             #endregion
 
             // Warning box
-            if (!config.loaded && m_toolbarSelection < 2)
+            if (!config.loaded && currentToolbarSelection < 2)
             {
                 GUIDraw.WarningBox(pageRect);
             }
@@ -155,6 +148,25 @@ namespace RhythmosEditor
             {
                 Repaint();
                 Repainter.Clear();
+            }
+        }
+
+        internal void SetPage(int pageIndex)
+        {
+            currentToolbarSelection = pageIndex;
+            currentPage = null;
+            if (currentToolbarSelection < pages.Length)
+            {
+                EditorGUIUtility.editingTextField = false;
+                GUI.FocusControl(null);
+
+                currentPage = pages[currentToolbarSelection];
+                if (currentPage != null)
+                {
+                    currentPage.OnLoad();
+                    currentPage.OnPageSelect(config);
+                }
+
             }
         }
 

@@ -17,11 +17,10 @@ namespace RhythmosEditor
         }
     }
 
-    internal interface IEditorPage
+    internal abstract class BaseEditorPage
     {
-        IUndoRedoDelegate UndoRedoDelegate { get; }
-        void OnLoad();
-        void OnPageSelect(Config config);
-        void OnDraw(Rect pageRect);
+        public abstract void OnLoad();
+        public abstract void OnPageSelect(Config config);
+        public abstract void OnDraw(Rect pageRect);
     }
 }
