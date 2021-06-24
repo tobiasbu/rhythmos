@@ -53,4 +53,10 @@
     <Compile Include="RhythmosPlayer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if "$(ConfigurationName)" == "Release" ( 
+echo "$(SolutionDir)SampleProject\Assets\Plugins\RhythmosEngine.dll"
+copy "$(TargetDir)RhythmosEngine.dll" "$(SolutionDir)SampleProject\Assets\Plugins\RhythmosEngine.dll" /y
+)</PostBuildEvent>
+  </PropertyGroup>
 </Project>
