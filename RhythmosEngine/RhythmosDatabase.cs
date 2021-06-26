@@ -76,6 +76,10 @@ namespace RhythmosEngine
                 return audioReferences != null ? audioReferences.Count : 0;
             }
         }
+        /// <summary>
+        /// Get the version of the <see cref="RhythmosEngine.RhythmosDatabase"/>.
+        /// </summary>
+        public string Version { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RhythmosEngine.RhythmosDatabase"/>.
@@ -84,6 +88,7 @@ namespace RhythmosEngine
         {
             rhythmList = new List<Rhythm>();
             audioReferences = new List<AudioReference>();
+            Version = "1.3";
         }
 
         /// <summary>
@@ -327,8 +332,7 @@ namespace RhythmosEngine
         /// <exception cref="DatabaseLoadException">Throws if could not load RhythmosDatabase file correctly</exception>
         public static RhythmosDatabase Load(TextAsset textAsset, IAssetLoader loader)
         {
-            RhythmosDatabase database = null;
-
+            RhythmosDatabase database;
             if (textAsset != null)
             {
                 XmlDocument xmlDoc = new XmlDocument();
@@ -339,6 +343,17 @@ namespace RhythmosEngine
                     xmlDoc.Load(reader);
                     database = new RhythmosDatabase();
                     database.textAsset = textAsset;
+
+                    // Parse version
+                    XmlNodeList root = xmlDoc.GetElementsByTagName("RhythmosDatabase");
+                    if (root.Count > 0)
+                    {
+                        XmlAttribute xmlAttribute = root[0].Attributes["version"];
+                        if (xmlAttribute != null)
+                        {
+                            database.Version = Parse.IsValid(xmlAttribute.Value) ? xmlAttribute.Value.Trim() : "1.1";
+                        }
+                    }
 
                     XmlNodeList noteList = xmlDoc.GetElementsByTagName("NoteEntry");
                     foreach (XmlNode node in noteList)
@@ -353,8 +368,8 @@ namespace RhythmosEngine
                                 subDictionary.Add(noteItens.Name, noteItens.InnerText);
                             }
                         }
-
-                        if (subDictionary.Count == 3)
+                        
+                        if (subDictionary.Count > 0)
                         {
                             Color color = Color.black;
                             AudioClip clip = null;
@@ -375,6 +390,7 @@ namespace RhythmosEngine
                             database.AddAudioClipReference(new AudioReference(clip, color));
                         }
                     }
+
                     XmlNodeList RhythmEntry = xmlDoc.GetElementsByTagName("RhythmEntry");
                     foreach (XmlNode node in RhythmEntry)
                     {

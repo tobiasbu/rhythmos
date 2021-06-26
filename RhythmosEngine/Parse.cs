@@ -4,7 +4,7 @@ using UnityEngine;
 namespace RhythmosEngine
 {
     internal static class Parse
-    { 
+    {
 
         public static float Float(string value)
         {
@@ -27,6 +27,11 @@ namespace RhythmosEngine
                 output[i] = Mathf.Clamp(value, 0.0f, 1.0f);
             }
             return output;
+        }
+
+        public static bool IsValid(string str)
+        {
+            return !string.IsNullOrEmpty(str) && !string.IsNullOrWhiteSpace(str);
         }
     }
 }
