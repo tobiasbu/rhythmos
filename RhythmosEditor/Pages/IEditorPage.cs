@@ -1,4 +1,5 @@
 using UnityEngine;
+using RhythmosEditor.Settings;
 
 namespace RhythmosEditor
 {
@@ -17,10 +18,10 @@ namespace RhythmosEditor
         }
     }
 
-    internal abstract class BaseEditorPage
+    internal interface IEditorPage
     {
-        public abstract void OnLoad();
-        public abstract void OnPageSelect(Config config);
-        public abstract void OnDraw(Rect pageRect);
+        void OnLoad();
+        void OnPageSelect(RhythmosConfig config);
+        void OnDraw(Rect pageRect);
     }
 }
