@@ -1,8 +1,8 @@
-using RhythmosEngine;
 using UnityEditor;
 using UnityEngine;
+using RhythmosEngine;
 
-namespace RhythmosEditor
+namespace RhythmosEditor.Settings
 {
     internal class EditorAssetLoader : IAssetLoader
     {

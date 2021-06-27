@@ -1,13 +1,15 @@
-using RhythmosEngine;
 using System;
 using System.IO;
 using System.Xml;
 using UnityEditor;
 using UnityEngine;
+using RhythmosEngine;
+using RhythmosEditor.Exceptions;
+using RhythmosEditor.Utils;
 
-namespace RhythmosEditor
+namespace RhythmosEditor.Settings
 {
-    internal class DatabaseLoader
+    internal class XMLDatabaseLoader
     {
         /// <summary>
         /// Import RhythmosDatabase to Unity project
@@ -19,12 +21,12 @@ namespace RhythmosEditor
         {
             if (!StringUtils.IsValid(sourceFilePath))
             {
-                throw new ImportException("Could not load RhythmosDatabase: sourcePath is null or empty.");
+                throw new ImportXmlException("Could not load RhythmosDatabase: sourcePath is null or empty.");
             }
 
             if (!File.Exists(sourceFilePath))
             {
-                throw new ImportException("Could not load RhythmosDatabase: " + sourceFilePath + " does no exist");
+                throw new ImportXmlException("Could not load RhythmosDatabase: " + sourceFilePath + " does no exist");
             }
 
             
@@ -54,6 +56,7 @@ namespace RhythmosEditor
                 XmlDocument xmlDoc = new XmlDocument();
                 XmlDeclaration declaration = xmlDoc.CreateXmlDeclaration("1.0", "UTF-8", null);
                 XmlElement elmParent = xmlDoc.CreateElement("RhythmosDatabase");
+                elmParent.SetAttribute("version", "1.3");
 
                 XmlElement elmNoteList = xmlDoc.CreateElement("NoteList");
                 foreach (AudioReference nt in database.AudioReferences)
@@ -124,7 +127,7 @@ namespace RhythmosEditor
                 }
             } catch (Exception ex)
             {
-                throw new ExportException("Could not export RhythmosDatabase to '" + destinationFilePath + "'", ex);
+                throw new ExportXmlException("Could not export RhythmosDatabase to '" + destinationFilePath + "'", ex);
             }
         }
     }
