@@ -1,14 +1,15 @@
 using System;
 using System.IO;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEditor;
 using RhythmosEngine;
-using System.Text.RegularExpressions;
+using RhythmosEditor.Utils;
 
-namespace RhythmosEditor
+namespace RhythmosEditor.Settings
 {
     [Serializable]
-    internal class Config : ISerializationCallbackReceiver
+    internal class RhythmosConfig : ISerializationCallbackReceiver
     {
         [SerializeField]
         private RhythmosDatabase rhythmosDatabase = null;
@@ -16,7 +17,13 @@ namespace RhythmosEditor
         [SerializeField]
         private bool fileExists = false;
 
-        public RhythmosDatabase RhythmosDatabase => rhythmosDatabase;
+        public RhythmosDatabase RhythmosDatabase
+        {
+            get
+            {
+                return rhythmosDatabase;
+            }
+        }
 
         public string lastOpenDatabase { set; get; }
         public AudioClip metroAudioClip { set; get; }
@@ -29,7 +36,7 @@ namespace RhythmosEditor
             }
         }
 
-        public Config()
+        public RhythmosConfig()
         {
             statusMessage = "Please select a RhythmosDatabase file.";
             statusType = MessageType.None;
@@ -128,7 +135,7 @@ namespace RhythmosEditor
             RhythmosDatabase database = null;
             try
             {
-                database = DatabaseLoader.Import(sourcePath);
+                database = XMLDatabaseLoader.Import(sourcePath);
                 lastOpenDatabase = AssetDatabase.GetAssetPath(database.TextAsset);
                 statusMessage = "Database loaded successfully.";
                 statusType = MessageType.Info;
@@ -156,7 +163,7 @@ namespace RhythmosEditor
 
             if (rhythmosDatabase != null && StringUtils.IsValid(lastOpenDatabase) && statusType != MessageType.Error)
             {
-                DatabaseLoader.Export(rhythmosDatabase, filepath);
+                XMLDatabaseLoader.Export(rhythmosDatabase, filepath);
             }
         }
 
