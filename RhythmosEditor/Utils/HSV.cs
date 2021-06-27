@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace RhythmosEditor
+namespace RhythmosEditor.Utils
 {
     internal struct HSV
     {

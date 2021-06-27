@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace RhythmosEditor
+namespace RhythmosEditor.Utils
 {
     internal class TextureUtility
     {
@@ -84,7 +84,7 @@ namespace RhythmosEditor
                 {
                     hsvColorA.v = hsvColorA.v - 0.1f;
                 }
-                hsvColorB.v = hsvColorA.v * 0.78f;
+                hsvColorB.v = hsvColorA.v * 0.85f;
             }
             else
             {
@@ -113,6 +113,44 @@ namespace RhythmosEditor
             return tex;
         }
 
-        
+        internal static void Bucket(Texture2D texture, Color color) {
+            for (int yy = 0; yy < texture.height; yy++)
+            {
+                for (int xx = 0; xx < texture.width; xx++)
+                {
+
+                    Color current = texture.GetPixel(xx, yy);
+                    current.r = color.r;
+                    current.g = color.g;
+                    current.b = color.b;
+                    texture.SetPixel(xx, yy, color);
+                }
+            }
+            texture.Apply();
+        }
+
+        internal static Texture2D Clone(Texture2D texture, bool flipHorizontal) {
+            Texture2D copy = new Texture2D(texture.width, texture.height);
+            copy.hideFlags = texture.hideFlags;
+
+            for (int yy = 0; yy < texture.height; yy++)
+            {
+                for (int xx = 0; xx < texture.width; xx++)
+                {
+                    Color color = texture.GetPixel(xx, yy);
+                    if (flipHorizontal)
+                    {
+                        copy.SetPixel(texture.width - xx, yy, color);
+                    }
+                    else
+                    {
+                        copy.SetPixel(xx, yy, color);
+                    }
+                }
+            }
+            copy.Apply();
+
+            return copy;
+        }
     }
 }
