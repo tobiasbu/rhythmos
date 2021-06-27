@@ -1,6 +1,6 @@
 using System.Xml;
 
-namespace RhythmosEditor
+namespace RhythmosEditor.Utils
 {
 	internal static class XMLUtility {
 			

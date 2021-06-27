@@ -1,7 +1,7 @@
 using System.IO;
 using UnityEngine;
 
-namespace RhythmosEditor
+namespace RhythmosEditor.Utils
 {
     internal static class PathUtils
 	{
