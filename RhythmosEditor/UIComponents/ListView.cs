@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using RhythmosEditor.UI;
 
-namespace RhythmosEditor
+namespace RhythmosEditor.UIComponents
 {
     internal class ListView<T>
     {
@@ -13,6 +14,8 @@ namespace RhythmosEditor
         // GUI variables
         private float barValue;
         private Rect currentBoxRect;
+        private Rect layoutRect;
+
 
         private IList<T> viewList;
         public IList<T> List {
@@ -53,7 +56,9 @@ namespace RhythmosEditor
             }
         }
 
-        public T Selected { private set; get; }
+        public T Current { private set; get; }
+
+        public T Last { private set; get; }
 
         public int SelectedIndex { private set; get; } = -1;
 
@@ -69,8 +74,7 @@ namespace RhythmosEditor
 
 
         public Func<T, string> onGetItemLabel;
-        public Action<T> onSelectionChange;
-
+        public Action<T, int> onSelectionChange;
 
         private void Load()
         {
@@ -129,18 +133,27 @@ namespace RhythmosEditor
             }
 
             itemIndex = Mathf.Clamp(itemIndex, 0, List.Count - 1);
-            Selected = List[itemIndex];
-            SelectedIndex = itemIndex;
+
             if (changeScroll)
             {
                 BarPosition = itemIndex;
+                Repainter.Request();
             }
-            Repainter.Request();
+
+            if (itemIndex != SelectedIndex)
+            {
+                Last = Current;
+                Current = List[itemIndex];
+                SelectedIndex = itemIndex;
+                onSelectionChange?.Invoke(Current, itemIndex);
+                Repainter.Request();
+            }
         }
 
         public void UnSelect()
         {
-            Selected = default;
+            Last = Current;
+            Current = default;
             SelectedIndex = -1;
             Repainter.Request();
         }
@@ -191,8 +204,8 @@ namespace RhythmosEditor
 
         }
 
-        public void Draw(float width, float height)
-        {
+        private void OnDraw(Rect boxRect) {
+
             Load();
 
             string itemLabel = "";
@@ -200,29 +213,12 @@ namespace RhythmosEditor
             float totalsize = (ItemHeight * count);
             float y = -(ItemHeight * barValue);
 
-            GUILayout.Box("", GUILayout.Width(width), GUILayout.Height(height));
-
-            Rect boxRect;
-            Rect groupRect;
+            Rect groupRect = boxRect;
             Rect entryRect;
 
-            // Unity issue:
-            // See: https://issuetracker.unity3d.com/issues/guilayoututility-dot-getlastrect-returns-incorrect-rect-when-used-after-editorguilayout-dot-dropdownbutton
-            // Will not be fixed...
-            if (Event.current.type == EventType.Repaint)
-            {
-                boxRect = GUILayoutUtility.GetLastRect();
-                currentBoxRect = boxRect;
-            }
-            else
-            {
-                boxRect = currentBoxRect;
-            }
-
-            groupRect = boxRect;
-            groupRect.width = boxRect.x + width;
+            groupRect.width = boxRect.x + boxRect.width;
             groupRect.x = 0;
-            entryRect = new Rect(boxRect.x, y, width, ItemHeight);
+            entryRect = new Rect(boxRect.x, y, boxRect.width, ItemHeight);
             if (totalsize > boxRect.height)
             {
                 entryRect.width -= 14;
@@ -240,7 +236,7 @@ namespace RhythmosEditor
                 if (SelectedIndex == i)
                 {
                     GUI.color = Colors.Selection;
-                    GUI.DrawTexture(entryRect, Textures.Pixel);
+                    GUI.DrawTexture(entryRect, Icons.Pixel);
                     GUI.color = Color.white;
                 }
                 else
@@ -252,8 +248,10 @@ namespace RhythmosEditor
                 GUI.color = Color.clear;
                 if (GUI.Button(entryRect, ""))
                 {
-                    Select(i, false);
-                    onSelectionChange?.Invoke(Selected);
+                    if (SelectedIndex != i)
+                    {
+                        Select(i, false);
+                    }
                 }
                 y += ItemHeight;
             }
@@ -272,6 +270,111 @@ namespace RhythmosEditor
             OnUpdate();
 
             GUI.EndGroup();
+        }
+
+        public void Draw() {
+            layoutRect = EditorGUILayout.GetControlRect(GUILayout.ExpandHeight(true), GUILayout.ExpandWidth(true));
+            GUI.Box(layoutRect, "");
+            OnDraw(layoutRect);
+        }
+
+        public void Draw(float width, float height)
+        {
+
+            GUILayout.Box("", GUILayout.Width(width), GUILayout.Height(height));
+
+
+            // Unity issue:
+            // See: https://issuetracker.unity3d.com/issues/guilayoututility-dot-getlastrect-returns-incorrect-rect-when-used-after-editorguilayout-dot-dropdownbutton
+            // Will not be fixed...
+            if (Event.current.type == EventType.Repaint)
+            {
+                currentBoxRect = GUILayoutUtility.GetLastRect();
+            }
+
+            OnDraw(currentBoxRect);
+
+            //Load();
+
+            //string itemLabel = "";
+            //int count = List != null ? List.Count : 0;
+            //float totalsize = (ItemHeight * count);
+            //float y = -(ItemHeight * barValue);
+
+           
+
+            //Rect boxRect;
+            //Rect groupRect;
+            //Rect entryRect;
+
+            //// Unity issue:
+            //// See: https://issuetracker.unity3d.com/issues/guilayoututility-dot-getlastrect-returns-incorrect-rect-when-used-after-editorguilayout-dot-dropdownbutton
+            //// Will not be fixed...
+            //if (Event.current.type == EventType.Repaint)
+            //{
+            //    boxRect = GUILayoutUtility.GetLastRect();
+            //    currentBoxRect = boxRect;
+            //}
+            //else
+            //{
+            //    boxRect = currentBoxRect;
+            //}
+
+            //groupRect = boxRect;
+            //groupRect.width = boxRect.x + width;
+            //groupRect.x = 0;
+            //entryRect = new Rect(boxRect.x, y, width, ItemHeight);
+            //if (totalsize > boxRect.height)
+            //{
+            //    entryRect.width -= 14;
+            //}
+
+            //GUI.BeginGroup(groupRect);
+            //for (int i = 0; i < count; i += 1)
+            //{
+            //    entryRect.y = y;
+            //    if (onGetItemLabel != null)
+            //    {
+            //        itemLabel = onGetItemLabel(List[i]);
+            //    }
+
+            //    if (SelectedIndex == i)
+            //    {
+            //        GUI.color = Colors.Selection;
+            //        GUI.DrawTexture(entryRect, Icons.Pixel);
+            //        GUI.color = Color.white;
+            //    }
+            //    else
+            //    {
+            //        GUI.color = EditorStyles.label.normal.textColor;
+            //    }
+
+            //    GUI.Label(entryRect, itemLabel, listItemStyle);
+            //    GUI.color = Color.clear;
+            //    if (GUI.Button(entryRect, ""))
+            //    {
+            //        if (SelectedIndex != i)
+            //        {
+            //            Select(i, false);
+            //        }
+            //    }
+            //    y += ItemHeight;
+            //}
+
+            //GUI.color = Color.white;
+            //if (totalsize >= boxRect.height)
+            //{
+            //    float viewableRatio = boxRect.height / totalsize;
+            //    barValue = GUI.VerticalScrollbar(new Rect(groupRect.width - 14, 0, 30, groupRect.height), barValue, count * viewableRatio, 0, count);
+            //}
+            //else
+            //{
+            //    barValue = 0;
+            //}
+
+            //OnUpdate();
+
+            //GUI.EndGroup();
         }
 
     }
