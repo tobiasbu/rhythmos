@@ -1,15 +1,17 @@
 using UnityEngine;
+using RhythmosEditor.Utils;
 
-namespace RhythmosEditor
+namespace RhythmosEditor.UI
 {
-    internal static class Textures
+    internal static class Icons
     {
-        public static Texture2D Rhythmos;
+        public static Texture2D Rhythmos { private set; get; }
         public static Texture2D Pixel { private set; get; }
 
         public static Texture2D Add { private set; get; }
-        public static Texture2D Copy { private set; get; }
-        public static Texture2D Delete { private set; get; }
+        public static Texture2D Duplicate { private set; get; }
+        public static Texture2D Trash { private set; get; }
+        public static Texture2D Delete { get; private set; }
 
         public static Texture2D Undo { private set; get; }
         public static Texture2D Redo { private set; get; }
@@ -19,16 +21,23 @@ namespace RhythmosEditor
         public static Texture2D TimelineBg { private set; get; }
         public static Texture2D Play { private set; get; }
         public static Texture2D Stop { private set; get; }
-        public static Texture2D ToStart { private set; get; }
+
+        public static Texture2D ToStart { get; private set; }
         public static Texture2D ToEnd { private set; get; }
+        public static Texture2D ToNext { private set; get; }
+        public static Texture2D ToPrevious { private set; get; }
+
+
         public static Texture2D MuteOn { private set; get; }
         public static Texture2D MuteOff { private set; get; }
         public static Texture2D Loop { private set; get; }
         public static Texture2D Metronome { private set; get; }
 
         public static Texture2D TrackArrow { private set; get; }
+        public static Texture2D AddNote { get; private set; }
 
-        static Textures()
+
+        static Icons()
         {
             Load();
         }
@@ -42,64 +51,62 @@ namespace RhythmosEditor
                 Pixel.hideFlags = HideFlags.HideAndDontSave;
             }
 
+            // Undo redo
+            if (Undo == null)
+            {
+                Undo = TextureUtility.CreateFromBase64(
+                   "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAsklEQVQ4EWNgGNTg////okC8iixHAjWGAvErIP5PkgFA9WBbQRphgGgDgBrgtsI046CfAcUDQQYzEW06qkJJIHcmqhCUBzQZrxeA8okwV2E1ACYIVOQLxCCnogQikCsIEgMBmFqcNFAN2DXoCsC6iTEAXSOMj2wAyYEI1CwIMwhEk2wAUE8QsgEsIA7QVJBBjFBcAaQdgFgHiMWBGBd4DZcAGpAHxOeBmFgAT0hwQ8hlAAAgQ90EuGA56gAAAABJRU5ErkJggg=="
+               );
+            }
+
+            if (Redo == null)
+            {
+                Redo = TextureUtility.Clone(Undo, true);
+            }
+
+
             // Add, remove copy
             if (Add == null)
             {
                 Add = TextureUtility.CreateFromBase64(
                    "iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAA8SURBVCiRY2RAA////2dkYGD4B+UyMTIy/keWZ0LXQAgMQg2M/////09YGQU2sODQBA9WDCehCwzBeAAAtfcPFoiW37QAAAAASUVORK5CYII="
                );
-                Add.hideFlags = HideFlags.HideAndDontSave;
             }
 
-            if (Copy == null)
+            if (Duplicate == null)
             {
-                Copy = TextureUtility.CreateFromBase64(
-                    "iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAX0lEQVQoz5WSwQ3AIAwDE4SE2KL7ZP95ro+WKk1VIPczFjixUHEASAYujplfJInujKGqOhKqP/gbw+sSzAbYctFd/VoasGHebdk0AehBN3f5IUb2+PKnxVWt0a/ZL3ECaKF4DsFD7e0AAAAASUVORK5CYII="
+                Duplicate = TextureUtility.CreateFromBase64(
+                   "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAmElEQVQ4Ea1SQQ6AMAjbjA+b/3+UUpYaJF3ExF0YbSkMbe3vc84zKlH2tsIhiQQudeictDKlbhPsITAFua7TSSky1u0QQx3yHUAkKMgxNkKt8XPSSOSimGcdc7WDRjIaiPt6AmWQMea+A7oTRM479mP3e3nUWvw+gRk9/lA3Y6fgfHd/w8DLJVY+K82lAclK9CWqZ1SKobkAvGOcGDoYiisAAAAASUVORK5CYII="
                );
-                Copy.hideFlags = HideFlags.HideAndDontSave;
             }
-
 
             if (Delete == null)
             {
                 Delete = TextureUtility.CreateFromBase64(
-                    "iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6+R8AAAATElEQVQoz2NkQAP/////jy7GyMjIyIAPoGvCagguCVwAbiuxmmDqGPE5g6DfCGlClmfCJYlOIwMmBjLAwGqagIMmnBLwyTMSqxE5jgDowj2TcM5HmAAAAABJRU5ErkJggg=="
+                    "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAgUlEQVQ4Ed1SWwrAIAzrdoiJXmAIu//1unYYcbUO2acFCaZNWh9EawUzn7I0kj2ZcMeTYb5sru5LASAgIUQAqQi+Q8mhC+qTw8VO2BKOAGaK32IYDUxc8Q7RBG4TNUSD7jq+Rvc6L1MpsJcYHW5soi2a+PWMuRhUMUYUHn8hg1sEb3Lp/7Ea3+5VAAAAAElFTkSuQmCC"
                 );
-                Delete.hideFlags = HideFlags.HideAndDontSave;
             }
 
-           
 
-            if (Undo == null)
-            {
-                Undo = TextureUtility.CreateFromBase64(
-                   "iVBORw0KGgoAAAANSUhEUgAAAAoAAAAMCAYAAABbayygAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADBSURBVBiVhdChSkRxEMXh89+yRQTbsiwmX0EMght8A5vBqsm+xWLZpxB8AtlkUtAgaDEZTPsKK4JFVz/D3gvL1atTZjjzG2bmJI3AEAdNfRkoGGGOCbbbwAGeLeK9yrfoJ0lpwKtJzpPcJ3lIcpbkI8lm2wnrVd3DDCetNy8NjvHU+ZdMHpNsdLCG7h/gSpLXgrsk01LKD+9QklwnmQV7lXf7vzxV+7pVi6f4wgWOcIgrfOK4uWYXN3jDCy6xU/e/AYWqrU8AntDYAAAAAElFTkSuQmCC"
-               );
-                Undo.hideFlags = HideFlags.HideAndDontSave;
-            }
 
-            if (Redo == null)
+            if (Trash == null)
             {
-                Redo = TextureUtility.CreateFromBase64(
-                    "iVBORw0KGgoAAAANSUhEUgAAAAoAAAAMCAYAAABbayygAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADCSURBVBiVhdC/LsRREMXxc5FIyG4tISIeQxQiodFQqzSUStuJwpvoV6VRKHiArUS8goIEjeCjcH+JXP+mmcyZb+bMTNIEdrDe6i20jFO8YoDSArO49BkvNd9grmPG0UtylaSfZCvJbZKnJBullLuv0w5xj5laz3+zrI1rHP+5fJKxJItJRv+BE0kek0z/BmAyyVTBMEkvyVopxQ/gSZKFYAlvOGiPwHb96WYn7OMd59jFHoZVO2otVnCGBzzjAqtd/wOA/6mnL97oLwAAAABJRU5ErkJggg=="
+                Trash = TextureUtility.CreateFromBase64(
+                    "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAtElEQVQ4EbVSSwrCQAwdxMv0hq69gdCFd+kNXAtuXXiP8b0hgZfMVGqhgZLkfZLptKUcEbXWGY/G/NceOtWQe+VObCAIGw2jr0XuAcYTUUXR1lD92U0KOrY5w3zjAMT0y0S+qaDvdCQc9Dpn8o65tl2iN3vy2oC3Dcu526EDnsK+rM6Z8EN0RQdc8H4fI5dRNv6qA0KdLyiQaEa8nqDpIbpnI/s1PGgh8v+By0bRf/8wYUfzBQw7vy/hWrqSAAAAAElFTkSuQmCC"
                 );
-                Redo.hideFlags = HideFlags.HideAndDontSave;
             }
+
 
             if (RightArrow == null)
             {
                 RightArrow = TextureUtility.CreateFromBase64(
-                    "iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAYAAACALL/6AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAABuSURBVBiVnZDBCYNAEEXfBq9agmAN1uDRNGQDHqzApoT0kFQQ8CTPQzyIuLLmwVzm82f+DERQB7WI6WeG11blHYPqR633Qgpf9QkQVBNTLkD3SD7qx3w7UgY0kWkjUAFvoA0hTJe7/3lrr+bH/gq+a5Ea4pRcagAAAABJRU5ErkJggg=="
+                    "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAbElEQVQ4EWNgGP7gPwToke1TqAEgyposQ5AMADGNcRqCphAf1w+rIfh0oMn9AfLLYYYwwRgk0t8x1KPZgov7BSiB4gVGmElACRcYG43ejcQ3YmRkPI/EJ8xEcgpF0ahL2CocKoAuUMQhNUiEAcbOwmp8h6fKAAAAAElFTkSuQmCC"
                 );
-                RightArrow.hideFlags = HideFlags.HideAndDontSave;
             }
 
             if (LeftArrow == null)
             {
-                LeftArrow = TextureUtility.CreateFromBase64(
-                   "iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAYAAACALL/6AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAABqSURBVBiVpdC9CcIAFEXha2pdINlBcAo3ySZC9skasXEBwQ2sLT4LmxBMeJBTvncP7ydZgCNuy/pf0OKORyV8xsuPbQFXvBUIenwqYWhKx+1Z6TCTLknGJF2SZ5K+MqnFVHrrTDphWOt/AXlqu+IyRuI9AAAAAElFTkSuQmCC"
-                );
-                LeftArrow.hideFlags = HideFlags.HideAndDontSave;
+                LeftArrow = TextureUtility.Clone(RightArrow, true);
             }
 
             // Track
@@ -114,7 +121,7 @@ namespace RhythmosEditor
                 Play = TextureUtility.CreateFromBase64(
                     "iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAABBSURBVCiRtdExCgAgDATB4MdsfLiF/1pLEUPYxusHcpcAFjDChhMHeVPDBNSwADkU4IJNr/PjJF1az6ofN4FuO2+iwRRXVS+qCQAAAABJRU5ErkJggg=="
                 );
-                Play.hideFlags = HideFlags.HideAndDontSave;
+                //Play.hideFlags = HideFlags.HideAndDontSave;
             }
 
             if (Stop == null)
@@ -122,29 +129,37 @@ namespace RhythmosEditor
                 Stop = TextureUtility.CreateFromBase64(
                     "iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAYSURBVCiRY/z///9/BhIAEymKRzWMJA0AOz0EFPD6CVsAAAAASUVORK5CYII="
                 );
-                Stop.hideFlags = HideFlags.HideAndDontSave;
-            }
-
-            if (ToStart == null)
-            {
-                ToStart = TextureUtility.CreateFromBase64(
-                    "iVBORw0KGgoAAAANSUhEUgAAAAkAAAAICAYAAAArzdW1AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAABjSURBVBiVjc4hDsJQFETRSYNA41kBipXhGpbQLSCrkXXdFLIGcipakh/yBNfOzczExpgCXDClknDGA284/ISnJH2SW5JjG8ATd7wUdLv7SbJUv9qm8TuHAUvb9NfxUmrkK+YV6aaQbZ/wnpEAAAAASUVORK5CYII="
-                    );
-                ToStart.hideFlags = HideFlags.HideAndDontSave;
             }
 
             if (ToEnd == null)
             {
                 ToEnd = TextureUtility.CreateFromBase64(
-                    "iVBORw0KGgoAAAANSUhEUgAAAAkAAAAICAYAAAArzdW1AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAABVSURBVBiVjdCxDYNAAATBEyJwBTRABaY6t0JICh3YRTl3wBCglwhebzZe6VYXfDClAhaIkx0rxpZU+GHG0JIKX7ywQVdrSdIneVx3b8/9DX/j2brgAPhAqQwaUiHCAAAAAElFTkSuQmCC"
-                    );
-                ToEnd.hideFlags = HideFlags.HideAndDontSave;
+                    "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAgUlEQVQ4EWNgGAXgEPj///9mIJZCDw484l+Acl/g6oEcEHgHxGlwQSADLIpb/D9cLVQhjIK7BiYApTHEcRkAUg92DZoBGOIgA5jgpqAy/gC571GFwDzs4mg2rQLyRUHKCYnDLYAqfAWkQ+GCCANwiaMEItxWNANwiaNGI7KmEcgGALeW/L/esyeIAAAAAElFTkSuQmCC"
+                 );
+            }
+
+            if (ToStart == null)
+            {
+                ToStart = TextureUtility.Clone(ToEnd, true);
+            }
+
+
+            if (ToNext == null)
+            {
+                ToNext = TextureUtility.CreateFromBase64(
+                    "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAgElEQVQ4EWNgGF7gPwQU4PIVUPoaCOOSZ4Aa8A9IzwRiLnSFUPn/6OJwPkwBlL4KpA3gkkAGTB5ZDIUNU4BEfweyy4GYCaQQJo6iCZkDU4CF3oXLALDJyIZQxMZiM0VeAAWiPrKLYBYgi6GwoQoojsZ8FFOROEAL8CckJLVDiAkA+QnpQiHgFwQAAAAASUVORK5CYII="
+                );
+            }
+
+            if (ToPrevious == null)
+            {
+                ToPrevious = TextureUtility.Clone(ToNext, true);
             }
 
             if (Loop == null)
             {
                 Loop = TextureUtility.CreateFromBase64(
-                    "iVBORw0KGgoAAAANSUhEUgAAAAwAAAAKCAYAAACALL/6AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAACjSURBVBiVrdA9agJxEAXw34qw5eYAghcQb5EiYCCYzhuky0EschFTCfa5g/1ewSIka/NS+BdkWdYmDx7DvJnHfFRJ9PCEb3z1CzDFHGvURVviBa844A0NOnxKcswwfpLMkrQ32rHKZacTPsqEBZ6xwQ7veCixUZxtEoWrJI83+ZVtkkwH7toPHXvFZKz4L4Yqya/LS7s7vTW6CbY4F2GMZ2z/AD4KcbR6O5QHAAAAAElFTkSuQmCC"
+                   "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA2klEQVQ4EcVQOwrCQBDNqmDhISxTJQgqeAhbu1h6A2/gcawCHsM7CPZKgljK+l4yuy5DMCSFDsy+N7Nv3n6i6BdhrV30PgfDM6TtZYC5OYcZXw2wn1WqerkBLsi0Lqu1EP4QvAMzb4qilA0C+RW5YqHCGbBdhgZOtweZIhNuAvkEnsbgXyTIHQtGk0Hqm0KgW4di8Jg1g5KBHtC1MeaE3lL3Xd1qQCFMzm4AOA54+w1CcRMfqeYWTzui95L+RPAJHArfCH4AQzk/pWPk3gGD/NlDBwNqY2/wV/IGCj1CAPPD5kwAAAAASUVORK5CYII="
                 );
                 Loop.hideFlags = HideFlags.HideAndDontSave;
             }
@@ -182,7 +197,17 @@ namespace RhythmosEditor
                 TrackArrow.hideFlags = HideFlags.HideAndDontSave;
             }
 
-           
+
+            // Note edit
+
+            if (AddNote == null)
+            {
+                AddNote = TextureUtility.CreateFromBase64(
+                   "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAApElEQVQ4EWNgoDb4//+/KhCDwD9izGYiRhE+NUPMAGC4vAZhZC+xIHOIYIugqyEqDKA2/4dpBvJBAOwSogyAacRGY/MCI7pCRkZGUZAYyFoQDeRjqAFJSgDxUiD+BsQggJGQgGIYgQgyEKRZAIhvADEy+AmWJEDAwiAJqE4dTe01ND5WLswA9Oj5A1RdilUHNkGgu2WA+BgQfwTifUBshU0dTcQA3jds1IxyolkAAAAASUVORK5CYII="
+                );
+                AddNote.hideFlags = HideFlags.HideAndDontSave;
+            }
+
 
         }
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace RhythmosEditor
+namespace RhythmosEditor.UI
 {
     internal static class DragDrop<T>
     {
