@@ -1,42 +1,61 @@
+using RhythmosEditor.UI;
 using UnityEditor;
 using UnityEngine;
 
 namespace RhythmosEditor
 {
-    internal class GUIDraw
+    internal class Components
     {
         private static Rect warningInnerRect;
-        private static GUIContent undoContent = new GUIContent(Textures.Undo, "Undo");
-        private static GUIContent redoContent = new GUIContent(Textures.Redo, "Redo");
+        private static string currentStr;
+        private static readonly GUIContent undoContent = new GUIContent(Icons.Undo, "Undo");
+        private static readonly GUIContent redoContent = new GUIContent(Icons.Redo, "Redo");
 
-        public static bool IconButton(GUIContent iconContent, params GUILayoutOption[] options)
+        public static bool IconButton(GUIContent iconContent, Color contentColor, params GUILayoutOption[] options)
         {
             Color oldContentColor = GUI.contentColor;
-
-            if (EditorGUIUtility.isProSkin)
-            {
-                GUI.contentColor = Color.white;
-            }
-            else
-            {
-                Color col = new Color(0.25f, 0.25f, 0.25f, 1);
-                GUI.contentColor = col;
-            }
-
+            GUI.contentColor = contentColor;
             bool result = GUILayout.Button(iconContent, options);
-
             GUI.contentColor = oldContentColor;
             return result;
         }
 
-        public static bool IconButton(GUIContent iconContent)
+        internal static bool IconButton(GUIContent content, float width = 28, float height = 24) 
         {
-            return IconButton(iconContent, GUILayout.Width(28), GUILayout.Height(24));
+            return IconButton(content, EditorGUIUtility.isProSkin ? Color.white : Colors.DarkGray, GUILayout.Width(width), GUILayout.Height(height));
+        }
+
+        static public void OutlineBox(Rect rect, float size = 1)
+        {
+            OutlineBox(rect, GUI.color, size);
+        }
+
+        static public void OutlineBox(Rect rect, Color color, float size = 1)
+        {
+            Color lastColor = GUI.color;
+            GUI.color = color;
+            GUI.DrawTexture(new Rect(rect.x, rect.y, rect.width, size), Icons.Pixel);
+            GUI.DrawTexture(new Rect(rect.x, rect.y + rect.height - (size / 2), rect.width, size), Icons.Pixel);
+            GUI.DrawTexture(new Rect(rect.x, rect.y, size, rect.height), Icons.Pixel);
+            GUI.DrawTexture(new Rect(rect.x + rect.width - (size / 2), rect.y, size, rect.height + 1), Icons.Pixel);
+            GUI.color = lastColor;
+        }
+
+        internal static void HorizontalLine(Color color, float thickness = 1, float padding = 0) {
+            Rect r = GUILayoutUtility.GetRect(100,padding + thickness, GUILayout.ExpandWidth(true));
+            Color lastColor = GUI.color;
+            GUI.color = color;
+            GUI.DrawTexture(r, Icons.Pixel);
+            GUI.color = lastColor;
+        }
+
+        static public void HorizontalLine(float thickness = 1, float padding = 0)
+        {
+            HorizontalLine(GUI.color, thickness, padding);
         }
 
         public static void UndoRedoButtons(bool disableUndo, bool disableRedo)
         {
-            
             GUILayout.BeginHorizontal(GUILayout.Width(56));
 
             if (Commands.UndoRedo.UndoCount == 0)
@@ -55,7 +74,7 @@ namespace RhythmosEditor
                 GUI.contentColor = EditorStyles.label.normal.textColor;
             }
 
-            if (GUILayout.Button(undoContent, GUILayout.Width(24), GUILayout.Height(19)))
+            if (IconButton(undoContent, 26, 20))
             {
                 Commands.UndoRedo.PerformUndo();
             }
@@ -70,7 +89,7 @@ namespace RhythmosEditor
                 GUI.enabled = false;
             }
 
-            if (GUILayout.Button(redoContent, GUILayout.Width(24), GUILayout.Height(19)))
+            if (IconButton(redoContent, 26, 20))
             {
                 Commands.UndoRedo.PerformRedo();
             }
@@ -82,22 +101,7 @@ namespace RhythmosEditor
             GUI.enabled = true;
         }
 
-        static public void Box(Rect rect, Texture2D texture, float size = 1)
-        {
-            Box(rect, texture, Color.black);
-        }
-
-        static public void Box(Rect rect, Texture2D texture, Color color, float size = 1)
-        {
-            Color lastColor = GUI.color;
-            GUI.color = color;
-            GUI.DrawTexture(new Rect(rect.x, rect.y, rect.width, size), texture);
-            GUI.DrawTexture(new Rect(rect.x, rect.y + rect.height - (size / 2), rect.width, size), texture);
-            GUI.DrawTexture(new Rect(rect.x, rect.y, size, rect.height), texture);
-            GUI.DrawTexture(new Rect(rect.x + rect.width - (size / 2), rect.y, size, rect.height + 1), texture);
-            GUI.color = lastColor;
-        }
-
+      
         static public void WarningBox(Rect pageRect)
         {
             Rect warningRect = pageRect;
