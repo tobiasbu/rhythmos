@@ -1,6 +1,7 @@
 using RhythmosEngine;
+using RhythmosEditor.UIComponents;
 
-namespace RhythmosEditor.Commands.Rhythms
+namespace RhythmosEditor.Commands.RhythmsList
 {
     using RhythmListView = ListView<Rhythm>;
 
@@ -15,7 +16,7 @@ namespace RhythmosEditor.Commands.Rhythms
         public abstract void Execute();
         public abstract void UnExecute();
 
-        public BaseCommand(RhythmListView listView, int index, Rhythm rhythm)
+        public BaseCommand(RhythmListView listView, Rhythm rhythm, int index)
         {
             rhythmListView = listView;
             this.index = index;
