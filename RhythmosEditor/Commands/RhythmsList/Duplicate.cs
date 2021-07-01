@@ -1,6 +1,7 @@
 using RhythmosEngine;
+using RhythmosEditor.UIComponents;
 
-namespace RhythmosEditor.Commands.Rhythms
+namespace RhythmosEditor.Commands.RhythmsList
 {
     using RhythmListView = ListView<Rhythm>;
 
@@ -9,14 +10,14 @@ namespace RhythmosEditor.Commands.Rhythms
         public override string Name => "Duplicate " + (rhythm != null ? rhythm.Name : "Rhythm");
 
         public Duplicate(RhythmListView list)
-            : base(list, -1, null)
+            : base(list, null, -1)
         { }
 
         public override void Execute()
         {
             if (index == -1)
             {
-                Rhythm clone = new Rhythm(rhythmListView.Selected);
+                Rhythm clone = new Rhythm(rhythmListView.Current);
                 clone.Name = string.Concat(clone.Name, " (Copy)");
 
                 int insertIndex = rhythmListView.SelectedIndex + 1;

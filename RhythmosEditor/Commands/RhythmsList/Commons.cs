@@ -1,8 +1,9 @@
-using RhythmosEngine;
 using System.Collections.Generic;
 using UnityEngine;
+using RhythmosEngine;
+using RhythmosEditor.UIComponents;
 
-namespace RhythmosEditor.Commands.Rhythms
+namespace RhythmosEditor.Commands.RhythmsList
 {
     using RhythmListView = ListView<Rhythm>;
 

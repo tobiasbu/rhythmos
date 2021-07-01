@@ -1,6 +1,7 @@
 using RhythmosEngine;
+using RhythmosEditor.UIComponents;
 
-namespace RhythmosEditor.Commands.Rhythms
+namespace RhythmosEditor.Commands.RhythmsList
 {
     using RhythmListView = ListView<Rhythm>;
 
@@ -9,7 +10,7 @@ namespace RhythmosEditor.Commands.Rhythms
         public override string Name => "Create " + (rhythm != null ? rhythm.Name : "Rhythm");
 
         public Create(RhythmListView list)
-            : base(list, -1, null)
+            : base(list, null, -1)
         { }
 
         public override void Execute()

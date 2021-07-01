@@ -1,6 +1,7 @@
 using RhythmosEngine;
+using RhythmosEditor.UIComponents;
 
-namespace RhythmosEditor.Commands.Rhythms
+namespace RhythmosEditor.Commands.RhythmsList
 {
     using RhythmListView = ListView<Rhythm>;
 
@@ -9,7 +10,7 @@ namespace RhythmosEditor.Commands.Rhythms
         public override string Name => "Remove " + (rhythm != null ? rhythm.Name : "Rhythm");
 
         public Delete(RhythmListView list)
-            : base(list, list.SelectedIndex, list.Selected)
+            : base(list, list.Current, list.SelectedIndex)
         {
         }
 
