@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+using RhythmosEditor.Pages;
+using RhythmosEditor.Utils;
 using UnityEditor;
 using UnityEngine;
 
@@ -6,7 +9,24 @@ namespace RhythmosEditor.Commands
 {
     internal static class UndoRedo
     {
-        private static RhythmosEditor editorWindow;
+        internal class DelayedRecordHolder
+        {
+            public Func<ICommand> command;
+
+            public void Apply()
+            {
+                if (dispatcher != null && delayedRecord == this)
+                {
+                    dispatcher.Stop(true);
+                    delayedRecord = null;
+                }
+            }
+
+        }
+
+        private static IPageManager pageManager;
+        private static DelayedRecordHolder delayedRecord;
+        private static DebounceDispatcher dispatcher;
         private static readonly LinkedList<ICommand> UndoStack;
         private static readonly LinkedList<ICommand> RedoStack;
 
@@ -28,9 +48,9 @@ namespace RhythmosEditor.Commands
             RedoStack = new LinkedList<ICommand>();
         }
 
-        public static void SetWindow(RhythmosEditor window)
+        public static void SetPageManager(IPageManager manager)
         {
-           editorWindow = window;
+            pageManager = manager;
         }
         public static void Clear()
         {
@@ -45,26 +65,61 @@ namespace RhythmosEditor.Commands
             }
         }
 
-        public static void Record(ICommand command, bool clearRedo = true)
+        public static void Record(ICommand command)
         {
-            command.Execute();
-
-            if (clearRedo)
+            if (delayedRecord != null)
             {
-                RedoStack.Clear();
+                delayedRecord.Apply();
+                delayedRecord = null;
             }
+
+            command.Execute();
+            UndoStack.AddLast(command);
+            RedoStack.Clear();
 
             if (UndoStack.Count + 1 >= MaxActions)
             {
                 UndoStack.RemoveFirst();
             }
 
-            UndoStack.AddLast(command);
-
-            if (editorWindow != null)
+            if (pageManager != null)
             {
-                EditorUtility.SetDirty(editorWindow);
+                pageManager.SetDirty();
             }
+        }
+
+        public static void DelayedRecord(DelayedRecordHolder record, int interval = 500)
+        {
+            if (record == null || record.command == null)
+            {
+                return;
+            }
+
+            if (delayedRecord != record)
+            {
+                if (delayedRecord != null)
+                {
+                    delayedRecord.Apply();
+                    delayedRecord = null;
+                }
+                delayedRecord = record;
+            }
+
+            if (dispatcher == null)
+            {
+                dispatcher = new DebounceDispatcher();
+            }
+
+            dispatcher.Debounce(() =>
+            {
+                ICommand command = delayedRecord?.command?.Invoke();
+                delayedRecord = null;
+                if (command != null)
+                {
+                    Record(command);
+                }
+            }, interval);
+
         }
 
         public static void PerformUndo()
@@ -75,7 +130,8 @@ namespace RhythmosEditor.Commands
                 UndoStack.RemoveLast();
                 RedoStack.AddLast(undoAction);
 
-                editorWindow.SetPage(undoAction.Page);
+                EditorGUIUtility.editingTextField = false;
+                pageManager.SetPage(undoAction.Page);
                 undoAction.UnExecute();
             }
         }
@@ -88,7 +144,8 @@ namespace RhythmosEditor.Commands
                 RedoStack.RemoveLast();
                 UndoStack.AddLast(redoAction);
 
-                editorWindow.SetPage(redoAction.Page);
+                EditorGUIUtility.editingTextField = false;
+                pageManager.SetPage(redoAction.Page);
                 redoAction.Execute();
             }
         }
