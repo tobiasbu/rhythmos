@@ -1,18 +1,14 @@
 using UnityEngine;
 using UnityEditor;
-using RhythmosEngine;
+using RhythmosEditor.Settings;
 
 namespace RhythmosEditor.Pages
 {
-    internal class SettingsPage : BaseEditorPage
+    internal class SettingsPage : IEditorPage
     {
-        Config config;
+        RhythmosConfig config;
 
-        public SettingsPage()
-        { }
-
-
-        public override void OnDraw(Rect pageRect)
+        public void OnDraw(Rect pageRect)
         {
             GUILayout.Label("Database Settings:", EditorStyles.boldLabel);
             GUILayout.BeginHorizontal();
@@ -22,7 +18,7 @@ namespace RhythmosEditor.Pages
             if (GUILayout.Button("Import"))
             {
                 string sourcePath = EditorUtility.OpenFilePanel("Open Rhythmos Database", Application.dataPath, "xml");
-                RhythmosDatabase database = config.LoadDatabaseXML(sourcePath);
+                config.LoadDatabaseXML(sourcePath);
             }
 
             if (GUILayout.Button("New"))
@@ -81,12 +77,12 @@ namespace RhythmosEditor.Pages
         }
 
 
-        public override void OnLoad()
+        public void OnLoad()
         {
            
         }
 
-        public override void OnPageSelect(Config config)
+        public void OnPageSelect(RhythmosConfig config)
         {
             this.config = config;
         }
