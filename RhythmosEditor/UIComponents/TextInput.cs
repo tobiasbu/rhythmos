@@ -24,11 +24,6 @@ namespace RhythmosEditor.UIComponents
 
         public bool Draw()
         {
-            //if (style == null) // Has to be done with OnGUI call
-            //{
-            //    style = new GUIStyle(GUI.skin.textField);
-            //    style.alignment = TextAnchor.MiddleCenter;
-            //}
 
             bool submitted = false;
             Event e = Event.current;

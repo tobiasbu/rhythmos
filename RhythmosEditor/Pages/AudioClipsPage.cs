@@ -1,10 +1,10 @@
-using RhythmosEditor.Settings;
-using RhythmosEditor.UI;
-using RhythmosEngine;
 using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using RhythmosEngine;
+using RhythmosEditor.Settings;
+using RhythmosEditor.UI;
 
 namespace RhythmosEditor.Pages
 {
@@ -36,7 +36,7 @@ namespace RhythmosEditor.Pages
 
             if (deleteContentButton == null)
             {
-                deleteContentButton = new GUIContent(Icons.Delete, "Remove AudioClip reference");
+                deleteContentButton = new GUIContent(Icons.Trash, "Remove AudioClip reference");
             }
         }
 
@@ -253,7 +253,7 @@ namespace RhythmosEditor.Pages
                 }
 
             }
-           
+
         }
 
         private void AddItem(AudioClip clip = null)
@@ -301,6 +301,6 @@ namespace RhythmosEditor.Pages
             }
         }
 
-        
+
     }
 }

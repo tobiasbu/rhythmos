@@ -4,7 +4,6 @@ namespace RhythmosEditor
 {
     internal static partial class GUIEvents
     {
-
         public static bool IsMouseInside(Rect box, Event currentEvent)
         {
             if (currentEvent != null)

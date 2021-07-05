@@ -1,10 +1,5 @@
 ﻿using RhythmosEditor.Pages.Rhythms;
 using RhythmosEngine;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace RhythmosEditor.Commands.EditRhythm

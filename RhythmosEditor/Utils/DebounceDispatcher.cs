@@ -42,8 +42,7 @@ namespace RhythmosEditor.Utils
                 running = false;
                 if (callRegisteredAction)
                 {
-                    syncContext.Post(state =>
-                    {
+                    syncContext.Post(state => {
                         try
                         {
                             action?.Invoke();
@@ -64,8 +63,7 @@ namespace RhythmosEditor.Utils
 
             if (action != null && timer != null)
             {
-                syncContext.Post(syncState =>
-                {
+                syncContext.Post(syncState => {
                     try
                     {
                         action?.Invoke();

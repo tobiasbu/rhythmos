@@ -17,7 +17,6 @@ namespace RhythmosEditor.UI
             float h = 0, s, v;
             Color.RGBToHSV(color, out h, out s, out v);
             return Color.HSVToRGB(h, saturation, value);
-
         }
 
         internal static Color Gray(float level = 0.5f, float alpha = 1.0f)

@@ -16,7 +16,6 @@ namespace RhythmosEditor.UIComponents
         private Rect currentBoxRect;
         private Rect layoutRect;
 
-
         private IList<T> viewList;
         public IList<T> List {
             set {
@@ -280,9 +279,7 @@ namespace RhythmosEditor.UIComponents
 
         public void Draw(float width, float height)
         {
-
-            GUILayout.Box("", GUILayout.Width(width), GUILayout.Height(height));
-
+           GUILayout.Box("", GUILayout.Width(width), GUILayout.Height(height));
 
             // Unity issue:
             // See: https://issuetracker.unity3d.com/issues/guilayoututility-dot-getlastrect-returns-incorrect-rect-when-used-after-editorguilayout-dot-dropdownbutton
@@ -294,87 +291,6 @@ namespace RhythmosEditor.UIComponents
 
             OnDraw(currentBoxRect);
 
-            //Load();
-
-            //string itemLabel = "";
-            //int count = List != null ? List.Count : 0;
-            //float totalsize = (ItemHeight * count);
-            //float y = -(ItemHeight * barValue);
-
-           
-
-            //Rect boxRect;
-            //Rect groupRect;
-            //Rect entryRect;
-
-            //// Unity issue:
-            //// See: https://issuetracker.unity3d.com/issues/guilayoututility-dot-getlastrect-returns-incorrect-rect-when-used-after-editorguilayout-dot-dropdownbutton
-            //// Will not be fixed...
-            //if (Event.current.type == EventType.Repaint)
-            //{
-            //    boxRect = GUILayoutUtility.GetLastRect();
-            //    currentBoxRect = boxRect;
-            //}
-            //else
-            //{
-            //    boxRect = currentBoxRect;
-            //}
-
-            //groupRect = boxRect;
-            //groupRect.width = boxRect.x + width;
-            //groupRect.x = 0;
-            //entryRect = new Rect(boxRect.x, y, width, ItemHeight);
-            //if (totalsize > boxRect.height)
-            //{
-            //    entryRect.width -= 14;
-            //}
-
-            //GUI.BeginGroup(groupRect);
-            //for (int i = 0; i < count; i += 1)
-            //{
-            //    entryRect.y = y;
-            //    if (onGetItemLabel != null)
-            //    {
-            //        itemLabel = onGetItemLabel(List[i]);
-            //    }
-
-            //    if (SelectedIndex == i)
-            //    {
-            //        GUI.color = Colors.Selection;
-            //        GUI.DrawTexture(entryRect, Icons.Pixel);
-            //        GUI.color = Color.white;
-            //    }
-            //    else
-            //    {
-            //        GUI.color = EditorStyles.label.normal.textColor;
-            //    }
-
-            //    GUI.Label(entryRect, itemLabel, listItemStyle);
-            //    GUI.color = Color.clear;
-            //    if (GUI.Button(entryRect, ""))
-            //    {
-            //        if (SelectedIndex != i)
-            //        {
-            //            Select(i, false);
-            //        }
-            //    }
-            //    y += ItemHeight;
-            //}
-
-            //GUI.color = Color.white;
-            //if (totalsize >= boxRect.height)
-            //{
-            //    float viewableRatio = boxRect.height / totalsize;
-            //    barValue = GUI.VerticalScrollbar(new Rect(groupRect.width - 14, 0, 30, groupRect.height), barValue, count * viewableRatio, 0, count);
-            //}
-            //else
-            //{
-            //    barValue = 0;
-            //}
-
-            //OnUpdate();
-
-            //GUI.EndGroup();
         }
 
     }

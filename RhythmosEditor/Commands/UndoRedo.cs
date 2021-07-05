@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using RhythmosEditor.Pages;
 using RhythmosEditor.Utils;
 using UnityEditor;
-using UnityEngine;
 
 namespace RhythmosEditor.Commands
 {
@@ -32,13 +31,11 @@ namespace RhythmosEditor.Commands
 
         public static uint MaxActions { set; get; } = 50;
 
-        public static int UndoCount
-        {
+        public static int UndoCount {
             get { return UndoStack != null ? UndoStack.Count : 0; }
         }
 
-        public static int RedoCount
-        {
+        public static int RedoCount {
             get { return RedoStack != null ? RedoStack.Count : 0; }
         }
 
@@ -110,8 +107,7 @@ namespace RhythmosEditor.Commands
                 dispatcher = new DebounceDispatcher();
             }
 
-            dispatcher.Debounce(() =>
-            {
+            dispatcher.Debounce(() => {
                 ICommand command = delayedRecord?.command?.Invoke();
                 delayedRecord = null;
                 if (command != null)

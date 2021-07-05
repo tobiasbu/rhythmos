@@ -6,28 +6,20 @@ using RhythmosEditor.Settings;
 
 namespace RhythmosEditor.Pages
 {
-
     [Serializable]
     internal sealed class PageManager : IPageManager
     {
         [SerializeField]
         private int pageIndex;
+
         private List<IEditorPage> pagesList;
-
-        private IEditorPage current;
-
         private string[] pageNames;
+
         private Rect pageRect;
+        private IEditorPage current;
 
         private RhythmosConfig config;
         private EditorWindow editorWindow;
-
-        public Rect PageRect
-        {
-            get {
-                return pageRect;
-            }
-        }
 
         public int Selection
         {
@@ -36,8 +28,7 @@ namespace RhythmosEditor.Pages
             }
         }
 
-        public int Count 
-        { 
+        public int Count {
             get {
                 return pagesList != null ? pagesList.Count : 0;
             }
@@ -51,7 +42,6 @@ namespace RhythmosEditor.Pages
 
         public void Draw(Rect window)
         {
-
             // Main area with safe borders
             Rect areaRect = new Rect(4f, 4f, Mathf.Ceil(window.width - 8), 24f);
 
@@ -98,13 +88,10 @@ namespace RhythmosEditor.Pages
             GUILayout.EndArea();
 
             #endregion
-
-
         }
 
         public void AddPage(string pageName, IEditorPage editorPage)
         {
-
             if (pagesList == null)
             {
                 pagesList = new List<IEditorPage>();
@@ -136,7 +123,6 @@ namespace RhythmosEditor.Pages
 
             if (pageIndex >= 0 && pageIndex < pagesList.Count)
             {
-                
                 current = null;
                 this.pageIndex = pageIndex;
 
@@ -149,16 +135,15 @@ namespace RhythmosEditor.Pages
                     current.OnLoad();
                     current.OnPageSelect(config);
                 }
-
             }
         }
 
-        public void SetDirty() {
+        public void SetDirty()
+        {
             if (editorWindow != null)
             {
                 EditorUtility.SetDirty(editorWindow);
             }
-
         }
     }
 }

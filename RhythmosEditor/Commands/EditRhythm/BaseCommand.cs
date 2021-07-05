@@ -1,7 +1,6 @@
 ﻿using RhythmosEditor.Pages.Rhythms;
 using RhythmosEngine;
 
-
 namespace RhythmosEditor.Commands.EditRhythm
 {
     internal abstract class BaseCommand : ICommand
