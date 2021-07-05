@@ -1,80 +1,87 @@
 using UnityEngine;
 using UnityEditor;
 using RhythmosEditor.Commands;
-using System;
+using RhythmosEditor.Settings;
+using RhythmosEditor.Utils;
+using RhythmosEditor.UI;
+using RhythmosEditor.UIComponents;
 
 namespace RhythmosEditor
 {
     internal class RhythmosEditor : EditorWindow
     {
         [SerializeField]
-        private Config config;
+        private RhythmosConfig config;
 
         [SerializeField]
-        private int currentToolbarSelection = 0;
-        private Rect currentPageRect;
+        private Pages.PageManager pageManager;
 
-        private BaseEditorPage[] pages;
-        private BaseEditorPage currentPage;
-        private readonly string[] toolbar = { "Rhythms", "Audio clips", "Settings" };
-
+        private Texture2D logoIcon;
 
         [MenuItem("Tools/Rhythmos Editor")]
         public static void Launch()
         {
-            GetWindow(typeof(RhythmosEditor)).Show();
-            GetWindow(typeof(RhythmosEditor)).minSize = new Vector2(400, 240);
+            RhythmosEditor window = (RhythmosEditor)GetWindow(typeof(RhythmosEditor));
+            window.Show();
+            window.minSize = new Vector2(400, 240);
         }
 
-        private bool CreatePages()
-        {
-            bool isNull = pages == null;
+        bool CreatePages() {
+            bool create = pageManager == null;
 
-            if (isNull)
+            if (create)
             {
-                pages = new BaseEditorPage[3] { new Pages.RhythmsPage(), new Pages.AudioClipsPage(), new Pages.SettingsPage() };
+                pageManager = new Pages.PageManager();
             }
 
-            return isNull;
+            pageManager.Init(this, config);
+
+            if (pageManager.Count == 0)
+            {
+                
+                pageManager.AddPage("Rhythm", new Pages.RhythmsPage());
+                pageManager.AddPage("Settings", new Pages.SettingsPage());
+                return true;
+            }
+            return create;
         }
 
         private void Load()
         {
+            int startPage = 0;
+
             if (config == null)
             {
-                config = new Config();
+                config = new RhythmosConfig();
                 config.Load();
-                config.LoadDatabaseXML(null);
-
-                if (CreatePages())
-                {
-                    currentPage = pages[0];
-                }
-
+                config.LoadDatabaseXML(null);   
             }
             else
             {
-                CreatePages();
-                currentPage = pages[currentToolbarSelection];
+                startPage = pageManager.Selection;
             }
 
-            if (currentPage != null)
+            if (CreatePages())
             {
-                currentPage.OnLoad();
-                currentPage.OnPageSelect(config);
+                startPage = 0;
             }
-            
+            pageManager.SetPage(startPage, true);
+
+
+            if (logoIcon == null)
+            {
+                logoIcon = TextureUtility.CreateFromBase64(
+                    "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAkklEQVQ4T2NgoDVQbW79D7JDpq+PE5tdTNgE0cVAhjwpKvqOLg7iE2UASCHMJeiGEG0ALkOIMuB2bTUjus0wPlEGgBTDDEH3CtEGIBuC7BqSDMDlDZziUg0NXMhORnc+To3IEoQ0saCbgkuDanMbB+PfX8y3Ghq+IutBiR5cmimKRnyaQS7BSCDIriCkGd37ZPEBFYsuF+4vwmkAAAAASUVORK5CYII="
+                );
+            }
+
+            titleContent = new GUIContent("RhythmosEditor", logoIcon);
         }
 
         private void OnEnable()
         {
-            UndoRedo.SetWindow(this);
             Load();
-        }
-
-        private void OnDisable()
-        {
-            UndoRedo.Clear();
+            UndoRedo.SetPageManager(pageManager);
         }
 
         private void OnDestroy()
@@ -87,62 +94,16 @@ namespace RhythmosEditor
         private void OnGUI()
         {
             // Load stuff
-            Textures.Load();
+            Icons.Load();
 
-            // Main are with safe borders
-            Rect areaRect = new Rect(4, 4, position.width - 8, position.height - 8);
-            GUILayout.BeginArea(areaRect);
-
-            #region Toolbar and Undo&Redo buttons
-            GUILayout.BeginHorizontal();
-            GUIDraw.UndoRedoButtons(false, false);
-
-            EditorGUI.BeginChangeCheck();
-            int toolbarSelection = GUILayout.Toolbar(currentToolbarSelection, toolbar);
-            if (EditorGUI.EndChangeCheck())
-            {
-                SetPage(toolbarSelection);
-            }
-            GUILayout.EndHorizontal();
-            #endregion
-
-
-            #region Current page
-            Rect pageRect;
-            if (Event.current.type == EventType.Repaint)
-            {
-                Rect lastRect = GUILayoutUtility.GetLastRect();
-                currentPageRect = new Rect(0, areaRect.y + lastRect.y + lastRect.height, areaRect.width, areaRect.height - (lastRect.y + lastRect.height));
-                pageRect = currentPageRect;
-            }
-            else
-            {
-                pageRect = currentPageRect;
-            }
-
-            // Draw current page
-            GUILayout.BeginArea(pageRect);
-            if (currentPage != null)
-            {
-                bool isDisabled = currentToolbarSelection != 2 && !config.loaded;
-                using (new EditorGUI.DisabledScope(isDisabled))
-                {
-                    currentPage.OnDraw(pageRect);
-                }
-
-
-            }
-            GUILayout.EndArea();
-
-            #endregion
+            // Draw current pages
+            pageManager.Draw(position);
 
             // Warning box
-            if (!config.loaded && currentToolbarSelection < 2)
+            if (!config.loaded && pageManager.Selection < 2)
             {
-                GUIDraw.WarningBox(pageRect);
+                Components.WarningBox(position);
             }
-
-            GUILayout.EndArea();
 
             if (Repainter.ShouldRepaint)
             {
@@ -151,24 +112,7 @@ namespace RhythmosEditor
             }
         }
 
-        internal void SetPage(int pageIndex)
-        {
-            currentToolbarSelection = pageIndex;
-            currentPage = null;
-            if (currentToolbarSelection < pages.Length)
-            {
-                EditorGUIUtility.editingTextField = false;
-                GUI.FocusControl(null);
-
-                currentPage = pages[currentToolbarSelection];
-                if (currentPage != null)
-                {
-                    currentPage.OnLoad();
-                    currentPage.OnPageSelect(config);
-                }
-
-            }
-        }
+       
 
     }
 }
