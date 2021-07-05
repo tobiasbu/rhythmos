@@ -7,7 +7,6 @@ namespace RhythmosEditor.Utils
 {
     public static class AudioUtility
     {
-
         public static void PlayClip(AudioClip clip, int startSample = 0, bool loop = false)
         {
             Assembly unityEditorAssembly = typeof(AudioImporter).Assembly;

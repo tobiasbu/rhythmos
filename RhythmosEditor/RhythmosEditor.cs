@@ -111,9 +111,5 @@ namespace RhythmosEditor
                 Repainter.Clear();
             }
         }
-
-       
-
     }
 }
-

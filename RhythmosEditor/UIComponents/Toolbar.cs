@@ -6,15 +6,18 @@ namespace RhythmosEditor.UIComponents
 {
     internal static class Toolbar
     {
-        public static void Begin(float toolbarHeight = 20) {
+        public static void Begin(float toolbarHeight = 20)
+        {
             GUILayout.BeginHorizontal(EditorStyles.toolbar, GUILayout.Height(toolbarHeight), GUILayout.ExpandWidth(true));
         }
 
-        public static void End() {
+        public static void End()
+        {
             GUILayout.EndHorizontal();
         }
 
-        public static bool Button(GUIContent content, Color contentColor, params GUILayoutOption[] options) {
+        public static bool Button(GUIContent content, Color contentColor, params GUILayoutOption[] options)
+        {
             Color oldContentColor = GUI.contentColor;
             GUI.contentColor = contentColor;
             bool result = GUILayout.Button(content, EditorStyles.toolbarButton, options);
@@ -22,11 +25,13 @@ namespace RhythmosEditor.UIComponents
             return result;
         }
 
-        public static bool Button(GUIContent content, float width = 25, float height = 20) {
+        public static bool Button(GUIContent content, float width = 25, float height = 20)
+        {
             return Button(content, EditorGUIUtility.isProSkin ? Color.white : Colors.DarkGray, GUILayout.Width(width), GUILayout.Height(height));
         }
 
-        public static bool Toggle(bool isEnabled, GUIContent content, float width = 25, float height = 20) {
+        public static bool Toggle(bool isEnabled, GUIContent content, float width = 25, float height = 20)
+        {
             Color oldBackgroundColor = GUI.backgroundColor;
             Color contentColor;
             if (isEnabled)
@@ -54,7 +59,8 @@ namespace RhythmosEditor.UIComponents
             GUILayout.Label(text, EditorStyles.toolbar);
         }
 
-        public static void Separator(float space = 1) {
+        public static void Separator(float space = 1)
+        {
             GUI.color = Colors.DarkGray;
             Rect rect = GUILayoutUtility.GetRect(space, 20, GUILayout.ExpandHeight(true), GUILayout.ExpandWidth(false));
             GUI.DrawTexture(rect, Icons.Pixel);

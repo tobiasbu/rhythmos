@@ -25,7 +25,7 @@ csharp_new_line_before_else = true
 #require members of object intializers to be on separate lines
 csharp_new_line_before_members_in_object_initializers = true
 #require braces to be on a new line for control_blocks and types (also known as "Allman" style)
-csharp_new_line_before_open_brace = control_blocks, types
+csharp_new_line_before_open_brace = control_blocks, types, methods
 
 #Formatting - organize using options
 
