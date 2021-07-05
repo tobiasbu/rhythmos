@@ -1,3 +1,5 @@
+using RhythmosEditor.Settings;
+using RhythmosEditor.UI;
 using RhythmosEngine;
 using System;
 using System.Collections.Generic;
@@ -6,9 +8,8 @@ using UnityEngine;
 
 namespace RhythmosEditor.Pages
 {
-    internal class AudioClipsPage : BaseEditorPage
+    internal class AudioClipsPage : IEditorPage
     {
-
         // GUI itens
         private GUIContent addContentButton;
         private GUIContent deleteContentButton;
@@ -26,24 +27,20 @@ namespace RhythmosEditor.Pages
         private Tuple<AudioReference, int> removalTuple;
         private GUIStyle centeredLabel;
 
-        public AudioClipsPage()
-        { }
-
-        public override void OnLoad()
+        public void OnLoad()
         {
             if (addContentButton == null)
             {
-                addContentButton = new GUIContent(Textures.Add, "Add AudioClip reference");
+                addContentButton = new GUIContent(Icons.Add, "Add AudioClip reference");
             }
 
             if (deleteContentButton == null)
             {
-                deleteContentButton = new GUIContent(Textures.Delete, "Remove AudioClip reference");
+                deleteContentButton = new GUIContent(Icons.Delete, "Remove AudioClip reference");
             }
-
         }
 
-        public override void OnPageSelect(Config config)
+        public void OnPageSelect(RhythmosConfig config)
         {
             if (config.loaded)
             {
@@ -52,9 +49,8 @@ namespace RhythmosEditor.Pages
             }
         }
 
-        public override void OnDraw(Rect pageRect)
+        public void OnDraw(Rect pageRect)
         {
-
             if (centeredLabel == null)
             {
                 centeredLabel = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter };
@@ -131,7 +127,7 @@ namespace RhythmosEditor.Pages
 
             GUILayout.BeginHorizontal();
 
-            if (GUIDraw.IconButton(addContentButton))
+            if (Components.IconButton(addContentButton))
             {
                 AddItem();
                 //NoteLayout noteLayout = new NoteLayout("New Note " + (count + 1));
@@ -179,7 +175,7 @@ namespace RhythmosEditor.Pages
 
 
 
-            if (GUIDraw.IconButton(deleteContentButton, GUILayout.Width(28), GUILayout.Height(19)))
+            if (Components.IconButton(deleteContentButton, 28, 19))
             {
                 //_undoManager.RecordNote(_s, "Remove Note Layout", i, true);
                 removalTuple = new Tuple<AudioReference, int>(item, index);
@@ -305,6 +301,6 @@ namespace RhythmosEditor.Pages
             }
         }
 
-
+        
     }
 }
