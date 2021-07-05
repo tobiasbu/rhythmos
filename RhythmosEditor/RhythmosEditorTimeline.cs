@@ -11,6 +11,8 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 using RhythmosEngine;
+using RhythmosEditor.Utils;
+using RhythmosEditor.UI;
 
 namespace RhythmosEditor
 {
@@ -250,8 +252,8 @@ namespace RhythmosEditor
 
             Color oldGuiColor = GUI.color;
             GUI.color = Color.gray;
-            GUI.DrawTexture(new Rect(GUILayoutUtility.GetLastRect().x + width - 136 - 8, GUILayoutUtility.GetLastRect().y, 1, 24), Textures.Pixel);
-            GUI.DrawTexture(new Rect(GUILayoutUtility.GetLastRect().x + width - 56 - 16, GUILayoutUtility.GetLastRect().y, 1, 24), Textures.Pixel);
+            GUI.DrawTexture(new Rect(GUILayoutUtility.GetLastRect().x + width - 136 - 8, GUILayoutUtility.GetLastRect().y, 1, 24), Icons.Pixel);
+            GUI.DrawTexture(new Rect(GUILayoutUtility.GetLastRect().x + width - 56 - 16, GUILayoutUtility.GetLastRect().y, 1, 24), Icons.Pixel);
 
             float lastX = GUILayoutUtility.GetLastRect().x;
             float y = GUILayoutUtility.GetLastRect().y + 4;
@@ -276,11 +278,11 @@ namespace RhythmosEditor
                 {
                     GUI.color = Colors.LightSelection;
                 }
-                playButton = Textures.Stop;
+                playButton = Icons.Stop;
             }
             else
             {
-                playButton = Textures.Play;
+                playButton = Icons.Play;
             }
 
             if (m_rhythm == null || m_rhythm.Count == 0)
@@ -320,14 +322,14 @@ namespace RhythmosEditor
 
             // To init
             GUI.color = oldGuiColor;
-            if (GUI.Button(new Rect(GUILayoutUtility.GetLastRect().x + 2 + 28 + 2, GUILayoutUtility.GetLastRect().y + 2, 24, 20), Textures.ToStart))
+            if (GUI.Button(new Rect(GUILayoutUtility.GetLastRect().x + 2 + 28 + 2, GUILayoutUtility.GetLastRect().y + 2, 24, 20), Icons.ToNext))
             {
                 m_selected = 0;
                 hSbarValue = 0;
             }
 
             // To end
-            if (GUI.Button(new Rect(GUILayoutUtility.GetLastRect().x + 2 + 28 + 2 + 26, GUILayoutUtility.GetLastRect().y + 2, 24, 20), Textures.ToEnd))
+            if (GUI.Button(new Rect(GUILayoutUtility.GetLastRect().x + 2 + 28 + 2 + 26, GUILayoutUtility.GetLastRect().y + 2, 24, 20), Icons.ToPrevious))
             {
                 m_selected = m_rhythm.Count - 1;
                 hSbarValue = 1;
@@ -335,12 +337,12 @@ namespace RhythmosEditor
 
             GUI.enabled = true;
             GUI.color = Color.grey;
-            GUI.DrawTexture(new Rect(GUILayoutUtility.GetLastRect().x + 58 + 24 + 4, GUILayoutUtility.GetLastRect().y, 1, 24), Textures.Pixel);
+            GUI.DrawTexture(new Rect(GUILayoutUtility.GetLastRect().x + 58 + 24 + 4, GUILayoutUtility.GetLastRect().y, 1, 24), Icons.Pixel);
             GUI.color = Color.white;
 
-            Texture muteButton = Textures.MuteOff;
+            Texture muteButton = Icons.MuteOff;
             if (m_mute)
-                muteButton = Textures.MuteOn;
+                muteButton = Icons.MuteOn;
             muteButton.hideFlags = HideFlags.HideAndDontSave;
             if (GUI.Button(new Rect(GUILayoutUtility.GetLastRect().x + 86 + 3 + 2, GUILayoutUtility.GetLastRect().y + 2, 24, 20), muteButton))
             {
@@ -356,7 +358,7 @@ namespace RhythmosEditor
                 GUI.contentColor = Color.white;
             }
 
-            if (GUI.Button(new Rect(GUILayoutUtility.GetLastRect().x + 90 + 24 + 3, GUILayoutUtility.GetLastRect().y + 2, 24, 20), Textures.Loop, m_button))
+            if (GUI.Button(new Rect(GUILayoutUtility.GetLastRect().x + 90 + 24 + 3, GUILayoutUtility.GetLastRect().y + 2, 24, 20), Icons.Loop, m_button))
             {
                 m_loop = !m_loop;
             }
@@ -369,7 +371,7 @@ namespace RhythmosEditor
                 GUI.backgroundColor = EditorGUIUtility.isProSkin ? EditorStyles.label.normal.textColor : Color.gray;
                 GUI.contentColor = Color.white;
             }
-            if (GUI.Button(new Rect(GUILayoutUtility.GetLastRect().x + 90 + (24 * 2) + 3 + 2, GUILayoutUtility.GetLastRect().y + 2, 24, 20), Textures.Metronome))
+            if (GUI.Button(new Rect(GUILayoutUtility.GetLastRect().x + 90 + (24 * 2) + 3 + 2, GUILayoutUtility.GetLastRect().y + 2, 24, 20), Icons.Metronome))
             {
                 m_playMetronome = !m_playMetronome;
             }
@@ -459,7 +461,7 @@ namespace RhythmosEditor
                 {
                     GUI.color = noteColor;    
                 }
-                GUI.DrawTexture(noteRect, Textures.TimelineBg);
+                GUI.DrawTexture(noteRect, Icons.TimelineBg);
 
 
                 if (m_indexNote == i && m_timerNoteC > 0)
@@ -469,7 +471,7 @@ namespace RhythmosEditor
                     Color c = Color.black;
                     c.a = 0.4f;
                     GUI.color = c;
-                    GUI.DrawTexture(noteOnPlayRect, Textures.Pixel);
+                    GUI.DrawTexture(noteOnPlayRect, Icons.Pixel);
                 }
 
                 if (m_selected != i)
@@ -527,8 +529,8 @@ namespace RhythmosEditor
                 c.a = IsPlaying() ? 0.0f : 0.05f;
                 GUI.color = c;
 
-                GUI.DrawTexture(selectedRect, Textures.Pixel);
-                GUIDraw.Box(new Rect(selectedRect.x - 1, selectedRect.y, selectedRect.width + 1, selectedRect.height), Textures.Pixel, Color.white, 1);
+                GUI.DrawTexture(selectedRect, Icons.Pixel);
+                Components.OutlineBox(new Rect(selectedRect.x - 1, selectedRect.y, selectedRect.width + 1, selectedRect.height), Color.white, 1);
                 float ly = timeLineBox2.y - 8 + height / 2f;
 
                 oldContentColor = GUI.contentColor;
@@ -590,7 +592,7 @@ namespace RhythmosEditor
             GUI.color = Color.grey;
             for (int l = 0; l < lmax; l++)
             {
-                GUI.DrawTexture(new Rect(x, timeLineBox2.y - 4, 1, 8), Textures.Pixel);
+                GUI.DrawTexture(new Rect(x, timeLineBox2.y - 4, 1, 8), Icons.Pixel);
                 x += timelineRectSizeUnit;
             }
 
@@ -637,9 +639,9 @@ namespace RhythmosEditor
                 {
                     GUI.color = Color.red;
                 }
-                GUI.DrawTexture(new Rect(posx - 2.5f, 2, 6, 8), Textures.TrackArrow);
+                GUI.DrawTexture(new Rect(posx - 2.5f, 2, 6, 8), Icons.TrackArrow);
                 GUI.color = Color.red;
-                GUI.DrawTexture(new Rect(posx, timeLineBox2.y + 4, 1f, height - 2), Textures.TrackArrow);
+                GUI.DrawTexture(new Rect(posx, timeLineBox2.y + 4, 1f, height - 2), Icons.TrackArrow);
             }
 
             GUI.EndGroup();

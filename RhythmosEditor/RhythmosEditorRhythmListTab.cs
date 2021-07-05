@@ -1,10 +1,9 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using System.Collections.Generic;
-using System.Xml;
 using RhythmosEngine;
-using System;
-using UnityEngine.UIElements;
+using RhythmosEditor.UIComponents;
+using RhythmosEditor.UI;
 
 namespace RhythmosEditor
 {
@@ -65,17 +64,17 @@ namespace RhythmosEditor
 
             if (addContentButton == null)
             {
-                addContentButton = new GUIContent(Textures.Add, "Create new rhythm");
+                addContentButton = new GUIContent(Icons.Add, "Create new rhythm");
             }
 
             if (copyContentButton == null)
             {
-                copyContentButton = new GUIContent(Textures.Copy, "Duplicate selected rhythm");
+                copyContentButton = new GUIContent(Icons.Duplicate, "Duplicate selected rhythm");
             }
 
             if (deleteContentButton == null)
             {
-                deleteContentButton = new GUIContent(Textures.Delete, "Remove selected rhythm");
+                deleteContentButton = new GUIContent(Icons.Trash, "Remove selected rhythm");
             }
 
             
@@ -167,7 +166,7 @@ namespace RhythmosEditor
                     {
                         _undoManager.RecordRhythm(redo.rhythm, redo.undoAction, redo.index, redo.lastSelectedNote, false);
                         rhythmListView.Select(RhythmList.Count - 1);
-                        _timeline.SetRhythm(rhythmListView.Selected);
+                        _timeline.SetRhythm(rhythmListView.Current);
                         _timeline.SetSelectedNoteIndex(-1);
                     }
                 }
@@ -211,7 +210,7 @@ namespace RhythmosEditor
 
                     }
 
-                    _timeline.SetRhythm(rhythmListView.Selected);
+                    _timeline.SetRhythm(rhythmListView.Current);
                     _timeline.SetSelectedNoteIndex(-1);
 
                 }
@@ -244,7 +243,7 @@ namespace RhythmosEditor
                     _undoManager.RecordRhythmRedo(undo.rhythm, undo.undoAction, undo.index, undo.lastSelectedNote);
 
                     rhythmListView.Select(undo.index);
-                    _timeline.SetRhythm(rhythmListView.Selected);
+                    _timeline.SetRhythm(rhythmListView.Current);
                     _timeline.SetSelectedNoteIndex(undo.lastSelectedNote);
 
                 }
@@ -267,7 +266,7 @@ namespace RhythmosEditor
                
                 //_timeline.SetRhythm(rhythmListView.selectedItem);
                 //_timeline.SetSelectedNoteIndex(-1);
-                _undoManager.RecordRhythm(rhythmListView.Selected, "Add New Rhythm", rhythmListView.SelectedIndex, _timeline.GetSelectedNoteIndex(), true);
+                _undoManager.RecordRhythm(rhythmListView.Current, "Add New Rhythm", rhythmListView.SelectedIndex, _timeline.GetSelectedNoteIndex(), true);
             }
 
             if (rhythmListView.HasSelection)
@@ -284,7 +283,7 @@ namespace RhythmosEditor
             {
                 if (rhythmListView.HasSelection)
                 {
-                    Rhythm clone = new Rhythm(rhythmListView.Selected);
+                    Rhythm clone = new Rhythm(rhythmListView.Current);
                     clone.Name = string.Concat(clone.Name, " (Copy)");
                     RhythmList.Insert(rhythmListView.SelectedIndex + 1, clone);
 
@@ -305,7 +304,7 @@ namespace RhythmosEditor
                 if (rhythmListView.HasSelection)
                 {
                     int value = rhythmListView.SelectedIndex;
-                    _undoManager.RecordRhythm(rhythmListView.Selected, "Remove Rhythm", value, _timeline.GetSelectedNoteIndex(), true);
+                    _undoManager.RecordRhythm(rhythmListView.Current, "Remove Rhythm", value, _timeline.GetSelectedNoteIndex(), true);
                     DeleteRhythmAt(value);
 
                     if (_timeline.IsPlaying())
@@ -326,7 +325,7 @@ namespace RhythmosEditor
 
                     if (selection != -1)
                     {
-                        _timeline.SetRhythm(rhythmListView.Selected);
+                        _timeline.SetRhythm(rhythmListView.Current);
                         _timeline.SetSelectedNoteIndex(-1);
                     }
                 }
@@ -391,7 +390,7 @@ namespace RhythmosEditor
             //    if (_selected == i)
             //    {
             //        GUI.color = Colors.Selection;
-            //        GUI.DrawTexture(_entryBox, Textures.Pixel);
+            //        GUI.DrawTexture(_entryBox, Icons.Pixel);
             //        GUI.color = Color.white;
             //    } 
             //    else
@@ -472,7 +471,7 @@ namespace RhythmosEditor
 
             if (rhythmListView.HasSelection)
             {
-                Rhythm rhythm = rhythmListView.Selected;
+                Rhythm rhythm = rhythmListView.Current;
 
                 GUI.color = Color.white;
                 GUILayout.BeginArea(ritArea, "");
@@ -587,7 +586,7 @@ namespace RhythmosEditor
                         GUI.enabled = false;
                     }
 
-                    GUIContent content = new GUIContent(Textures.LeftArrow, "Move note to left");
+                    GUIContent content = new GUIContent(Icons.LeftArrow, "Move note to left");
                     if (GUILayout.Button(content, GUILayout.Width(24), GUILayout.Height(18)))
                     {
                         _undoManager.RecordRhythm(rhythm, "Move note Left", rhythmListView.SelectedIndex, _timeline.GetSelectedNoteIndex(), true);
@@ -607,7 +606,7 @@ namespace RhythmosEditor
                         GUI.enabled = false;
                     }
 
-                    GUIContent content2 = new GUIContent(Textures.RightArrow, "Move note to right");
+                    GUIContent content2 = new GUIContent(Icons.RightArrow, "Move note to right");
                     if (GUILayout.Button(content2, GUILayout.Width(24), GUILayout.Height(18)))
                     {
                         _undoManager.RecordRhythm(rhythm, "Move note Right", rhythmListView.SelectedIndex, _timeline.GetSelectedNoteIndex(), true);
@@ -643,7 +642,7 @@ namespace RhythmosEditor
 
                 GUI.enabled = true;
 
-                if (_timeline.GetSelectedNoteIndex() >= 0 && rhythmListView.Selected.Count > 0)
+                if (_timeline.GetSelectedNoteIndex() >= 0 && rhythmListView.Current.Count > 0)
                 {
 
                     float h = ritArea.height - GUILayoutUtility.GetLastRect().y - ritArea.y;
@@ -750,7 +749,7 @@ namespace RhythmosEditor
                         if (i == rhythm.Notes[sel].layoutIndex)
                         {
                             GUI.color = Colors.Selection;
-                            GUI.DrawTexture(labelRect, Textures.Pixel);
+                            GUI.DrawTexture(labelRect, Icons.Pixel);
                             GUI.color = Color.white;
                             GUI.Label(new Rect(5 + 20, boxy + 1, boxw - 25 - 1, 16), _noteList[i].Clip.name, listItemStyle);
                         }
@@ -764,7 +763,7 @@ namespace RhythmosEditor
                         noteColor.a = 1f;
                         GUI.color = noteColor;
                         GUI.Box(new Rect(5 + 1 + 1, boxy + 1, 16, 16), "");
-                        GUI.DrawTexture(new Rect(5 + 1 + 2, boxy + 2, 14, 14), Textures.Pixel);
+                        GUI.DrawTexture(new Rect(5 + 1 + 2, boxy + 2, 14, 14), Icons.Pixel);
                         GUI.color = Color.white;
 
                         boxy += 18;
