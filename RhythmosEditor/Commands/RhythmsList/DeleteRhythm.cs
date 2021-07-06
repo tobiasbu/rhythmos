@@ -5,11 +5,11 @@ namespace RhythmosEditor.Commands.RhythmsList
 {
     using RhythmListView = ListView<Rhythm>;
 
-    internal class Delete : BaseCommand
+    internal class DeleteRhythm : BaseCommand
     {
         public override string Name => "Remove " + (rhythm != null ? rhythm.Name : "Rhythm");
 
-        public Delete(RhythmListView list)
+        public DeleteRhythm(RhythmListView list)
             : base(list, list.Current, list.SelectedIndex)
         {
         }
