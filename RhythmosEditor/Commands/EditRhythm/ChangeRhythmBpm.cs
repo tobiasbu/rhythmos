@@ -3,14 +3,14 @@ using UnityEngine;
 
 namespace RhythmosEditor.Commands.EditRhythm
 {
-    internal class ChangeBPM : BaseCommand
+    internal class ChangeRhythmBpm : BaseCommand
     {
         private readonly float newBpm;
         private readonly float oldBpm;
 
         public override string Name => "Change rhythm BPM";
 
-        public ChangeBPM(EditController controller, float bpm, float oldBpm) : base(controller)
+        public ChangeRhythmBpm(EditController controller, float bpm, float oldBpm) : base(controller)
         {
             newBpm = bpm;
             this.oldBpm = oldBpm;

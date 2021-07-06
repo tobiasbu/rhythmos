@@ -5,11 +5,11 @@ namespace RhythmosEditor.Commands.RhythmsList
 {
     using RhythmListView = ListView<Rhythm>;
 
-    internal class Duplicate : BaseCommand
+    internal class DuplicateRhythm : BaseCommand
     {
         public override string Name => "Duplicate " + (rhythm != null ? rhythm.Name : "Rhythm");
 
-        public Duplicate(RhythmListView list)
+        public DuplicateRhythm(RhythmListView list)
             : base(list, null, -1)
         { }
 

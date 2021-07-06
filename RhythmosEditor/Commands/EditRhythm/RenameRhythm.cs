@@ -3,14 +3,14 @@ using UnityEngine;
 
 namespace RhythmosEditor.Commands.EditRhythm
 {
-    internal class Rename : BaseCommand
+    internal class RenameRhythm : BaseCommand
     {
         private readonly string newName;
         private readonly string oldName;
 
         public override string Name => "Set Rhythm name";
 
-        public Rename(EditController controller, string name) : base(controller)
+        public RenameRhythm(EditController controller, string name) : base(controller)
         {
             newName = name;
             oldName = rhythm.Name;
