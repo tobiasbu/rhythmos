@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor;
 using RhythmosEditor.Pages;
 using RhythmosEditor.Utils;
-using UnityEditor;
 
 namespace RhythmosEditor.Commands
 {
