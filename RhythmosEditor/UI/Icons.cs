@@ -27,15 +27,16 @@ namespace RhythmosEditor.UI
         public static Texture2D ToNext { private set; get; }
         public static Texture2D ToPrevious { private set; get; }
 
-
         public static Texture2D MuteOn { private set; get; }
         public static Texture2D MuteOff { private set; get; }
         public static Texture2D Loop { private set; get; }
         public static Texture2D Metronome { private set; get; }
 
-        public static Texture2D TrackArrow { private set; get; }
+        public static Texture2D PlayHead { private set; get; }
         public static Texture2D AddNote { get; private set; }
 
+        public static Texture2D Note { get; private set; }
+        public static Texture2D Rest { get; private set; }
 
         static Icons()
         {
@@ -189,12 +190,11 @@ namespace RhythmosEditor.UI
             }
 
 
-            if (TrackArrow == null)
+            if (PlayHead == null)
             {
-                TrackArrow = TextureUtility.CreateFromBase64(
-                    "iVBORw0KGgoAAAANSUhEUgAAAAYAAAAICAYAAADaxo44AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAABMSURBVAiZhYmxCYBAEMByz+MgFi7nJu9gFm5g4Q5i//lGsDkwVUhClYSSxd/Rk94LsCWjoVZ19+NQJwDUWb3VR10AKkBEXOr6+gkwAPIfL+kXBhVFAAAAAElFTkSuQmCC"
+                PlayHead = TextureUtility.CreateFromBase64(
+                    "iVBORw0KGgoAAAANSUhEUgAAAAsAAAAUCAYAAABbLMdoAAAARklEQVQoFWP8DwQMRAImItWBlY0qRg6t0dBAD40wZAE8bIg6YCoNBSVVPCAUxRCgQlwaUBXCdGHRgF0hFg34FSJrgLGRaQDar2JoFz+/aAAAAABJRU5ErkJggg=="
                 );
-                TrackArrow.hideFlags = HideFlags.HideAndDontSave;
             }
 
 
@@ -205,10 +205,21 @@ namespace RhythmosEditor.UI
                 AddNote = TextureUtility.CreateFromBase64(
                    "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAApElEQVQ4EWNgoDb4//+/KhCDwD9izGYiRhE+NUPMAGC4vAZhZC+xIHOIYIugqyEqDKA2/4dpBvJBAOwSogyAacRGY/MCI7pCRkZGUZAYyFoQDeRjqAFJSgDxUiD+BsQggJGQgGIYgQgyEKRZAIhvADEy+AmWJEDAwiAJqE4dTe01ND5WLswA9Oj5A1RdilUHNkGgu2WA+BgQfwTifUBshU0dTcQA3jds1IxyolkAAAAASUVORK5CYII="
                 );
-                AddNote.hideFlags = HideFlags.HideAndDontSave;
             }
 
+            if (Note == null)
+            {
+                Note = TextureUtility.CreateFromBase64(
+                    "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAjklEQVQ4EWNgIAL8//8/CojtsCllwiaIRSwKKGaPRZyBWAOw6QWLjRrAMBwCkQVnBAMlgKkPFM1SQIwzunFKADVbADVeBeLHQOwMxMJAjAGwugCoWRqochcQ80J1sAFpESibMAU0IB+I0YEVYZ1QFUCd3ki6/wHZTbg0M+KSAGpyB8ppAfEBRkbG87jUAQCF9kHt6CLswwAAAABJRU5ErkJggg=="
+                );
+            }
 
+            if (Rest == null)
+            {
+                Rest = TextureUtility.CreateFromBase64(
+                   "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA2UlEQVQ4EZWTPQrCQBBGE0X0Aqn0DDY2gmJt4xGsvIGVhYfwFlZeQCxsbO1sbBQsFAtrQTC+gRBYZyebDDyy+/1kWUiiyJg0TbvQMOxcruUrvRgirbRcUuH0BD4wK1nRMcpXeENfuwGFUgx3kLlBEqi4NoWRNLORqwzcRMGOcAtOWVkei4K4tijUYS9NRq7R1KmAQqkNT9gForZNeQxniO2Ux6HQgQMcQa4w8cRsicIcZL5wga2d9jgUpiCz9NiOZP0LG1IPeDnpKhtOlw9pXaWjsrygp8Q/4Qf73LWHhYDdBwAAAABJRU5ErkJggg=="
+                );
+            }
         }
     }
 }
