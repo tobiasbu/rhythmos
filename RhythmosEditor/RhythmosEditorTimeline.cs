@@ -126,7 +126,7 @@ namespace RhythmosEditor
             m_indexNote = -1;
             m_timerPlayAmount = 0;
             m_playing = false;
-            AudioUtility.StopAllClips();
+            EditorAudioUtility.StopAllClips();
         }
 
         public void Playing()
@@ -194,7 +194,7 @@ namespace RhythmosEditor
                                 m_timerNoteC = clip.length;
 
                                 if (!m_mute)
-                                    AudioUtility.PlayClip(clip);
+                                    EditorAudioUtility.PlayClip(clip);
                             }
                             else
                             {
@@ -214,7 +214,7 @@ namespace RhythmosEditor
                     {
                         if (m_metro != null)
                         {
-                            AudioUtility.PlayClip(m_metro);
+                            EditorAudioUtility.PlayClip(m_metro);
                         }
                         m_timerMetroColor = EditorApplication.timeSinceStartup + 0.2f;
 
@@ -274,7 +274,8 @@ namespace RhythmosEditor
                 if (EditorGUIUtility.isProSkin)
                 {
                     GUI.color = EditorStyles.label.focused.textColor;
-                } else
+                }
+                else
                 {
                     GUI.color = Colors.LightSelection;
                 }
@@ -317,7 +318,7 @@ namespace RhythmosEditor
             if (IsPlaying())
             {
                 GUI.enabled = false;
-               
+
             }
 
             // To init
@@ -425,7 +426,7 @@ namespace RhythmosEditor
                 float sizew = Mathf.Ceil(m_rhythm.Notes[i].duration * timelineRectSizeUnit);
                 noteRect.x = 2 + timeLineBox2.x + totalSize - hSbarValue;
                 noteRect.width = sizew;
-               
+
 
                 if (!invalidNote)
                 {
@@ -448,7 +449,7 @@ namespace RhythmosEditor
                         noteOpt = true;
                         selectedIsInvalid = invalidNote;
                         selectedRect = noteRect;
-                        selectedNote = m_rhythm.Notes[i]; 
+                        selectedNote = m_rhythm.Notes[i];
                     }
                 }
 
@@ -459,7 +460,7 @@ namespace RhythmosEditor
                 }
                 else
                 {
-                    GUI.color = noteColor;    
+                    GUI.color = noteColor;
                 }
                 GUI.DrawTexture(noteRect, Icons.TimelineBg);
 
@@ -504,7 +505,7 @@ namespace RhythmosEditor
 
                     }
 
-                    
+
                     GUI.contentColor = GUI.color;
 
                     GUI.Label(new Rect(noteRect.x + 1, timeLineBox2.y - 8 + height / 2f, sizew - 1, 18), word, EditorStyles.whiteLabel);
@@ -514,7 +515,7 @@ namespace RhythmosEditor
                     selectedRect = noteRect;
                 }
 
-               
+
 
                 totalSize += sizew + 1;
             }
@@ -639,9 +640,9 @@ namespace RhythmosEditor
                 {
                     GUI.color = Color.red;
                 }
-                GUI.DrawTexture(new Rect(posx - 2.5f, 2, 6, 8), Icons.TrackArrow);
+                GUI.DrawTexture(new Rect(posx - 2.5f, 2, 6, 8), Icons.PlayHead);
                 GUI.color = Color.red;
-                GUI.DrawTexture(new Rect(posx, timeLineBox2.y + 4, 1f, height - 2), Icons.TrackArrow);
+                GUI.DrawTexture(new Rect(posx, timeLineBox2.y + 4, 1f, height - 2), Icons.PlayHead);
             }
 
             GUI.EndGroup();

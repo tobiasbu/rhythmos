@@ -113,23 +113,8 @@ namespace RhythmosEditor.Utils
             return tex;
         }
 
-        internal static void Bucket(Texture2D texture, Color color) {
-            for (int yy = 0; yy < texture.height; yy++)
-            {
-                for (int xx = 0; xx < texture.width; xx++)
-                {
-
-                    Color current = texture.GetPixel(xx, yy);
-                    current.r = color.r;
-                    current.g = color.g;
-                    current.b = color.b;
-                    texture.SetPixel(xx, yy, color);
-                }
-            }
-            texture.Apply();
-        }
-
-        internal static Texture2D Clone(Texture2D texture, bool flipHorizontal) {
+        internal static Texture2D Clone(Texture2D texture, bool flipHorizontal)
+        {
             Texture2D copy = new Texture2D(texture.width, texture.height);
             copy.hideFlags = texture.hideFlags;
 
@@ -152,5 +137,6 @@ namespace RhythmosEditor.Utils
 
             return copy;
         }
+
     }
 }

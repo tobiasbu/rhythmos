@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Globalization;
+using UnityEngine;
 
 namespace RhythmosEditor.Utils
 {
@@ -30,7 +30,7 @@ namespace RhythmosEditor.Utils
             float minutes = Mathf.Floor(timeInSeconds / 60);
             float seconds = Mathf.FloorToInt(timeInSeconds % 60);
             float mili = timeInSeconds * 100;
-            mili = Mathf.RoundToInt(mili % 99);
+            mili = Mathf.RoundToInt(mili % 100);
 
             string m, s, mm;
 
@@ -58,7 +58,7 @@ namespace RhythmosEditor.Utils
             }
             else
             {
-                mm = mili.ToString();
+                mm = mili.ToString("00");
             }
 
             return m + ":" + s + ":" + mm;
