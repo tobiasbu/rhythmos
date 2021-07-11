@@ -1,6 +1,5 @@
-﻿
+﻿using UnityEngine;
 using UnityEditor;
-using UnityEngine;
 
 namespace RhythmosEditor.UIComponents
 {
@@ -11,11 +10,9 @@ namespace RhythmosEditor.UIComponents
         string currentValue = "";
         bool isEdited = false;
 
-        public string Text
-        {
+        public string Text {
             get { return validValue; }
-            set
-            {
+            set {
                 validValue = currentValue = value;
             }
         }
@@ -27,15 +24,16 @@ namespace RhythmosEditor.UIComponents
 
             bool submitted = false;
             Event e = Event.current;
-            if (EditorGUIUtility.editingTextField && GUI.GetNameOfFocusedControl() == Label)
+            if (EditorGUIUtility.editingTextField && GUI.GetNameOfFocusedControl() == "RhythmosTextEdit_" + Label)
             {
                 Event ev = Event.current;
                 if (ev.isKey)
                 {
-                    if (ev.keyCode == KeyCode.Return || ev.keyCode == KeyCode.KeypadEnter) {
+                    if (ev.keyCode == KeyCode.Return || ev.keyCode == KeyCode.KeypadEnter)
+                    {
                         Text = currentValue;
                         submitted = true;
-                    } 
+                    }
                     else if (e.keyCode == KeyCode.Escape)
                     {
                         Text = validValue;
@@ -43,10 +41,11 @@ namespace RhythmosEditor.UIComponents
                 }
             }
 
-            if (Label == null) 
+            GUI.SetNextControlName("RhythmosTextEdit_" + Label);
+            if (Label == null)
             {
                 currentValue = EditorGUILayout.TextField(currentValue);
-            } 
+            }
             else
             {
                 currentValue = EditorGUILayout.TextField(Label, currentValue);
@@ -55,6 +54,5 @@ namespace RhythmosEditor.UIComponents
 
             return submitted;
         }
-
     }
 }
