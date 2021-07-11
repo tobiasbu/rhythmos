@@ -1,5 +1,5 @@
-using RhythmosEngine;
 using System.Collections.Generic;
+using RhythmosEngine;
 
 namespace RhythmosEditor
 {
@@ -17,13 +17,11 @@ namespace RhythmosEditor
 
         private static List<UndoRhythm> undoList;
         private static List<UndoRhythm> redoList;
-        public int UndoCount
-        {
+        public int UndoCount {
             get { return undoList.Count; }
         }
 
-        public int RedoCount
-        {
+        public int RedoCount {
             get { return redoList.Count; }
         }
 
