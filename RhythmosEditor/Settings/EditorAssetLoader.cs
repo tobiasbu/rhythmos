@@ -1,5 +1,5 @@
-using UnityEditor;
 using UnityEngine;
+using UnityEditor;
 using RhythmosEngine;
 
 namespace RhythmosEditor.Settings
@@ -8,7 +8,7 @@ namespace RhythmosEditor.Settings
     {
         public AudioClip LoadClip(string path)
         {
-           return (AudioClip)AssetDatabase.LoadAssetAtPath(path, typeof(AudioClip));
+            return (AudioClip)AssetDatabase.LoadAssetAtPath(path, typeof(AudioClip));
         }
     }
 }
