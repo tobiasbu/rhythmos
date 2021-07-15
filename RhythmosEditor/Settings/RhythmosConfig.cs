@@ -17,13 +17,6 @@ namespace RhythmosEditor.Settings
         [SerializeField]
         private bool fileExists = false;
 
-        public RhythmosDatabase RhythmosDatabase
-        {
-            get
-            {
-                return rhythmosDatabase;
-            }
-        }
 
         public string lastOpenDatabase { set; get; }
         public AudioClip metroAudioClip { set; get; }
@@ -36,6 +29,22 @@ namespace RhythmosEditor.Settings
             }
         }
 
+
+        public RhythmosDatabase RhythmosDatabase {
+            get {
+                return rhythmosDatabase;
+            }
+        }
+
+        public TextAsset TextAsset {
+            get {
+                if (loaded)
+                {
+                    return rhythmosDatabase.TextAsset;
+                }
+                return null;
+            }
+        }
         public RhythmosConfig()
         {
             statusMessage = "Please select a RhythmosDatabase file.";
@@ -137,7 +146,7 @@ namespace RhythmosEditor.Settings
             {
                 database = XMLDatabaseLoader.Import(sourcePath);
                 lastOpenDatabase = AssetDatabase.GetAssetPath(database.TextAsset);
-                statusMessage = "Database loaded successfully.";
+                statusMessage = "Database loaded successfully.\n Path: " + lastOpenDatabase;
                 statusType = MessageType.Info;
             }
             catch (Exception ex)

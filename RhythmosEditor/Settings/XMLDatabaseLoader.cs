@@ -1,8 +1,8 @@
 using System;
 using System.IO;
 using System.Xml;
-using UnityEditor;
 using UnityEngine;
+using UnityEditor;
 using RhythmosEngine;
 using RhythmosEditor.Exceptions;
 using RhythmosEditor.Utils;
@@ -29,7 +29,7 @@ namespace RhythmosEditor.Settings
                 throw new ImportXmlException("Could not load RhythmosDatabase: " + sourceFilePath + " does no exist");
             }
 
-            
+
             string assetPath = sourceFilePath;
             string directoryName = Path.GetDirectoryName(sourceFilePath);
             if (PathUtils.IsAssetsAbsolutePath(directoryName) || directoryName == "Assets")
@@ -40,7 +40,7 @@ namespace RhythmosEditor.Settings
 
             TextAsset textAsset = (TextAsset)AssetDatabase.LoadAssetAtPath(assetPath, typeof(TextAsset));
             return RhythmosDatabase.Load(textAsset, new EditorAssetLoader());
-            
+
         }
 
         /// <summary>
@@ -125,7 +125,8 @@ namespace RhythmosEditor.Settings
                 {
                     AssetDatabase.Refresh();
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw new ExportXmlException("Could not export RhythmosDatabase to '" + destinationFilePath + "'", ex);
             }
