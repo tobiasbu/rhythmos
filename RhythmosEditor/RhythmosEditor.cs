@@ -5,6 +5,7 @@ using RhythmosEditor.Settings;
 using RhythmosEditor.Utils;
 using RhythmosEditor.UI;
 using RhythmosEditor.UIComponents;
+using RhythmosEditor.Pages;
 
 namespace RhythmosEditor
 {
@@ -15,8 +16,10 @@ namespace RhythmosEditor
 
         [SerializeField]
         private Pages.PageManager pageManager;
+        private RhythmsPage rhythmPage;
 
         private Texture2D logoIcon;
+
 
         [MenuItem("Tools/Rhythmos Editor")]
         public static void Launch()
@@ -24,9 +27,11 @@ namespace RhythmosEditor
             RhythmosEditor window = (RhythmosEditor)GetWindow(typeof(RhythmosEditor));
             window.Show();
             window.minSize = new Vector2(400, 240);
+
         }
 
-        bool CreatePages() {
+        bool CreatePages()
+        {
             bool create = pageManager == null;
 
             if (create)
@@ -38,8 +43,9 @@ namespace RhythmosEditor
 
             if (pageManager.Count == 0)
             {
-                
+
                 pageManager.AddPage("Rhythm", new Pages.RhythmsPage());
+                pageManager.AddPage("AudioClips", new Pages.AudioClipsPage());
                 pageManager.AddPage("Settings", new Pages.SettingsPage());
                 return true;
             }
@@ -54,7 +60,7 @@ namespace RhythmosEditor
             {
                 config = new RhythmosConfig();
                 config.Load();
-                config.LoadDatabaseXML(null);   
+                config.LoadDatabaseXML(null);
             }
             else
             {
@@ -65,6 +71,8 @@ namespace RhythmosEditor
             {
                 startPage = 0;
             }
+            pageManager.OnPageChange -= OnPageChange;
+            pageManager.OnPageChange += OnPageChange;
             pageManager.SetPage(startPage, true);
 
 
@@ -78,10 +86,19 @@ namespace RhythmosEditor
             titleContent = new GUIContent("RhythmosEditor", logoIcon);
         }
 
+        private void OnPageChange(int index, IEditorPage page)
+        {
+            if (index == 0)
+            {
+                rhythmPage = (Pages.RhythmsPage)page;
+            }
+        }
+
         private void OnEnable()
         {
             Load();
             UndoRedo.SetPageManager(pageManager);
+            wantsMouseEnterLeaveWindow = true;
         }
 
         private void OnDestroy()
@@ -91,10 +108,27 @@ namespace RhythmosEditor
             config.SaveDatabaseXML(null);
         }
 
+        private void Update()
+        {
+            if (pageManager.Selection == 0 && rhythmPage != null)
+            {
+                if (rhythmPage.IsRhythmPlaying)
+                {
+                    rhythmPage.Update();
+                }
+            }
+        }
+
         private void OnGUI()
         {
             // Load stuff
+            Colors.Load();
             Icons.Load();
+            Styles.Load();
+
+
+            GUIEvents.OnUpdate();
+            GhostIconButton.OnUpdate();
 
             // Draw current pages
             pageManager.Draw(position);

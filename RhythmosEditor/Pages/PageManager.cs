@@ -21,8 +21,9 @@ namespace RhythmosEditor.Pages
         private RhythmosConfig config;
         private EditorWindow editorWindow;
 
-        public int Selection
-        {
+        public event Action<int, IEditorPage> OnPageChange;
+
+        public int Selection {
             get {
                 return pageIndex;
             }
@@ -132,6 +133,7 @@ namespace RhythmosEditor.Pages
                 current = pagesList[this.pageIndex];
                 if (current != null)
                 {
+                    OnPageChange?.Invoke(pageIndex, current);
                     current.OnLoad();
                     current.OnPageSelect(config);
                 }
