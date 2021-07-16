@@ -26,6 +26,7 @@ namespace RhythmosEditor.Pages
         private List<AudioReference> audioReferences;
         private Tuple<AudioReference, int> removalTuple;
         private GUIStyle centeredLabel;
+        private float maxColorWidth;
 
         public void OnLoad()
         {
@@ -36,7 +37,7 @@ namespace RhythmosEditor.Pages
 
             if (deleteContentButton == null)
             {
-                deleteContentButton = new GUIContent(Icons.Trash, "Remove AudioClip reference");
+                deleteContentButton = new GUIContent(Icons.Delete, "Remove AudioClip reference");
             }
         }
 
@@ -56,19 +57,20 @@ namespace RhythmosEditor.Pages
                 centeredLabel = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter };
             }
 
+
             int count = audioReferences != null ? audioReferences.Count : 0;
 
             boxRect = new Rect(pageRect.x, itemHeight, pageRect.width, pageRect.height - (itemHeight * 2 + 10));
-            Rect tableTitleRect = new Rect(0, 0, pageRect.width - 18 - 2, itemHeight);
+            Rect tableTitleRect = new Rect(0, 0, pageRect.width - 24 - 2, itemHeight);
             Rect entryRect = new Rect(2, itemInitialSpacing, boxRect.width - 2 - 18, itemHeight);
+            maxColorWidth = Mathf.Clamp(entryRect.width * tableTitleSizes[1], 32, 80);
 
             #region Tables titles
             GUILayout.BeginArea(tableTitleRect, "");
             GUILayout.BeginHorizontal();
-            GUILayout.Label("ID", GUILayout.MaxWidth(entryRect.width * tableTitleSizes[0]), GUILayout.ExpandHeight(true));
-            GUILayout.Label("Color", GUILayout.Width(entryRect.width * tableTitleSizes[1]), GUILayout.ExpandHeight(true));
+            GUILayout.Label("ID", GUILayout.MaxWidth(32), GUILayout.ExpandHeight(true));
+            GUILayout.Label("Color", GUILayout.Width(maxColorWidth), GUILayout.ExpandHeight(true));
             GUILayout.Label("Audio Clip", GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
-            // GUILayout.Label("Name", GUILayout.MaxWidth(tableTitlesWidthWithoutRemove * 0.395f), GUILayout.ExpandHeight(true));
             GUILayout.Label("", GUILayout.Width(28));
             GUILayout.EndHorizontal();
             GUILayout.EndArea();
@@ -102,17 +104,19 @@ namespace RhythmosEditor.Pages
 
             #region Table scroll bar
 
+            float viewableRatio = 0;
             if (totalsize >= boxRect.height)
             {
-                float viewableRatio = boxRect.height / totalsize;
-                barValue = GUI.VerticalScrollbar(new Rect(boxRect.width - 14, 0, 14, boxRect.height), barValue, count * viewableRatio, 0, count);
+                viewableRatio = boxRect.height / totalsize;
+
             }
             else
             {
                 GUI.enabled = false;
+                viewableRatio = 1;
                 barValue = 0;
-                GUI.VerticalScrollbar(new Rect(boxRect.width - 14, 0, 30, boxRect.height), barValue, count, 0, count);
             }
+            barValue = GUI.VerticalScrollbar(new Rect(boxRect.width - 18, 0, 16, boxRect.height), barValue, count * viewableRatio, 0, count);
             GUI.enabled = true;
 
             #endregion
@@ -153,10 +157,10 @@ namespace RhythmosEditor.Pages
             GUILayout.BeginArea(entryRect, "");
             GUILayout.BeginHorizontal(GUILayout.ExpandHeight(true));
 
-            EditorGUILayout.LabelField(index.ToString() + ".", GUILayout.MaxWidth(entryRect.width * tableTitleSizes[0]));
+            EditorGUILayout.LabelField(index.ToString() + ".", GUILayout.MaxWidth(32));
 
             EditorGUI.BeginChangeCheck();
-            Color color = EditorGUILayout.ColorField(item.Color, GUILayout.Width(entryRect.width * tableTitleSizes[1]));
+            Color color = EditorGUILayout.ColorField(item.Color, GUILayout.Width(maxColorWidth));
             if (EditorGUI.EndChangeCheck())
             {
                 //_undoManager.RecordNote(_s, "Set Color", i, true);
