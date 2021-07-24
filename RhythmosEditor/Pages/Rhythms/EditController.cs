@@ -1,15 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 using RhythmosEngine;
 using RhythmosEditor.UIComponents;
-using System.Collections.Generic;
-using System;
 
 namespace RhythmosEditor.Pages.Rhythms
 {
     internal class EditController
     {
         private ListView<Rhythm> rhythmListView;
-
         private List<AudioReference> audioReferences;
 
         public Rhythm Rhythm { get; private set; }
@@ -18,42 +17,102 @@ namespace RhythmosEditor.Pages.Rhythms
         public Note SelectedNote { get; private set; }
         public int SelectedNoteIndex { get; private set; } = -1;
 
-        public bool HasSelection
-        { 
-            get
-            {
+        internal Player player;
+
+        public bool HasSelection {
+            get {
                 return rhythmListView.HasSelection;
-            } 
+            }
         }
 
-        public bool HasNoteSelected
-        {
-            get
-            {
+        public bool HasNoteSelected {
+            get {
                 return SelectedNoteIndex >= 0;
             }
         }
 
-        public string Name 
-        { 
-            get
-            {
+        public string Name {
+            get {
                 return Rhythm != null ? Rhythm.Name : "";
             }
         }
 
+        public float PlayBpm { set; get; }
 
-        public float BPM
-        {
-            get
-            {
-                return Rhythm != null ? Rhythm.BPM : 0;
+        public float Bpm {
+            get {
+                if (Rhythm == null)
+                {
+                    return 0f;
+                }
+                if (!player.IsPlaying)
+                {
+                    return Rhythm.BPM;
+                }
+                return PlayBpm;
             }
         }
+
+        public float BpmInSeconds {
+            get { return Bpm > 0 ? 60f / Bpm : 0; }
+        }
+
+        public int NoteCount {
+            get {
+                return Rhythm != null ? Rhythm.Count : 0;
+            }
+        }
+
+        public float CurrentNoteDuration {
+            get {
+                return SelectedNote != null ? SelectedNote.duration : 0;
+            }
+        }
+
+        public bool CurrentNoteIsRest {
+            get {
+                return SelectedNote != null && SelectedNote.isRest;
+            }
+        }
+
+        public List<AudioReference> AudioReferences {
+            get {
+                return audioReferences;
+            }
+        }
+
+        internal Action<Rhythm, int> OnNoteSelect;
+
+
+        public Color CurrentNoteAudioColor {
+            get {
+                if (SelectedNote != null)
+                {
+                    AudioReference audioReference = audioReferences[SelectedNote.layoutIndex];
+                    if (audioReference != null)
+                    {
+                        return audioReference.Color;
+                    }
+                }
+                return new Color(-1, -1, -1, -1);
+            }
+        }
+
+        public bool HasAudioClips {
+            get {
+                return audioReferences != null && audioReferences.Count > 0;
+            }
+        }
+
+        public float Zoom { get; set; } = 1f;
+
         internal void Setup(ListView<Rhythm> rhythmList, List<AudioReference> audioReferencesList)
         {
             rhythmListView = rhythmList;
             audioReferences = audioReferencesList;
+            UnSelectNote();
+            Rhythm = null;
+            Index = -1;
         }
 
 
@@ -80,6 +139,7 @@ namespace RhythmosEditor.Pages.Rhythms
             }
         }
 
+
         internal void SelectNote(int noteIndex, int rhythmIndex)
         {
             SelectRhythm(rhythmIndex);
@@ -91,15 +151,17 @@ namespace RhythmosEditor.Pages.Rhythms
                 {
                     return;
                 }
-                noteIndex = Mathf.Clamp(noteIndex, 0, current.Count);
+                noteIndex = Mathf.Clamp(noteIndex, 0, current.Count - 1);
                 SelectedNoteIndex = noteIndex;
                 SelectedNote = current.Notes[noteIndex];
+                OnNoteSelect?.Invoke(current, noteIndex);
             }
+
         }
 
         internal void SelectNote(int noteIndex)
         {
-            SelectNote(noteIndex, rhythmListView.SelectedIndex); 
+            SelectNote(noteIndex, rhythmListView.SelectedIndex);
         }
 
         internal void UnSelectNote()
@@ -122,5 +184,33 @@ namespace RhythmosEditor.Pages.Rhythms
 
             return audioReferences[layoutIndex];
         }
+
+        internal AudioReference GetCurrentAudioReference()
+        {
+            if (!HasNoteSelected)
+            {
+                return null;
+            }
+
+            int layoutIndex = SelectedNote.layoutIndex;
+
+            return GetAudioReference(layoutIndex);
+        }
+
+        internal int GetLayoutIndex(AudioReference item)
+        {
+            if (item == null)
+            {
+                return -1;
+            }
+
+            if (audioReferences.Count == 0)
+            {
+                return -1;
+            }
+
+            return audioReferences.IndexOf(item);
+        }
+
     }
 }
