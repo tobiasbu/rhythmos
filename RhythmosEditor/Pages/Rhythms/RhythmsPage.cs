@@ -7,6 +7,7 @@ using RhythmosEditor.UIComponents;
 using RhythmosEditor.UI;
 using RhythmosEditor.Pages.Rhythms;
 
+
 namespace RhythmosEditor.Pages
 {
     internal class RhythmsPage : IEditorPage
@@ -18,17 +19,21 @@ namespace RhythmosEditor.Pages
 
         // Main GUI elements
         private ListView<Rhythm> rhythmListView;
-        private RhythmEditSection editingSection;
+        private EditSection editingSection;
+
+        public bool IsRhythmPlaying {
+            get {
+                return editingSection != null && editingSection.Player.IsPlaying;
+            }
+        }
 
         public void OnLoad()
         {
             if (rhythmListView == null)
             {
-                rhythmListView = new ListView<Rhythm>
-                {
+                rhythmListView = new ListView<Rhythm> {
                     onGetItemLabel = (item) => item.Name,
-                    onSelectionChange = (rhythm, index) =>
-                    {
+                    onSelectionChange = (rhythm, index) => {
                         editingSection.OnRhythmSelectionChange(rhythm, index);
                         EditorGUIUtility.editingTextField = false;
                         GUI.FocusControl(null);
@@ -38,7 +43,7 @@ namespace RhythmosEditor.Pages
 
             if (editingSection == null)
             {
-                editingSection = new RhythmEditSection();
+                editingSection = new EditSection();
             }
 
             if (addContentButton == null)
@@ -63,8 +68,6 @@ namespace RhythmosEditor.Pages
             {
                 rhythmListView.List = config.RhythmosDatabase.Rhythms;
                 rhythmListView.UnSelect();
-                
-                //player.AudioReferences = config.RhythmosDatabase.AudioReferences;
             }
 
             editingSection.Setup(rhythmListView, config.loaded ? config.RhythmosDatabase.AudioReferences : null);
@@ -72,7 +75,7 @@ namespace RhythmosEditor.Pages
 
         public void OnDraw(Rect pageRect)
         {
-            
+
             #region List section
 
             rhythmListView.Draw(200, pageRect.height - 34);
@@ -86,10 +89,16 @@ namespace RhythmosEditor.Pages
             rhythmRect.y = 0;
             rhythmRect.x += 200;
             rhythmRect.width -= rhythmRect.x;
+            rhythmRect.height -= 4;
 
             editingSection.Draw(rhythmRect, rhythmListView.HasSelection);
 
             #endregion
+
+            if (editingSection.Player.IsPlaying)
+            {
+                Repainter.Request();
+            }
         }
 
         private void DrawRhythmListButtons(float maxWidth = 200)
@@ -99,7 +108,8 @@ namespace RhythmosEditor.Pages
 
             if (Components.IconButton(addContentButton))
             {
-                UndoRedo.Record(new Commands.RhythmsList.Create(rhythmListView));
+                UndoRedo.Record(new Commands.RhythmsList.CreateRhythm(rhythmListView));
+                rhythmListView.Focus = true;
             }
 
             GUI.enabled = rhythmListView.HasSelection;
@@ -108,7 +118,8 @@ namespace RhythmosEditor.Pages
             {
                 if (rhythmListView.HasSelection)
                 {
-                    UndoRedo.Record(new Commands.RhythmsList.Duplicate(rhythmListView));
+                    UndoRedo.Record(new Commands.RhythmsList.DuplicateRhythm(rhythmListView));
+                    rhythmListView.Focus = true;
                 }
             }
 
@@ -118,12 +129,21 @@ namespace RhythmosEditor.Pages
             {
                 if (rhythmListView.HasSelection)
                 {
-                    UndoRedo.Record(new Commands.RhythmsList.Delete(rhythmListView));
+                    UndoRedo.Record(new Commands.RhythmsList.DeleteRhythm(rhythmListView));
+                    rhythmListView.Focus = true;
                 }
             }
 
             GUILayout.EndHorizontal();
             GUI.enabled = true;
+        }
+
+        internal void Update()
+        {
+            if (editingSection != null)
+            {
+                editingSection.Player.Update();
+            }
         }
     }
 }
