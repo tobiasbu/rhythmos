@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 using RhythmosEditor.Settings;
+using RhythmosEditor.UIComponents;
 
 namespace RhythmosEditor.Pages
 {
@@ -10,37 +11,18 @@ namespace RhythmosEditor.Pages
 
         public void OnDraw(Rect pageRect)
         {
-            GUILayout.Label("Database Settings:", EditorStyles.boldLabel);
-            GUILayout.BeginHorizontal();
 
-            EditorGUILayout.LabelField("Rhythmos Database:", config.lastOpenDatabase, GUILayout.Width(pageRect.width * 0.7f));
+            Components.Header("Database");
+            GUILayout.Space(2);
 
-            if (GUILayout.Button("Import"))
-            {
-                string sourcePath = EditorUtility.OpenFilePanel("Open Rhythmos Database", Application.dataPath, "xml");
-                config.LoadDatabaseXML(sourcePath);
-            }
+            EditorGUILayout.HelpBox(config.statusMessage, config.statusType, true);
 
-            if (GUILayout.Button("New"))
-            {
-                string path = EditorUtility.SaveFilePanelInProject("New Rhythmos Database", "RhythmosDatabase", "xml", "Please enter a file name to create new database.");
-                if (!string.IsNullOrEmpty(path))
-                {
-                    Debug.Log("Created new Rhythmos Database in " + path);
-                    config.SaveDatabaseXML(path);
-                    config.lastOpenDatabase = path;
-                }
+            GUILayout.Space(2);
 
-            }
+            GUI.enabled = false;
+            EditorGUILayout.ObjectField("Loaded Asset", config.TextAsset, typeof(TextAsset), false);
 
-            GUILayout.EndHorizontal();
-            EditorGUILayout.HelpBox(config.statusMessage, config.statusType);
-            GUILayout.BeginHorizontal(GUILayout.Width(pageRect.width * 0.5f));
-
-            if (!config.loaded)
-            {
-                GUI.enabled = false;
-            }
+            GUI.enabled = config.loaded;
 
             if (GUILayout.Button("Export"))
             {
@@ -55,16 +37,27 @@ namespace RhythmosEditor.Pages
 
             GUI.enabled = true;
 
-
-            GUILayout.EndHorizontal();
-
-            if (!config.loaded)
+            if (GUILayout.Button("Import"))
             {
-                GUI.enabled = false;
+                string sourcePath = EditorUtility.OpenFilePanel("Open Rhythmos Database", Application.dataPath, "xml");
+                config.LoadDatabaseXML(sourcePath);
             }
 
-            GUILayout.Label("Editor Settings:", EditorStyles.boldLabel);
 
+            if (GUILayout.Button("New"))
+            {
+                string path = EditorUtility.SaveFilePanelInProject("New Rhythmos Database", "RhythmosDatabase", "xml", "Please enter a file name to create new database.");
+                if (!string.IsNullOrEmpty(path))
+                {
+                    Debug.Log("Created new Rhythmos Database in " + path);
+                    config.SaveDatabaseXML(path);
+                    config.lastOpenDatabase = path;
+                }
+
+            }
+
+
+            Components.Header("RhythmosEditor Settings");
             GUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("Metronome Audio Clip:", EditorStyles.label);
             EditorGUI.BeginChangeCheck();
@@ -74,12 +67,23 @@ namespace RhythmosEditor.Pages
                 config.metroAudioClip = metro;
             }
             GUILayout.EndHorizontal();
+
+
+            Components.Header("About");
+            GUILayout.Label("RhythmosEngine v1.3");
+            Components.LinkLabel("GitHub repository", "https://github.com/tobiasbu/rhythmos-engine");
+
+            GUILayout.Label("Created by @tobiasbu");
+            GUILayout.Label("2015-2021 - (C) MIT License");
+
+
+            GUILayout.FlexibleSpace();
         }
 
 
         public void OnLoad()
         {
-           
+
         }
 
         public void OnPageSelect(RhythmosConfig config)
