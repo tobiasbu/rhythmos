@@ -189,7 +189,7 @@ namespace RhythmosEngine
                 {
                     totalTime += nt.duration;
                 }
-                totalTime *= (60f / BPM);
+                totalTime *= 60f / BPM;
             }
 
             return totalTime;
