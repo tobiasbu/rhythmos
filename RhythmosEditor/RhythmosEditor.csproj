@@ -41,37 +41,27 @@
     <Reference Include="UnityEditor">
       <HintPath>D:\Program Files\2020.3.3f1\Editor\Data\Managed\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>..\..\..\Unity\Hub\Editor\2020.3.13f1\Editor\Data\Managed\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\Unity\Hub\Editor\2020.3.13f1\Editor\Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Commands\EditRhythm\AddNote.cs" />
     <Compile Include="Commands\EditRhythm\BaseCommand.cs" />
     <Compile Include="Commands\EditRhythm\BaseNoteCommand.cs" />
-    <Compile Include="Commands\EditRhythm\ChangeBPM.cs" />
-    <Compile Include="Commands\EditRhythm\Commons.cs" />
-    <Compile Include="Commands\EditRhythm\Rename.cs" />
     <Compile Include="Commands\ICommand.cs" />
-    <Compile Include="Commands\RhythmsList\BaseCommand.cs" />
-    <Compile Include="Commands\RhythmsList\Commons.cs" />
-    <Compile Include="Commands\RhythmsList\Create.cs" />
-    <Compile Include="Commands\RhythmsList\Delete.cs" />
-    <Compile Include="Commands\RhythmsList\Duplicate.cs" />
     <Compile Include="Commands\UndoRedo.cs" />
     <Compile Include="Exceptions\ExportXmlException.cs" />
     <Compile Include="Exceptions\ImportXmlException.cs" />
-    <Compile Include="Pages\AudioClipsPage.cs" />
     <Compile Include="Pages\IEditorPage.cs" />
     <Compile Include="Pages\IPageManager.cs" />
     <Compile Include="Pages\PageManager.cs" />
-    <Compile Include="Pages\Rhythms\BaseSettings.cs" />
     <Compile Include="Pages\Rhythms\EditController.cs" />
-    <Compile Include="Pages\Rhythms\EditSection\DrawCommons.cs" />
-    <Compile Include="Pages\Rhythms\EditSection\NoteToolbar.cs" />
-    <Compile Include="Pages\Rhythms\EditSection\PlayerToolbar.cs" />
-    <Compile Include="Pages\Rhythms\EditSection\Timeline.cs" />
-    <Compile Include="Pages\Rhythms\EditSection\TrackDraw.cs" />
     <Compile Include="Pages\Rhythms\Player.cs" />
-    <Compile Include="Pages\Rhythms\RhythmEditSection.cs" />
     <Compile Include="Pages\Rhythms\RhythmsPage.cs" />
     <Compile Include="Pages\Settings\SettingsPage.cs" />
     <Compile Include="RhythmosEditor.cs" />
@@ -83,15 +73,12 @@
     <Compile Include="Settings\XMLDatabaseLoader.cs" />
     <Compile Include="UIComponents\Components.cs" />
     <Compile Include="UIComponents\ListView.cs" />
-    <Compile Include="UIComponents\SplitView.cs" />
     <Compile Include="UIComponents\TextInput.cs" />
     <Compile Include="UIComponents\Toolbar.cs" />
     <Compile Include="UI\Colors.cs" />
     <Compile Include="UI\DragDrop.cs" />
-    <Compile Include="UI\Events.cs" />
     <Compile Include="UI\GUIUtils.cs" />
     <Compile Include="UI\Icons.cs" />
-    <Compile Include="Utils\AudioUtility.cs" />
     <Compile Include="Utils\DebounceDispatcher.cs" />
     <Compile Include="Utils\HSV.cs" />
     <Compile Include="Utils\PathUtils.cs" />
@@ -100,6 +87,31 @@
     <Compile Include="Utils\XMLUtiliy.cs" />
     <Compile Include="UndoRhythmManager.cs" />
     <Compile Include="UndoNoteLayoutManager.cs" />
+    <Compile Include="Commands\RhythmsList\DuplicateRhythm.cs" />
+    <Compile Include="Commands\RhythmsList\BaseCommand.cs" />
+    <Compile Include="Commands\RhythmsList\CreateRhythm.cs" />
+    <Compile Include="Commands\RhythmsList\DeleteRhythm.cs" />
+    <Compile Include="Pages\Rhythms\Components\NoteToolbar.cs" />
+    <Compile Include="Pages\Rhythms\Components\NoteSettings.cs" />
+    <Compile Include="Pages\Rhythms\Components\AudioList.cs" />
+    <Compile Include="Pages\Rhythms\Components\BaseSettings.cs" />
+    <Compile Include="Pages\Rhythms\Components\DrawCommons.cs" />
+    <Compile Include="Pages\Rhythms\Components\Timeline.cs" />
+    <Compile Include="Pages\Rhythms\Components\PlayerToolbar.cs" />
+    <Compile Include="UI\GUIEvents.cs" />
+    <Compile Include="UI\Repainter.cs" />
+    <Compile Include="UIComponents\GhostIconButton.cs" />
+    <Compile Include="UIComponents\SearchFieldComponent.cs" />
+    <Compile Include="UIComponents\Styles.cs" />
+    <Compile Include="Utils\EditorAudioUtility.cs" />
+    <Compile Include="Commands\EditRhythm\DuplicateNote.cs" />
+    <Compile Include="Commands\EditRhythm\MoveNote.cs" />
+    <Compile Include="Commands\EditRhythm\RemoveNote.cs" />
+    <Compile Include="Commands\EditRhythm\RenameRhythm.cs" />
+    <Compile Include="Commands\EditRhythm\ChangeRhythmBpm.cs" />
+    <Compile Include="Pages\AudioClips\AudioClipsPage.cs" />
+    <Compile Include="Pages\Rhythms\EditSection.cs" />
+    <Compile Include="Commands\Commons.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RhythmosEngine\RhythmosEngine.csproj">

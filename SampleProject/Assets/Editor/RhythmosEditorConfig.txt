@@ -1,0 +1,3 @@
+RhythmosEditor - Configuration
+
+LastRhythmosDatabaseFile: Assets/Files/RhythmosDatabaseV1.xml

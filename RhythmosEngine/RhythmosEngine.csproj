@@ -37,6 +37,9 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\Unity\Hub\Editor\2020.3.13f1\Editor\Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -54,9 +57,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if "$(ConfigurationName)" == "Release" ( 
-echo "$(SolutionDir)SampleProject\Assets\Plugins\RhythmosEngine.dll"
-copy "$(TargetDir)RhythmosEngine.dll" "$(SolutionDir)SampleProject\Assets\Plugins\RhythmosEngine.dll" /y
-)</PostBuildEvent>
+    <PostBuildEvent>
+      if "$(ConfigurationName)" == "Release"; then 
+        echo "$(SolutionDir)SampleProject\Assets\Plugins\RhythmosEngine.dll"
+        copy "$(TargetDir)RhythmosEngine.dll" "$(SolutionDir)SampleProject\Assets\Plugins\RhythmosEngine.dll" /y
+      fi
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>
