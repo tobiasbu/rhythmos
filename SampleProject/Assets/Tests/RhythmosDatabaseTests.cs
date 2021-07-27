@@ -13,12 +13,13 @@ public class RhythmosDatabaseTests
     [Test]
     public void LoadsRhythmosDatabaseSucessfully()
     {
-        TextAsset textAsset = (TextAsset)AssetDatabase.LoadAssetAtPath("Assets/Tests/Files/RhythmosDatabaseV1.xml", typeof(TextAsset));
+        TextAsset textAsset = (TextAsset)AssetDatabase.LoadAssetAtPath("Assets/Files/RhythmosDatabaseV1.xml", typeof(TextAsset));
 
         RhythmosDatabase rhythmosDatabase = RhythmosDatabase.Load(textAsset);
 
         Assert.IsNotNull(rhythmosDatabase);
+        Assert.IsTrue(rhythmosDatabase.Version == "1.3");
     }
 
-    
+
 }
