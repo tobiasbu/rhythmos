@@ -85,6 +85,7 @@ namespace RhythmosEditor.Pages.Rhythms
             Player.Stop();
             controller.SetRhythm(rhythm, index);
             baseSettings.OnRhythmChange();
+            audioList.OnRhythmChange();
         }
 
         internal void Draw(Rect rect, bool hasSelection)

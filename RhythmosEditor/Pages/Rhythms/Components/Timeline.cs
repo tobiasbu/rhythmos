@@ -292,7 +292,7 @@ namespace RhythmosEditor.Pages.Rhythms
                 }
             }
 
-            GUI.color = GUI.enabled ? Color.white : Colors.Gray(1, 0.5f);
+
             float playheadLineX = DrawCommons.RulerOffset + (player.Playhead * totalSize);
             Rect playheadRect = new Rect(
                     playheadLineX - Icons.PlayHead.width * 0.5f - scrollbarPosition,
@@ -300,7 +300,23 @@ namespace RhythmosEditor.Pages.Rhythms
                     Icons.PlayHead.width,
                     Icons.PlayHead.height);
 
+            if (GUI.enabled && !EditorGUIUtility.isProSkin)
+            {
+                GUI.color = GUI.enabled ? Colors.DarkGray : Colors.SetAlpha(Colors.DarkGray, 0.5f);
+                playheadRect.x += 1;
+                GUI.DrawTexture(playheadRect, Icons.PlayHead);
+                playheadRect.x -= 1;
+            }
+
+            GUI.color = GUI.enabled ? Color.white : Colors.Gray(1, 0.5f);
+
             GUI.DrawTexture(playheadRect, Icons.PlayHead);
+
+
+            if (!EditorGUIUtility.isProSkin)
+            {
+                GUI.color = Color.white;
+            }
 
             playheadRect.y += rulerHeight;
             playheadRect.x = playheadLineX - 1f - scrollbarPosition;
@@ -395,7 +411,7 @@ namespace RhythmosEditor.Pages.Rhythms
             {
                 if (current.isRest)
                 {
-                    GUI.color = color;
+                    GUI.color = EditorGUIUtility.isProSkin ? color : Colors.Icon;
                     float restOffset = noteRect.width < 20 ? noteRect.width / 2 - 8 : 2;
                     GUI.DrawTexture(new Rect(noteRect.x + restOffset, noteRect.y + trackHeight / 2 - 10, 16, 16), Icons.Rest);
                 }

@@ -65,6 +65,16 @@ namespace RhythmosEditor.Pages.Rhythms
             audioListView.Draw();
         }
 
+        internal void OnRhythmChange()
+        {
+            if (audioListView == null)
+            {
+                return;
+            }
+            audioListView.UnSelect();
+            searchField.Clear();
+        }
+
         private bool OnDrawAudioItem(AudioReference item, Rect rect, int index)
         {
             bool result = false;
@@ -117,6 +127,8 @@ namespace RhythmosEditor.Pages.Rhythms
             GUILayout.EndHorizontal();
             return result;
         }
+
+
 
         private void OnNoteSelect(Rhythm rhythm, int noteIndex)
         {

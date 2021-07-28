@@ -22,7 +22,7 @@
       <audioclip>Assets/Sounds/drums_high_tom.wav</audioclip>
     </NoteEntry>
     <NoteEntry>
-      <color>RGBA(0.6210165, 0.7568628, 0.2509804, 1)</color>
+      <color>RGBA(0.5882353, 0.7764706, 0.6447059, 1)</color>
       <audioclip>Assets/Sounds/drums_hoops.wav</audioclip>
     </NoteEntry>
     <NoteEntry>
@@ -36,6 +36,10 @@
     <NoteEntry>
       <color>RGBA(0.5896283, 0.9333333, 0.4823529, 1)</color>
       <audioclip>Assets/Sounds/drums_tambourine.wav</audioclip>
+    </NoteEntry>
+    <NoteEntry>
+      <color>RGBA(0.8819188, 0.8435112, 0.5789802, 1)</color>
+      <audioclip>0</audioclip>
     </NoteEntry>
   </NoteList>
   <RhythmList>

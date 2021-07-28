@@ -12,7 +12,7 @@ namespace RhythmosEditor.UIComponents
         private SearchField searchField;
 
         public Action<string> onInputChanged;
-        public string searchString;
+        public string searchString = "";
         private int interval = 100;
 
         public void OnToolbarGUI()
@@ -53,5 +53,9 @@ namespace RhythmosEditor.UIComponents
             return GUIUtility.keyboardControl == searchField.searchFieldControlID;
         }
 
+        internal void Clear()
+        {
+            searchString = "";
+        }
     }
 }
