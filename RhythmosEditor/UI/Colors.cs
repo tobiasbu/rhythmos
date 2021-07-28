@@ -22,7 +22,7 @@ namespace RhythmosEditor.UI
         public static Color DisabledHorizontalLine { get; private set; }
         public static Color EnabledHorizontalLine { get; private set; }
         public static Color Invalid { get; private set; }
-
+        public static Color Record { get; private set; }
 
         public static void Load()
         {
@@ -31,6 +31,7 @@ namespace RhythmosEditor.UI
                 if (EditorGUIUtility.isProSkin)
                 {
                     Invalid = AddSat(Color.red, -0.45f);
+                    Record = Invalid;
                     Icon = Gray(0.8f);
                     IconActive = Colors.Gray(0.16f);
                     BoxTopColor = Gray(0.137f);
@@ -45,9 +46,10 @@ namespace RhythmosEditor.UI
                 }
                 else
                 {
-                    Icon = Colors.DarkGray;
-
+                    Record = new Color(0.827f, 0.498f, 0.498f, 1f);
                     Invalid = Color.red;
+                    Icon = Colors.DarkGray;
+                    IconActive = AddValue(Icon, -0.16f);
                     BoxTopColor = Gray(0.6f, 1);
                     BoxSideColor = Gray(0.647f, 1);
                     DisabledHorizontalLine = Gray(0.697f, 1);
@@ -87,6 +89,11 @@ namespace RhythmosEditor.UI
         internal static Color Gray(float level = 0.5f, float alpha = 1.0f)
         {
             return new Color(level, level, level, alpha);
+        }
+
+        internal static Color SetAlpha(Color darkGray, float alpha)
+        {
+            return new Color(darkGray.r, darkGray.g, darkGray.b, alpha);
         }
     }
 }

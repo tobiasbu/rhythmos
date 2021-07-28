@@ -50,7 +50,7 @@ namespace RhythmosEditor.Pages.Rhythms
             Color oldGuiColor = GUI.color;
             if (player.IsPlaying)
             {
-                GUI.color = Colors.Invalid;
+                GUI.color = Colors.Record;
             }
 
             EditorGUI.BeginChangeCheck();
