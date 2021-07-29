@@ -1,10 +1,14 @@
 # rhythmos-engine
 
+![RhythmosEngine v1.3](Docs/rhythmos.png)
+
+
 _A simple rhythm tool for Unity_
 
 
-| :musical_note: **[Get RhythmosEngine for free](https://assetstore.unity.com/packages/tools/audio/rhythmos-engine-39835)** |
-| ---------------------- |
+| :musical_note: Releases |
+| ----------------------- |
+| **[Get in AssetStore for free (v1.1)](https://assetstore.unity.com/packages/tools/audio/rhythmos-engine-39835)** |
 
 See our [projects page](https://github.com/tobiasbu/rhythmos-engine/projects) for more information about next features.
 
@@ -24,3 +28,4 @@ This project was created for "Games Project:  Games Engines" class in 2015 at [U
 ## License
 
 Created by [Tobias Ulrich](https://github.com/tobiasbu) and license based in [MIT](https://github.com/tobiasbu/rhythmos-engine/blob/main/LICENSE).
+
