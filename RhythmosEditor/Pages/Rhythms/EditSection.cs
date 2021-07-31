@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using RhythmosEngine;
 using RhythmosEditor.UIComponents;
+using RhythmosEditor.Settings;
 
 namespace RhythmosEditor.Pages.Rhythms
 {
@@ -23,14 +23,14 @@ namespace RhythmosEditor.Pages.Rhythms
 
         internal Player Player { set; get; }
 
-        public void Setup(ListView<Rhythm> rhythmListView, List<AudioReference> audioReferences)
+        public void Setup(ListView<Rhythm> rhythmListView, RhythmosConfig config)
         {
 
             if (controller == null)
             {
                 controller = new EditController();
             }
-            controller.Setup(rhythmListView, audioReferences);
+            controller.Setup(rhythmListView, config);
 
             if (Player == null)
             {
@@ -77,7 +77,7 @@ namespace RhythmosEditor.Pages.Rhythms
             {
                 audioList = new AudioList();
             }
-            audioList.Setup(controller, Player, audioReferences);
+            audioList.Setup(controller, Player);
         }
 
         public void OnRhythmSelectionChange(Rhythm rhythm, int index)

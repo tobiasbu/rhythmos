@@ -8,19 +8,27 @@ namespace RhythmosEditor.Pages.Rhythms
     internal class Player
     {
 
-
         private float oldPlayHeadPosition;
         private float duration = -1;
 
         private float playhead;
         private bool isPlaying;
 
+        private double metronomeTimer;
         private double lastTime;
         private double timer;
         private double nextPlayNoteTime;
 
         internal EditController controller;
 
+        public bool IsMovingPlayhead { get; internal set; }
+        public bool Loop { get; set; } = false;
+        public bool Mute { get; set; } = false;
+        public bool Metronome { get; set; } = false;
+
+        public double NoteHightlightTime { get; private set; }
+
+        public int IndexNote { get; private set; }
 
         public float Playhead {
             get {
@@ -34,14 +42,6 @@ namespace RhythmosEditor.Pages.Rhythms
                 playhead = value;
             }
         }
-        public bool IsMovingPlayhead { get; internal set; }
-        public bool Loop { get; set; } = false;
-        public bool Mute { get; set; } = false;
-        public bool Metronome { get; set; } = false;
-
-        public double NoteHightlightTime { get; private set; }
-
-        public int IndexNote { get; private set; }
 
         public double Timer {
             get {
@@ -114,6 +114,7 @@ namespace RhythmosEditor.Pages.Rhythms
                 oldPlayHeadPosition = Playhead;
             }
 
+            metronomeTimer = controller.BpmInSeconds;
             lastTime = EditorApplication.timeSinceStartup;
             timer = Playhead * Duration;
 
@@ -168,7 +169,20 @@ namespace RhythmosEditor.Pages.Rhythms
 
                 NoteHightlightTime -= delta;
                 timer += delta;
+                metronomeTimer += delta;
 
+                if (metronomeTimer >= controller.BpmInSeconds)
+                {
+                    if (Metronome)
+                    {
+                        AudioClip metronomeAudioClip = controller.MetronomeAudioClip;
+                        if (metronomeAudioClip != null)
+                        {
+                            EditorAudioUtility.PlayClip(metronomeAudioClip);
+                        }
+                    }
+                    metronomeTimer = 0;
+                }
 
                 if (timer >= nextPlayNoteTime)
                 {
@@ -178,12 +192,10 @@ namespace RhythmosEditor.Pages.Rhythms
                     {
                         if (Loop)
                         {
-
                             Playhead = 0;
                             IndexNote = 0;
                             timer = 0;
                             nextPlayNoteTime = 0;
-
                         }
                         else
                         {
@@ -192,7 +204,6 @@ namespace RhythmosEditor.Pages.Rhythms
                     }
                     else
                     {
-
                         Note currentNote = rhythm.Notes[IndexNote];
                         if (currentNote != null)
                         {
@@ -213,8 +224,6 @@ namespace RhythmosEditor.Pages.Rhythms
                                     }
                                 }
                             }
-
-
                             nextPlayNoteTime = timer + noteDuration;
                             IndexNote += 1;
                         }
