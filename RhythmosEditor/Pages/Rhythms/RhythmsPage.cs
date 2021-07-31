@@ -70,7 +70,7 @@ namespace RhythmosEditor.Pages
                 rhythmListView.UnSelect();
             }
 
-            editingSection.Setup(rhythmListView, config.loaded ? config.RhythmosDatabase.AudioReferences : null);
+            editingSection.Setup(rhythmListView, config);
         }
 
         public void OnDraw(Rect pageRect)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using RhythmosEngine;
 using RhythmosEditor.UIComponents;
+using RhythmosEditor.Settings;
 
 namespace RhythmosEditor.Pages.Rhythms
 {
@@ -83,7 +84,6 @@ namespace RhythmosEditor.Pages.Rhythms
 
         internal Action<Rhythm, int> OnNoteSelect;
 
-
         public Color CurrentNoteAudioColor {
             get {
                 if (SelectedNote != null)
@@ -105,11 +105,13 @@ namespace RhythmosEditor.Pages.Rhythms
         }
 
         public float Zoom { get; set; } = 1f;
+        public AudioClip MetronomeAudioClip { get; private set; }
 
-        internal void Setup(ListView<Rhythm> rhythmList, List<AudioReference> audioReferencesList)
+        internal void Setup(ListView<Rhythm> rhythmList, RhythmosConfig config)
         {
             rhythmListView = rhythmList;
-            audioReferences = audioReferencesList;
+            audioReferences = config.loaded ? config.RhythmosDatabase.AudioReferences : null;
+            MetronomeAudioClip = config.metroAudioClip;
             UnSelectNote();
             Rhythm = null;
             Index = -1;

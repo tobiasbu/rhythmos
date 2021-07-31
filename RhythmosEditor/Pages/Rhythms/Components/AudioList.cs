@@ -16,7 +16,7 @@ namespace RhythmosEditor.Pages.Rhythms
         internal EditController controller;
         internal Player player;
 
-        internal void Setup(EditController controller, Player player, IList<AudioReference> audioReferences)
+        internal void Setup(EditController controller, Player player)
         {
             this.controller = controller;
             this.player = player;
@@ -40,7 +40,7 @@ namespace RhythmosEditor.Pages.Rhythms
                     ItemHeight = 20,
                 };
 
-                audioListView.List = audioReferences;
+                audioListView.List = controller.AudioReferences;
             }
 
             if (previewIcon == null)
