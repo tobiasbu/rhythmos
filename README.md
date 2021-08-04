@@ -1,6 +1,6 @@
 # rhythmos-engine
 
-![RhythmosEngine v1.3](Docs/rhythmos.png)
+![RhythmosEngine v1.3](Docs/images/rhythmos.png)
 
 
 _A simple rhythm tool for Unity_
