@@ -1,2 +1,4 @@
-- name: Introduction
-  href: intro.md
+- name: Brief introduction to Rhythms
+  href: brief-introduction-rhythms.md
+- name: Downloads
+  href: downloads.md
