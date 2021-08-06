@@ -3,5 +3,5 @@
   homepage: index.md
 - name: Articles
   href: articles/
-- name: Api Documentation
+- name: API Documentation
   href: obj/api/
