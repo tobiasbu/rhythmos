@@ -1,4 +1,8 @@
 - name: Brief introduction to Rhythms
   href: brief-introduction-rhythms.md
-- name: Downloads
-  href: downloads.md
+- name: Downloads amd Installation Guide
+  href: downloads-installation-guide.md
+- name: Rhythmos Editor manual
+  href: rhythmos-editor.md
+- name: Code Examples
+  href: code-examples.md
