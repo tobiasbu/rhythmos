@@ -1,8 +1,12 @@
-- name: Downloads amd Installation Guide
+- name: Downloads and Installation Guide
   href: downloads-installation-guide.md
+- name: Rhythmos Editor - Getting Started
+  href: rhythmos-editor-getting-started.md
+- name: Rhythmos Editor - Importing AudioClips
+  href: rhythmos-editor-importing-audio-clips.md
+- name: Rhythmos Editor - Creating Rhythms
+  href: rhythmos-editor-creating-rhythm.md
 - name: Code Examples
   href: code-examples.md
-- name: Rhythmos Editor manual
-  href: rhythmos-editor.md
 - name: Brief introduction to Rhythms
   href: brief-introduction-rhythms.md

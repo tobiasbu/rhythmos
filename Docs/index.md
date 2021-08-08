@@ -12,7 +12,7 @@ To get start please access the following links:
 
 - [Brief Introduction to Rhythms](/articles/brief-introduction-rhythms.html)
 - [Downloads and Installation guide](/articles/downloads-installation-guide.html)
-- [Rhythmos Editor Manual](/articles/rhythmos-editor.html)
+- [Rhythmos Editor - Getting Started](/articles/rhythmos-editor-getting-started.html)
 - [API Documentation](/api/RhythmosEngine.html)
 
 ## Support
