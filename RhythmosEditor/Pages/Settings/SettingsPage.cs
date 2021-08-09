@@ -50,8 +50,7 @@ namespace RhythmosEditor.Pages
                 if (!string.IsNullOrEmpty(path))
                 {
                     Debug.Log("Created new Rhythmos Database in " + path);
-                    config.SaveDatabaseXML(path);
-                    config.lastOpenDatabase = path;
+                    config.CreateDatabaseXML(path);
                 }
 
             }
