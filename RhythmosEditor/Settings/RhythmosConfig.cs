@@ -176,6 +176,19 @@ namespace RhythmosEditor.Settings
             }
         }
 
+        public void CreateDatabaseXML(string path)
+        {
+            if (rhythmosDatabase != null)
+            {
+                SaveDatabaseXML(lastOpenDatabase);
+            }
+
+            rhythmosDatabase = new RhythmosDatabase();
+            XMLDatabaseLoader.Export(rhythmosDatabase, path);
+
+            lastOpenDatabase = path;
+        }
+
         public void OnBeforeSerialize()
         {
             if (!fileExists)
