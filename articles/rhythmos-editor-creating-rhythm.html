@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Rhythmos Editor - Creating Rhythms | Rhythmos Engine Documentation Website </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Rhythmos Editor - Creating Rhythms | Rhythmos Engine Documentation Website ">
+    <meta name="generator" content="docfx 2.58.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="rhythmos-editor---creating-rhythms">Rhythmos Editor - Creating Rhythms</h1>
+
+<p>The main feature of Rhythmos Editor is the rhythm editor in located in the first tab: <strong>Rhythms</strong>.</p>
+<p>On the left there is a scroll view that lists all rhythms that you have created. While in the left there is the rhythm track editor. To create a rhythm follow the below steps:</p>
+<ol>
+<li>Click in the bottom button with plus sign <code>+</code></li>
+</ol>
+<p><img src="../images/getting_started_5.png" alt="Create new rhythm"></p>
+<p>Your new rhythm will be added to list of rhythms. We're ready to compose rhythms! Before that let see how the rhythm creator is organized:</p>
+<p><img src="../images/getting_started_6.png" alt="Overview of rhythm creator"></p>
+<ul>
+<li>(1) <strong>Rhythm Settings</strong>: set name and tempo of rhythm</li>
+<li>(2) <strong>Timeline</strong>: displays player options, rhythm timeline and note creation options</li>
+<li>(3) <strong>Note configuration</strong>: When a note is selected you can whether set a note or rest, set the beat value and the <code>AudioReference</code>.</li>
+</ul>
+<p>Initially the options in the <strong>Timeline</strong> and <strong>Note Settings</strong> are unavailable because the rhythm is empty. With this overview let's continue in our composition.</p>
+<ol start="2">
+<li>Click on in &quot;quarter note and plus sign&quot; icon in the <strong>Timeline</strong> to append a new note to the rhythm.</li>
+</ol>
+<p><img src="../images/getting_started_7.png" alt="Add note"></p>
+<ol start="3">
+<li>You will see a new note in the time-line. The general description of the elements of the <strong>Timeline</strong>:</li>
+</ol>
+<p><img src="../images/getting_started_8.png" alt="General description of the elements of the Timeline"></p>
+<p><strong>Playback options</strong>:</p>
+<ul>
+<li>(1) Go to start of timeline</li>
+<li>(2) Go previous note</li>
+<li>(3) Play/Stop rhythm playback</li>
+<li>(4) Go to next note</li>
+<li>(5) Go to end of timeline</li>
+<li>(6) Enable/Disable loop</li>
+<li>(7) Mute/Unmute rhythm playback</li>
+<li>(8) Enable/disable metronome playback</li>
+<li>(9) Current playback position. Format: <code>Minutes:Seconds:Milliseconds</code>.</li>
+<li>(10) Rhythm total duration</li>
+</ul>
+<p><strong>Timeline</strong></p>
+<ul>
+<li>(11) Zoom slider</li>
+<li>(12) Playhead area</li>
+<li>(13) Current playhead position</li>
+<li>(14) Representation of a note on the timeline</li>
+</ul>
+<p><strong>Note edition options</strong></p>
+<ul>
+<li>(15) Add new note</li>
+<li>(16) Duplicate selected note</li>
+<li>(17) Remove selected note</li>
+<li>(18) Move selected note to left</li>
+<li>(19) Move selected note to right</li>
+<li>(20) Current selected no index / total of notes</li>
+</ul>
+<ol start="4">
+<li>When you select a note, you can configure the <strong>Note Settings</strong>.</li>
+</ol>
+<p><img src="../images/getting_started_9.png" alt="General description of the elements of the Note Settings"></p>
+<ul>
+<li>(1) If the selected element is note or rest. When the element is a rest it means an interval of silence in rhythm (no sound).</li>
+<li>(2) Defines the <em>beat value</em> of the selected element - duration of the element</li>
+<li>(3) <code>AudioClip</code> search bar by name</li>
+<li>(4) <code>AudioReference</code> item</li>
+<li>(5) Preview AudioClip</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/tobiasbu/rhythmos-engine/blob/main/Docs/articles/rhythmos-editor-creating-rhythm.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

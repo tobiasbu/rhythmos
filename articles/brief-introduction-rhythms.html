@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Brief Introduction to Rhythms | Rhythmos Engine Documentation Website </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Brief Introduction to Rhythms | Rhythmos Engine Documentation Website ">
+    <meta name="generator" content="docfx 2.58.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="brief-introduction-to-rhythms">Brief Introduction to Rhythms</h1>
+
+<p>To understand how Rhythm Engine works, let see a little bit of Music Notation theory.</p>
+<p><strong>Rhythm</strong> it is a sequence of sounds at regular intervals. Rhythms can have repetition and dynamic alternation with strong and weak beats.</p>
+<h3 id="notes-and-rests">Notes and Rests</h3>
+<p>These regular intervals can be interpreted as <strong>notes</strong>. Each note has an symbol that represents the time value and their relative length in relation to each other. The following table shows the most commons notes names (American US terminology) and their respective beat values:</p>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Name</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../images/note_w.png" alt="Whole note"></td>
+<td>Whole note</td>
+<td>4 beats</td>
+</tr>
+<tr>
+<td><img src="../images/note_h.png" alt="Half note"></td>
+<td>Half note</td>
+<td>2 beats</td>
+</tr>
+<tr>
+<td><img src="../images/note_q.png" alt="Quarter note"></td>
+<td>Quarter note</td>
+<td>1 beat</td>
+</tr>
+<tr>
+<td><img src="../images/note_e.png" alt="Eighth note"></td>
+<td>Eighth note</td>
+<td>1/2 beat</td>
+</tr>
+<tr>
+<td><img src="../images/note_s.png" alt="Sixteenth note"></td>
+<td>Sixteenth note</td>
+<td>1/4 beat</td>
+</tr>
+</tbody>
+</table>
+<p>We also have the <strong>rests</strong> that is sign of the absence of sound - intervals od silence. Each rest symbols have note value for length indicating how long the silence should last. We represent rest as:</p>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Name</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../images/rest_w.png" alt="Whole rest"></td>
+<td>Whole rest</td>
+<td>4 beats</td>
+</tr>
+<tr>
+<td><img src="../images/rest_h.png" alt="Half rest"></td>
+<td>Half rest</td>
+<td>2 beats</td>
+</tr>
+<tr>
+<td><img src="../images/rest_q.png" alt="Quarter rest"></td>
+<td>Quarter rest</td>
+<td>1 beat</td>
+</tr>
+<tr>
+<td><img src="../images/rest_e.png" alt="Eighth rest"></td>
+<td>Eighth rest</td>
+<td>1/2 beat</td>
+</tr>
+<tr>
+<td><img src="../images/rest_s.png" alt="Sixteenth rest"></td>
+<td>Sixteenth rest</td>
+<td>1/4 beat</td>
+</tr>
+</tbody>
+</table>
+<p>Notes and rests values are subdivision of the longer note in half. For example, the quarter note is half of the value of half note. The below diagram shows how the note subdivision works: at every level, the division of note values will happen by halves.</p>
+<p><img src="../images/note-hierarchy.png" alt="Notes Hierarchy"></p>
+<h3 id="tempo">Tempo</h3>
+<p>Another important concept is the <strong>tempo</strong> (<em>time</em> in Italian) that refers to the the speed at which a piece of music will be played. This is often measured in <em>beats per minute</em> (aka. BPM). A fast tempo will have high BPM value.</p>
+<p>Suppose an imaginary song where its tempo is <code>80</code> BPM. So we can say that if pulse is equal to <code>0.75</code> seconds. Pulse is calculated by dividing 60 by the BPM of the song. Example:</p>
+<pre><code>60 / bpm = pulse in seconds
+
+60 / 80  = 0.75s
+</code></pre>
+<p>The song tempo applies to the musical notes duration. For example, the tempo of a song is 40 BPM, the length of each would be:</p>
+<ul>
+<li>whole note (4 beats) = 2.66 seconds = <code>4 * (40 / 60)</code></li>
+<li>half note (2 beats) = 1.33 seconds = <code>2 * (40 / 60)</code></li>
+<li>quarter note (1 beat) = 0.66 seconds = <code>1 * (40 / 60)</code></li>
+<li>eighth note (1/2 beat) = 0.33 seconds = <code>(1 / 2) * (40 / 60)</code></li>
+</ul>
+<p>Some BPM values and multiplier in seconds (float):</p>
+<table>
+<thead>
+<tr>
+<th>BPM</th>
+<th>Seconds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>240</td>
+<td>0.25</td>
+</tr>
+<tr>
+<td>180</td>
+<td>0.33</td>
+</tr>
+<tr>
+<td>120</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>80</td>
+<td>0.75</td>
+</tr>
+<tr>
+<td>60</td>
+<td>1</td>
+</tr>
+<tr>
+<td>40</td>
+<td>1.5</td>
+</tr>
+<tr>
+<td>20</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pitch">Pitch</h3>
+<p>And the last concept is <strong>pitch</strong>. The pitch defines the note between high and low tones. The image below demonstrates how low and high notes are differentiated into a musical pentagram on the scale of G major. The higher up the stave, the higher the note sounds.</p>
+<p><img src="../images/pitch.png" alt="Pitch"></p>
+<p>In the current version of RhythmosEngine it does not enables to simulate the sound of instrument in different tones. In order to cover these aspects, the tool adopted an class called <code>AudioReference</code>.</p>
+<h3 id="sources">Sources</h3>
+<ul>
+<li><a href="https://musictheorysite.wordpress.com/blog/page/2/">Rhythmic Values and Simple Metre - Music Theory Blog</a></li>
+<li><a href="https://www.dacapoalcoda.com/tempo">Tempo - DaCapoAlCoda</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Rest_(music)">Rest - Wikipedia</a></li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/tobiasbu/rhythmos-engine/blob/main/Docs/articles/brief-introduction-rhythms.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

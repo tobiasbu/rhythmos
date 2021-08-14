@@ -1,0 +1,1075 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class RhythmosPlayer
+   | Rhythmos Engine Documentation Website </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class RhythmosPlayer
+   | Rhythmos Engine Documentation Website ">
+    <meta name="generator" content="docfx 2.58.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="RhythmosEngine.RhythmosPlayer">
+  
+  
+  <h1 id="RhythmosEngine_RhythmosPlayer" data-uid="RhythmosEngine.RhythmosPlayer" class="text-break">Class RhythmosPlayer
+  </h1>
+  <div class="markdown level0 summary"><p>RhythmPlayer is component that allows you to play rhythms in your game</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">UnityEngine.Object</span></div>
+    <div class="level2"><span class="xref">UnityEngine.Component</span></div>
+    <div class="level3"><span class="xref">UnityEngine.Behaviour</span></div>
+    <div class="level4"><span class="xref">UnityEngine.MonoBehaviour</span></div>
+    <div class="level5"><span class="xref">RhythmosPlayer</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.IsInvoking()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.CancelInvoke()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.Invoke(System.String, System.Single)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.InvokeRepeating(System.String, System.Single, System.Single)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.CancelInvoke(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.IsInvoking(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine(System.Collections.IEnumerator)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.StartCoroutine_Auto(System.Collections.IEnumerator)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.StopCoroutine(System.Collections.IEnumerator)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.StopCoroutine(UnityEngine.Coroutine)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.StopCoroutine(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.StopAllCoroutines()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.print(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.useGUILayout</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.MonoBehaviour.runInEditMode</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Behaviour.enabled</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Behaviour.isActiveAndEnabled</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponent(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponent&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.TryGetComponent(System.Type, UnityEngine.Component)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.TryGetComponent&lt;T&gt;(T)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponent(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentInChildren(System.Type, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentInChildren(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentInChildren&lt;T&gt;(System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentInChildren&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentsInChildren(System.Type, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentsInChildren(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;(System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;(System.Boolean, System.Collections.Generic.List&lt;T&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentsInChildren&lt;T&gt;(System.Collections.Generic.List&lt;T&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentInParent(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentInParent&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentsInParent(System.Type, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentsInParent(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentsInParent&lt;T&gt;(System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentsInParent&lt;T&gt;(System.Boolean, System.Collections.Generic.List&lt;T&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponentsInParent&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponents(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponents(System.Type, System.Collections.Generic.List&lt;UnityEngine.Component&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponents&lt;T&gt;(System.Collections.Generic.List&lt;T&gt;)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.GetComponents&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.CompareTag(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String, System.Object, UnityEngine.SendMessageOptions)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.SendMessageUpwards(System.String, UnityEngine.SendMessageOptions)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.SendMessage(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.SendMessage(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.SendMessage(System.String, System.Object, UnityEngine.SendMessageOptions)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.SendMessage(System.String, UnityEngine.SendMessageOptions)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String, System.Object, UnityEngine.SendMessageOptions)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.BroadcastMessage(System.String, UnityEngine.SendMessageOptions)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.transform</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.gameObject</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.tag</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.rigidbody</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.rigidbody2D</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.camera</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.light</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.animation</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.constantForce</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.renderer</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.audio</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.networkView</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.collider</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.collider2D</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.hingeJoint</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Component.particleSystem</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.GetInstanceID()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Vector3, UnityEngine.Quaternion)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Vector3, UnityEngine.Quaternion, UnityEngine.Transform)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Transform)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate(UnityEngine.Object, UnityEngine.Transform, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Vector3, UnityEngine.Quaternion)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Vector3, UnityEngine.Quaternion, UnityEngine.Transform)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Transform)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Instantiate&lt;T&gt;(T, UnityEngine.Transform, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Destroy(UnityEngine.Object, System.Single)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.Destroy(UnityEngine.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.DestroyImmediate(UnityEngine.Object, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.DestroyImmediate(UnityEngine.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectsOfType(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectsOfType(System.Type, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.DontDestroyOnLoad(UnityEngine.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.DestroyObject(UnityEngine.Object, System.Single)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.DestroyObject(UnityEngine.Object)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindSceneObjectsOfType(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectsOfTypeIncludingAssets(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectsOfType&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectsOfType&lt;T&gt;(System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectOfType&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectOfType&lt;T&gt;(System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectsOfTypeAll(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectOfType(System.Type)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.FindObjectOfType(System.Type, System.Boolean)</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.name</span>
+    </div>
+    <div>
+      <span class="xref">UnityEngine.Object.hideFlags</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="RhythmosEngine.html">RhythmosEngine</a></h6>
+  <h6><strong>Assembly</strong>: RhythmosEngine.dll</h6>
+  <h5 id="RhythmosEngine_RhythmosPlayer_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class RhythmosPlayer : MonoBehaviour</code></pre>
+  </div>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/tobiasbu/rhythmos-engine/new/main/apiSpec/new?filename=RhythmosEngine_RhythmosPlayer_m_playing.md&amp;value=---%0Auid%3A%20RhythmosEngine.RhythmosPlayer.m_playing%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/tobiasbu/rhythmos-engine/blob/main/RhythmosEngine/RhythmosPlayer.cs/#L39">View Source</a>
+  </span>
+  <h4 id="RhythmosEngine_RhythmosPlayer_m_playing" data-uid="RhythmosEngine.RhythmosPlayer.m_playing">m_playing</h4>
+  <div class="markdown level1 summary"><p>Defines if rhythm is being played</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool m_playing</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/tobiasbu/rhythmos-engine/new/main/apiSpec/new?filename=RhythmosEngine_RhythmosPlayer_destroyOnEnd.md&amp;value=---%0Auid%3A%20RhythmosEngine.RhythmosPlayer.destroyOnEnd%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/tobiasbu/rhythmos-engine/blob/main/RhythmosEngine/RhythmosPlayer.cs/#L73">View Source</a>
+  </span>
+  <a id="RhythmosEngine_RhythmosPlayer_destroyOnEnd_" data-uid="RhythmosEngine.RhythmosPlayer.destroyOnEnd*"></a>
+  <h4 id="RhythmosEngine_RhythmosPlayer_destroyOnEnd" data-uid="RhythmosEngine.RhythmosPlayer.destroyOnEnd">destroyOnEnd</h4>
+  <div class="markdown level1 summary"><p>Gets or sets a value indicating when the played rhythm was finished of this <a class="xref" href="RhythmosEngine.RhythmosPlayer.html">RhythmosPlayer</a> will destroy or not.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool destroyOnEnd { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if will destroy on end of played rhythm the GameObject; otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/tobiasbu/rhythmos-engine/new/main/apiSpec/new?filename=RhythmosEngine_RhythmosPlayer_isPaused.md&amp;value=---%0Auid%3A%20RhythmosEngine.RhythmosPlayer.isPaused%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/tobiasbu/rhythmos-engine/blob/main/RhythmosEngine/RhythmosPlayer.cs/#L157">View Source</a>
+  </span>
+  <a id="RhythmosEngine_RhythmosPlayer_isPaused_" data-uid="RhythmosEngine.RhythmosPlayer.isPaused*"></a>
+  <h4 id="RhythmosEngine_RhythmosPlayer_isPaused" data-uid="RhythmosEngine.RhythmosPlayer.isPaused">isPaused</h4>
+  <div class="markdown level1 summary"><p>Gets a value indicating whether this <a class="xref" href="RhythmosEngine.RhythmosPlayer.html">RhythmosPlayer</a> is paused.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool isPaused { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if is paused; otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/tobiasbu/rhythmos-engine/new/main/apiSpec/new?filename=RhythmosEngine_RhythmosPlayer_isPlaying.md&amp;value=---%0Auid%3A%20RhythmosEngine.RhythmosPlayer.isPlaying%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/tobiasbu/rhythmos-engine/blob/main/RhythmosEngine/RhythmosPlayer.cs/#L145">View Source</a>
+  </span>
+  <a id="RhythmosEngine_RhythmosPlayer_isPlaying_" data-uid="RhythmosEngine.RhythmosPlayer.isPlaying*"></a>
+  <h4 id="RhythmosEngine_RhythmosPlayer_isPlaying" data-uid="RhythmosEngine.RhythmosPlayer.isPlaying">isPlaying</h4>
+  <div class="markdown level1 summary"><p>Gets a value indicating whether this <a class="xref" href="RhythmosEngine.RhythmosPlayer.html">RhythmosPlayer</a> is playing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool isPlaying { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if is playing; otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/tobiasbu/rhythmos-engine/new/main/apiSpec/new?filename=RhythmosEngine_RhythmosPlayer_loop.md&amp;value=---%0Auid%3A%20RhythmosEngine.RhythmosPlayer.loop%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/tobiasbu/rhythmos-engine/blob/main/RhythmosEngine/RhythmosPlayer.cs/#L57">View Source</a>
+  </span>
+  <a id="RhythmosEngine_RhythmosPlayer_loop_" data-uid="RhythmosEngine.RhythmosPlayer.loop*"></a>
+  <h4 id="RhythmosEngine_RhythmosPlayer_loop" data-uid="RhythmosEngine.RhythmosPlayer.loop">loop</h4>
+  <div class="markdown level1 summary"><p>Gets or sets a value indicating whether this <a class="xref" href="RhythmosEngine.RhythmosPlayer.html">RhythmosPlayer</a> is looping.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool loop { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if loop; otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/tobiasbu/rhythmos-engine/new/main/apiSpec/new?filename=RhythmosEngine_RhythmosPlayer_noteIndex.md&amp;value=---%0Auid%3A%20RhythmosEngine.RhythmosPlayer.noteIndex%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/tobiasbu/rhythmos-engine/blob/main/RhythmosEngine/RhythmosPlayer.cs/#L105">View Source</a>
+  </span>
+  <a id="RhythmosEngine_RhythmosPlayer_noteIndex_" data-uid="RhythmosEngine.RhythmosPlayer.noteIndex*"></a>
+  <h4 id="RhythmosEngine_RhythmosPlayer_noteIndex" data-uid="RhythmosEngine.RhythmosPlayer.noteIndex">noteIndex</h4>
+  <div class="markdown level1 summary"><p>Gets the actual index of playing rhythm.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int noteIndex { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><p>The index of the note.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/tobiasbu/rhythmos-engine/new/main/apiSpec/new?filename=RhythmosEngine_RhythmosPlayer_rhythm.md&amp;value=---%0Auid%3A%20RhythmosEngine.RhythmosPlayer.rhythm%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/tobiasbu/rhythmos-engine/blob/main/RhythmosEngine/RhythmosPlayer.cs/#L45">View Source</a>
+  </span>
+  <a id="RhythmosEngine_RhythmosPlayer_rhythm_" data-uid="RhythmosEngine.RhythmosPlayer.rhythm*"></a>
+  <h4 id="RhythmosEngine_RhythmosPlayer_rhythm" data-uid="RhythmosEngine.RhythmosPlayer.rhythm">rhythm</h4>
+  <div class="markdown level1 summary"><p>Gets the rhythm.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rhythm rhythm { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="RhythmosEngine.Rhythm.html">Rhythm</a></td>
+        <td><p>The rhythm.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/tobiasbu/rhythmos-engine/new/main/apiSpec/new?filename=RhythmosEngine_RhythmosPlayer_rhythmDatabase.md&amp;value=---%0Auid%3A%20RhythmosEngine.RhythmosPlayer.rhythmDatabase%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/tobiasbu/rhythmos-engine/blob/main/RhythmosEngine/RhythmosPlayer.cs/#L89">View Source</a>
+  </span>
+  <a id="RhythmosEngine_RhythmosPlayer_rhythmDatabase_" data-uid="RhythmosEngine.RhythmosPlayer.rhythmDatabase*"></a>
+  <h4 id="RhythmosEngine_RhythmosPlayer_rhythmDatabase" data-uid="RhythmosEngine.RhythmosPlayer.rhythmDatabase">rhythmDatabase</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the rhythm database.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RhythmosDatabase rhythmDatabase { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="RhythmosEngine.RhythmosDatabase.html">RhythmosDatabase</a></td>
+        <td><p>The rhythm database.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/tobiasbu/rhythmos-engine/new/main/apiSpec/new?filename=RhythmosEngine_RhythmosPlayer_time.md&amp;value=---%0Auid%3A%20RhythmosEngine.RhythmosPlayer.time%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/tobiasbu/rhythmos-engine/blob/main/RhythmosEngine/RhythmosPlayer.cs/#L117">View Source</a>
+  </span>
+  <a id="RhythmosEngine_RhythmosPlayer_time_" data-uid="RhythmosEngine.RhythmosPlayer.time*"></a>
+  <h4 id="RhythmosEngine_RhythmosPlayer_time" data-uid="RhythmosEngine.RhythmosPlayer.time">time</h4>
+  <div class="markdown level1 summary"><p>Gets the playback position in seconds.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float time { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><p>The played time.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/tobiasbu/rhythmos-engine/new/main/apiSpec/new?filename=RhythmosEngine_RhythmosPlayer_trackPosition.md&amp;value=---%0Auid%3A%20RhythmosEngine.RhythmosPlayer.trackPosition%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/tobiasbu/rhythmos-engine/blob/main/RhythmosEngine/RhythmosPlayer.cs/#L129">View Source</a>
+  </span>
+  <a id="RhythmosEngine_RhythmosPlayer_trackPosition_" data-uid="RhythmosEngine.RhythmosPlayer.trackPosition*"></a>
+  <h4 id="RhythmosEngine_RhythmosPlayer_trackPosition" data-uid="RhythmosEngine.RhythmosPlayer.trackPosition">trackPosition</h4>
+  <div class="markdown level1 summary"><p>Gets the track position in seconds</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float trackPosition { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><p>The track position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/tobiasbu/rhythmos-engine/new/main/apiSpec/new?filename=RhythmosEngine_RhythmosPlayer_volume.md&amp;value=---%0Auid%3A%20RhythmosEngine.RhythmosPlayer.volume%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/tobiasbu/rhythmos-engine/blob/main/RhythmosEngine/RhythmosPlayer.cs/#L169">View Source</a>
+  </span>
+  <a id="RhythmosEngine_RhythmosPlayer_volume_" data-uid="RhythmosEngine.RhythmosPlayer.volume*"></a>
+  <h4 id="RhythmosEngine_RhythmosPlayer_volume" data-uid="RhythmosEngine.RhythmosPlayer.volume">volume</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the volume.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float volume { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><p>The volume.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/tobiasbu/rhythmos-engine/new/main/apiSpec/new?filename=RhythmosEngine_RhythmosPlayer_GetCurrentNote.md&amp;value=---%0Auid%3A%20RhythmosEngine.RhythmosPlayer.GetCurrentNote%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/tobiasbu/rhythmos-engine/blob/main/RhythmosEngine/RhythmosPlayer.cs/#L289">View Source</a>
+  </span>
+  <a id="RhythmosEngine_RhythmosPlayer_GetCurrentNote_" data-uid="RhythmosEngine.RhythmosPlayer.GetCurrentNote*"></a>
+  <h4 id="RhythmosEngine_RhythmosPlayer_GetCurrentNote" data-uid="RhythmosEngine.RhythmosPlayer.GetCurrentNote">GetCurrentNote()</h4>
+  <div class="markdown level1 summary"><p>Gets the actual played note.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Note GetCurrentNote()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="RhythmosEngine.Note.html">Note</a></td>
+        <td><p>The actual note.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/tobiasbu/rhythmos-engine/new/main/apiSpec/new?filename=RhythmosEngine_RhythmosPlayer_GetLastAudioSource.md&amp;value=---%0Auid%3A%20RhythmosEngine.RhythmosPlayer.GetLastAudioSource%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/tobiasbu/rhythmos-engine/blob/main/RhythmosEngine/RhythmosPlayer.cs/#L305">View Source</a>
+  </span>
+  <a id="RhythmosEngine_RhythmosPlayer_GetLastAudioSource_" data-uid="RhythmosEngine.RhythmosPlayer.GetLastAudioSource*"></a>
+  <h4 id="RhythmosEngine_RhythmosPlayer_GetLastAudioSource" data-uid="RhythmosEngine.RhythmosPlayer.GetLastAudioSource">GetLastAudioSource()</h4>
+  <div class="markdown level1 summary"><p>Gets the last audio source.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AudioSource GetLastAudioSource()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UnityEngine.AudioSource</span></td>
+        <td><p>The last audio source.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/tobiasbu/rhythmos-engine/new/main/apiSpec/new?filename=RhythmosEngine_RhythmosPlayer_HasNotePlayed.md&amp;value=---%0Auid%3A%20RhythmosEngine.RhythmosPlayer.HasNotePlayed%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/tobiasbu/rhythmos-engine/blob/main/RhythmosEngine/RhythmosPlayer.cs/#L280">View Source</a>
+  </span>
+  <a id="RhythmosEngine_RhythmosPlayer_HasNotePlayed_" data-uid="RhythmosEngine.RhythmosPlayer.HasNotePlayed*"></a>
+  <h4 id="RhythmosEngine_RhythmosPlayer_HasNotePlayed" data-uid="RhythmosEngine.RhythmosPlayer.HasNotePlayed">HasNotePlayed()</h4>
+  <div class="markdown level1 summary"><p>Determines if a note has played.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasNotePlayed()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><code>true</code> if this instance has note played; otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/tobiasbu/rhythmos-engine/new/main/apiSpec/new?filename=RhythmosEngine_RhythmosPlayer_Pause.md&amp;value=---%0Auid%3A%20RhythmosEngine.RhythmosPlayer.Pause%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/tobiasbu/rhythmos-engine/blob/main/RhythmosEngine/RhythmosPlayer.cs/#L343">View Source</a>
+  </span>
+  <a id="RhythmosEngine_RhythmosPlayer_Pause_" data-uid="RhythmosEngine.RhythmosPlayer.Pause*"></a>
+  <h4 id="RhythmosEngine_RhythmosPlayer_Pause" data-uid="RhythmosEngine.RhythmosPlayer.Pause">Pause()</h4>
+  <div class="markdown level1 summary"><p>Pause the rhythm.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Pause()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/tobiasbu/rhythmos-engine/new/main/apiSpec/new?filename=RhythmosEngine_RhythmosPlayer_Play.md&amp;value=---%0Auid%3A%20RhythmosEngine.RhythmosPlayer.Play%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/tobiasbu/rhythmos-engine/blob/main/RhythmosEngine/RhythmosPlayer.cs/#L313">View Source</a>
+  </span>
+  <a id="RhythmosEngine_RhythmosPlayer_Play_" data-uid="RhythmosEngine.RhythmosPlayer.Play*"></a>
+  <h4 id="RhythmosEngine_RhythmosPlayer_Play" data-uid="RhythmosEngine.RhythmosPlayer.Play">Play()</h4>
+  <div class="markdown level1 summary"><p>Play RhythmosPlayer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Play()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/tobiasbu/rhythmos-engine/new/main/apiSpec/new?filename=RhythmosEngine_RhythmosPlayer_PlayRhythm_RhythmosEngine_Rhythm_RhythmosEngine_RhythmosDatabase_System_Single_System_Boolean_System_Boolean_.md&amp;value=---%0Auid%3A%20RhythmosEngine.RhythmosPlayer.PlayRhythm(RhythmosEngine.Rhythm%2CRhythmosEngine.RhythmosDatabase%2CSystem.Single%2CSystem.Boolean%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/tobiasbu/rhythmos-engine/blob/main/RhythmosEngine/RhythmosPlayer.cs/#L389">View Source</a>
+  </span>
+  <a id="RhythmosEngine_RhythmosPlayer_PlayRhythm_" data-uid="RhythmosEngine.RhythmosPlayer.PlayRhythm*"></a>
+  <h4 id="RhythmosEngine_RhythmosPlayer_PlayRhythm_RhythmosEngine_Rhythm_RhythmosEngine_RhythmosDatabase_System_Single_System_Boolean_System_Boolean_" data-uid="RhythmosEngine.RhythmosPlayer.PlayRhythm(RhythmosEngine.Rhythm,RhythmosEngine.RhythmosDatabase,System.Single,System.Boolean,System.Boolean)">PlayRhythm(Rhythm, RhythmosDatabase, Single, Boolean, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Play a rhythm.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static RhythmosPlayer PlayRhythm(Rhythm rhythm, RhythmosDatabase database, float volume = 1F, bool loop = false, bool destroyOnEnd = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="RhythmosEngine.Rhythm.html">Rhythm</a></td>
+        <td><span class="parametername">rhythm</span></td>
+        <td><p>Rhythm.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="RhythmosEngine.RhythmosDatabase.html">RhythmosDatabase</a></td>
+        <td><span class="parametername">database</span></td>
+        <td><p>Database.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Single</span></td>
+        <td><span class="parametername">volume</span></td>
+        <td><p>Volume.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">loop</span></td>
+        <td><p>If set to <code>true</code> loop.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">destroyOnEnd</span></td>
+        <td><p>If set to <code>true</code> destroy on end.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="RhythmosEngine.RhythmosPlayer.html">RhythmosPlayer</a></td>
+        <td><p>The rhythm.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/tobiasbu/rhythmos-engine/new/main/apiSpec/new?filename=RhythmosEngine_RhythmosPlayer_Stop.md&amp;value=---%0Auid%3A%20RhythmosEngine.RhythmosPlayer.Stop%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/tobiasbu/rhythmos-engine/blob/main/RhythmosEngine/RhythmosPlayer.cs/#L322">View Source</a>
+  </span>
+  <a id="RhythmosEngine_RhythmosPlayer_Stop_" data-uid="RhythmosEngine.RhythmosPlayer.Stop*"></a>
+  <h4 id="RhythmosEngine_RhythmosPlayer_Stop" data-uid="RhythmosEngine.RhythmosPlayer.Stop">Stop()</h4>
+  <div class="markdown level1 summary"><p>Stop the rhythm.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Stop()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/tobiasbu/rhythmos-engine/new/main/apiSpec/new?filename=RhythmosEngine_RhythmosPlayer_UnPause.md&amp;value=---%0Auid%3A%20RhythmosEngine.RhythmosPlayer.UnPause%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/tobiasbu/rhythmos-engine/blob/main/RhythmosEngine/RhythmosPlayer.cs/#L355">View Source</a>
+  </span>
+  <a id="RhythmosEngine_RhythmosPlayer_UnPause_" data-uid="RhythmosEngine.RhythmosPlayer.UnPause*"></a>
+  <h4 id="RhythmosEngine_RhythmosPlayer_UnPause" data-uid="RhythmosEngine.RhythmosPlayer.UnPause">UnPause()</h4>
+  <div class="markdown level1 summary"><p>Unpause the rhythm</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UnPause()</code></pre>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/tobiasbu/rhythmos-engine/new/main/apiSpec/new?filename=RhythmosEngine_RhythmosPlayer.md&amp;value=---%0Auid%3A%20RhythmosEngine.RhythmosPlayer%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/tobiasbu/rhythmos-engine/blob/main/RhythmosEngine/RhythmosPlayer.cs/#L10" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
